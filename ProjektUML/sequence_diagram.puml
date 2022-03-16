@@ -1,0 +1,78 @@
+@startuml sequence 
+
+
+actor User as U
+participant Aplication as A
+participant Database as D
+
+activate U
+activate A
+activate D
+
+alt Sign up
+    U->A: 1: Sign up
+    A->D: 1.1: Adding user
+    D-->A: 1.2: User approved / not approved if user already exists
+    A-->U: 1.3: User created
+    
+else Login
+    U->A: 1.4: Login
+    A->D: 1.5: Request user
+    D-->A: 1.6: Accepts / Denies
+    A-->U: 1.1: Logged in / Not logged in
+end
+
+activate U
+activate A
+activate D
+
+alt Choose already created
+    U->A: Select already created tournament
+    A->D: Sends request for information
+    D-->A: Tournament loads
+    A-->U: Selected
+else Create new
+    U->A: Create new tournament
+ 
+    
+    
+    
+        U->A: Choose tournament type
+        A-->U: Tournament type chosen
+        
+        U->A: Choose match type
+        A-->U: Match type chose
+        
+        U->A: Choose amount of rounds
+        A-->U: Aamount of rounds chose
+        
+        U->A: Create new tournament
+        
+        A-->U: Created
+    
+    
+    loop Loops ever time a player is added
+    
+        U->A: Add person or team
+        A-->U: Added
+    
+        U->A: Type inname, clan name and trophies
+        A-->U: Typed
+        
+    
+        
+    end
+    U->A: Create setup and send to tournament page
+    A->D: Creates tournament
+    D-->A: Tournament loads
+    A-->U: Tournament ready
+end
+
+
+U->A: Type in scores 
+A-->U: Scores updated
+
+U->A: Save tournament
+A->D: Saves tournament
+D-->A: Tournament saved
+A-->U: Tournament saved
