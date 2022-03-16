@@ -10,7 +10,7 @@ activate A
 activate D
 
 alt Sign up
-    U->A: 1: Sign up
+    U->A: 1: Sign up 
     A->D: 1.1: Adding user
     D-->A: 1.2: User approved / not approved if user already exists
     A-->U: 1.3: User created
@@ -22,9 +22,6 @@ else Login
     A-->U: 1.1: Logged in / Not logged in
 end
 
-activate U
-activate A
-activate D
 
 alt Choose already created
     U->A: Select already created tournament
