@@ -1,0 +1,29 @@
+@startuml Usecase
+left to right direction
+:user:
+rectangle Enviorment{
+    usecase "signup" as SU
+    usecase "check if registered" as CIR
+    usecase "Loggin" as LG
+    usecase "Previous Tournament" as PTM
+    usecase "New Tournament" as NTM
+    usecase "Choose Settings" as CS
+    usecase "Create Tournament" as CTM
+    usecase "Add player" as AP
+    usecase "Remove player" as RM
+    usecase "Generate Tournament" as GTM
+
+}
+user --> SU
+user --> LG
+user --> PTM
+user --> NTM
+user --> CTM
+user --> AP
+user --> RM
+user --> GTM
+
+LG ..> CIR: <<includes>>
+NTM ..> CS: <<includes>>
+
+@enduml

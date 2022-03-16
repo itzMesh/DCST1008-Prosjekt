@@ -1,0 +1,36 @@
+@startuml Tournament
+
+Class Tournament{
+    <color:darkGreen>string <color:royalBlue>type
+    <color:darkGreen>string <color:royalBlue>gamemode
+    <color:darkGreen>int <color:royalBlue>numberofwinns
+    <color:darkGreen>void </color>addTeam()
+    ' <color:darkGreen>void </color>seeOldTournament()
+    ' <color:darkGreen>void </color>createNewTournament()
+    <color:darkGreen>void </color>randomGenerated()
+}
+
+Class Team{
+    <color:darkGreen>TeamMember[] <color:royalBlue>playerInTeam
+    <color:darkGreen>flaot <color:royalBlue>avrageThropies
+    <color:darkGreen>string <color:royalBlue>teamName
+    <color:darkGreen>void </color>randomGenerated()
+}
+
+Class TeamMember{
+    <color:darkGreen>string <color:royalBlue>playerName
+    <color:darkGreen>int <color:royalBlue>trophies
+}
+
+Class Match{
+    <color:darkGreen>Team[] <color:royalBlue>participants 
+    <color:darkGreen>int[] <color:royalBlue>score 
+    <color:darkGreen>Team <color:royalBlue>winner
+}
+
+TeamMember "1..2" -- "1..1"  Team :is a part of
+Tournament "1..1" -- "1..*"  Team :is playing in
+Tournament "1..1" -- "1..*" Match : is played in
+Team "2..2" -- "1..*" Match : is part of
+
+@enduml

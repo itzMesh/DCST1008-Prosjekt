@@ -1,0 +1,124 @@
+@startuml MachineBorderThicknes
+
+'left to right direction
+
+package Database <<Database>>{
+    class Config{
+        String username  
+        String password
+    }
+    class MatchSetUp{
+        
+    }
+}
+
+Package Pages <<frame>>{
+    Class LogginPage{
+        String username
+        String password
+        void login()
+    }
+
+    Class IndexPage{
+        TournamentPage[] previousTournaments
+        void newTorunament()
+    }
+
+    Class SettingsPage{
+
+    }
+
+    Class SignUpPage{
+        Team[] team
+        void createTournamentSetup()
+    }
+
+    Class TournamentPage{
+        
+    }
+}
+
+
+Class User{
+    String username
+    String password
+}
+
+Class Tournament{
+    GeneralSettings generalSettings
+    Team[] team
+    Rounds[] rounds
+}
+
+
+Class GeneralSettings{
+    String tournamenttype
+    String gamemode
+    String bestOfX
+    Tournament tournament
+    void createTournament()
+}
+
+
+Class Team{
+    TeamMember[] members
+    String teamName
+
+}
+
+class TeamMember{
+    String name
+    int trophy
+    String clanName
+}
+
+Class FirstToOne{
+    int[] result
+    void setScore(int score)
+}
+
+Class FirstToTwo{
+    int[][] result
+    void setScore(int score,int gameNr)
+
+}
+
+Class Match{
+    Team[] teams
+    Team Winner
+    Int MatchSeed
+}
+
+Class Round{
+    int roundNumber
+    int roundsToFinal
+    Match[] matches
+}
+
+Class ShadowTeam {
+    float avrageTrophies
+    float seed
+}
+
+
+
+
+GeneralSettings "1..1" -- "1..1" Tournament
+Tournament--> "1..*" Round
+Round-->"1..*" FirstToOne
+Round-->"1..*" FirstToTwo
+FirstToOne-->"0..2"Team
+FirstToOne-->"0..2"ShadowTeam
+FirstToTwo-->"0..2"Team
+FirstToTwo-->"0..2"ShadowTeam
+Team-->"1..2"TeamMember
+
+FirstToOne --|>Match
+FirstToTwo --|>Match
+
+
+Team-r-|>ShadowTeam
+
+
+
+@enduml
