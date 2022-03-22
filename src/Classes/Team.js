@@ -1,17 +1,21 @@
 import ShadowTeam from './ShadowTeam';
+import TeamMember from './TeamMember';
 
 class Team extends ShadowTeam {
-	constructor(member1,member2,name){
-		this.averageTrophies=(member1.trophies+member2.trophies)/2
-		this.teamMembers[0]=member1
-		this.teamMembers[1]=member2
-		this.teamName=name
-	}
-	constructor(member){
-		this.averageTrophies=member.trophies
-		this.teamMembers[0]=member
-		this.teamName=member.name
+	teamMembers = [];
+	constructor(member1, member2, name) {
+		super();
+		if (member2 == undefined) {
+			this.averageTrophies = member1.trophies;
+			this.teamMembers[0] = member1;
+			this.teamName = member1.name;
+		} else {
+			this.averageTrophies = (member1.trophies + member2.trophies) / 2;
+			this.teamMembers[0] = member1;
+			this.teamMembers[1] = member2;
+			this.teamName = name;
+		}
 	}
 }
 
-export default Team
+export default Team;
