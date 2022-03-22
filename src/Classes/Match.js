@@ -14,14 +14,6 @@ class Match {
 		this.teams[1] = team1;
 		this.MatchNumber = MatchNumber;
 		this.matchSeed = team0.seed < team1.seed ? team0.seed : team1.seed;
-
-		setTimeout(() => {
-			if (team0.constructor.name == 'ShadowTeam' && this.round.roundNumber == 0) {
-				this.updateScore(0, 3);
-			} else if (team1.constructor.name == 'ShadowTeam' && this.round.roundNumber == 0) {
-				this.updateScore(3, 0);
-			}
-		}, 100);
 	}
 
 	updateScore(score0, score1) {
@@ -30,7 +22,7 @@ class Match {
 		if (score0 - score1 != 0) {
 			this.winner = score0 > score1 ? this.teams[0] : this.teams[1];
 			this.winner.seed = this.matchSeed;
-			if (this.round.roundNumber != this.round.numberOfRounds) {
+			if (this.round.roundNumber != this.round.numberOfRounds - 1) {
 				for (
 					let i = 0;
 					i < this.round.tournament.rounds[this.round.roundNumber + 1].teams.length;
