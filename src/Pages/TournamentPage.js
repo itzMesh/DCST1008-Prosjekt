@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 
-class TournamentPage extends Component {
+export class TournamentPage extends Component {
 	tournamentID = 0;
 	matches = [];
 	teams = [];
@@ -12,19 +12,34 @@ class TournamentPage extends Component {
 		return (
 			<ul>
 				{this.matches.map((matchInfo) => (
-					<p key={matchInfo.MatchID}>
-						Kampnummer: {matchInfo.MatchNumber}
+					<div key={matchInfo.MatchID}>
+						Kampnummer:
+						<NavLink to={'/matches/' + matchInfo.MatchID}>
+							{matchInfo.MatchNumber}
+						</NavLink>
 						<br></br>
 						Team 1: {matchInfo.Team1}
-						<br></br>
 						<ul>
-							{this.teams.map((teamMembers) => (
-								<li key={teamMembers.TeamID}>{teamMembers.PlayerName}</li>
-							))}
+							{this.teams
+								.filter((e) => e.TeamID == matchInfo.Team1)
+								.map((teamMembers) => (
+									<li key={teamMembers.TeamID}>{teamMembers.PlayerName}</li>
+								))}
 						</ul>
-						<br></br>
 						Team 2: {matchInfo.Team2}
-					</p>
+						<ul>
+							{this.teams
+								.filter((e) => e.TeamID == matchInfo.Team2)
+								.map((teamMembers) => (
+									<li key={teamMembers.TeamID}>{teamMembers.PlayerName}</li>
+								))}
+						</ul>
+						Completed: {matchInfo.Completed}
+						<br></br>
+						Winner: {matchInfo.Winner}
+						<br></br>
+						<br></br>
+					</div>
 				))}
 			</ul>
 		);
@@ -48,4 +63,29 @@ class TournamentPage extends Component {
 	}
 }
 
-export default TournamentPage;
+export class EditTournamentPage extends Component {
+	matchInfo = null;
+
+	render() {
+		if (!this.matchInfo) return null;
+
+		return (
+			<ul>
+				<li>Completed: {this.matchInfo.Completed}</li>
+				<li>Winner: {this.matchInfo.Winner}</li>
+			</ul>
+		);
+	}
+
+	mounted() {
+		pool.query(
+			'SELECT Completed, Winner FROM GameMatch WHERE MatchID=?',
+			[this.props.match.params.MatchID],
+			(error, results) => {
+				if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+				this.matchInfo = results[0];
+			}
+		);
+	}
+}
