@@ -1,4 +1,4 @@
-import TeamMember from './TeamMember';
+import ShadowTeam from './ShadowTeam';
 
 class Torunament {
 	generalSettings = null;
@@ -15,11 +15,24 @@ class Torunament {
 	}
 
 	createBrackets() {
-		fillOutBracket();
+		this.rounds = setBracketRounds(this.teams);
+		this.teams = fillOutBracket(this.teams);
 		this.teams = sortTeams(this.teams);
 	}
 
-	fillOutBracket() {}
+	setBracketRounds(teams) {
+		rounds = 0;
+		while (Math.pow(2, rounds) < teams.length) {
+			rounds += 1;
+		}
+		return rounds;
+	}
+
+	fillOutBracket(teams) {
+		while (teams.length < Math.pow(2, this.rounds)) {
+			teams.push(new ShadowTeam());
+		}
+	}
 
 	sortTeams(teams) {
 		let sortedarr = [];
