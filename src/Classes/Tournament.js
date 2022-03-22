@@ -21,15 +21,19 @@ class Torunament {
 
 	setBracketRounds(teams) {
 		let numberOfRounds = 0;
-		while (Math.pow(2, rounds) < teams.length) {
-			if (numberOfRounds == 0) {
-				this.rounds.push(new Round(0, teams));
-			} else {
-				this.rounds.push(new Round(numberOfRounds));
-			}
+		while (Math.pow(2, numberOfRounds) < teams.length) {
 			numberOfRounds += 1;
 		}
-		return rounds;
+		let roundNumber = 0;
+		while (Math.pow(2, roundNumber) < teams.length) {
+			if (roundNumber == 0) {
+				this.rounds.push(new Round(numberOfRounds, 0, this, teams));
+			} else {
+				this.rounds.push(new Round(numberOfRounds, roundNumber, this));
+			}
+			roundNumber += 1;
+		}
+		return numberOfRounds;
 	}
 }
 
