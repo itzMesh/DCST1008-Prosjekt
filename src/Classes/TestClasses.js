@@ -14,7 +14,7 @@ function tester() {
 	}
 	torunamentTest.teams = teamlist;
 	torunamentTest.createBrackets();
-	console.log(torunamentTest.teams);
+	console.log(torunamentTest);
 }
 
 export default tester;
