@@ -17,7 +17,17 @@ class Torunament {
 	createBrackets() {
 		this.rounds = this.setBracketRounds(this.teams);
 		this.teams = this.fillOutBracket(this.teams);
-		//this.teams = sortTeams(this.teams);
+		this.teams.sort((a, b) => {
+			if (a.averageTrophies < b.averageTrophies) {
+				return 1;
+			}
+			if (a.averageTrophies > b.averageTrophies) {
+				return -1;
+			}
+			return 0;
+		});
+		this.setseeds();
+		this.teams = this.sortTeams(this.teams);
 	}
 
 	setBracketRounds(teams) {
@@ -35,6 +45,12 @@ class Torunament {
 		return teams;
 	}
 
+	setseeds() {
+		for (const i in this.teams) {
+			this.teams[i].seed = parseInt(i) + 1;
+		}
+	}
+
 	sortTeams(teams) {
 		let sortedarr = [];
 
@@ -44,19 +60,18 @@ class Torunament {
 			for (let j = start; j < Math.pow(2, ink); j++) {
 				start = j;
 				let numb = j;
-				console.log(numb);
 				if (sortedarr.length == 0) {
 					sortedarr.push(teams[0]);
 				} else {
 					for (let k = 0; k < sortedarr.length; k++) {
-						if (sortedarr[k] + teams[numb] == i + 1) {
+						if (sortedarr[k].seed + teams[numb].seed == i + 1) {
 							sortedarr.splice(k + 1, 0, teams[numb]);
 							break;
 						}
 					}
 				}
 			}
-			ink += 1;
+			ink++;
 		}
 		return sortedarr;
 	}
