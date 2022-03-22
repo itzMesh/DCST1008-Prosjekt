@@ -15,13 +15,13 @@ class Torunament {
 	}
 
 	createBrackets() {
-		this.rounds = setBracketRounds(this.teams);
-		this.teams = fillOutBracket(this.teams);
-		this.teams = sortTeams(this.teams);
+		this.rounds = this.setBracketRounds(this.teams);
+		this.teams = this.fillOutBracket(this.teams);
+		//this.teams = sortTeams(this.teams);
 	}
 
 	setBracketRounds(teams) {
-		rounds = 0;
+		let rounds = 0;
 		while (Math.pow(2, rounds) < teams.length) {
 			rounds += 1;
 		}
@@ -32,17 +32,18 @@ class Torunament {
 		while (teams.length < Math.pow(2, this.rounds)) {
 			teams.push(new ShadowTeam());
 		}
+		return teams;
 	}
 
 	sortTeams(teams) {
 		let sortedarr = [];
 
 		let ink = 0;
-		var start = 0;
+		let start = 0;
 		for (let i = 1; i <= teams.length; i = Math.pow(2, ink)) {
 			for (let j = start; j < Math.pow(2, ink); j++) {
 				start = j;
-				numb = j;
+				let numb = j;
 				console.log(numb);
 				if (sortedarr.length == 0) {
 					sortedarr.push(teams[0]);
