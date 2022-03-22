@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
+import tester from './Classes/TestClasses';
 
 class Menu extends Component {
 	render() {

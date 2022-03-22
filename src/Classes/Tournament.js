@@ -1,4 +1,4 @@
-import TeamMember from './TeamMember';
+import ShadowTeam from './ShadowTeam';
 
 class Torunament {
 	generalSettings = null;
@@ -15,34 +15,63 @@ class Torunament {
 	}
 
 	createBrackets() {
-		fillOutBracket();
-		this.teams = sortTeams(this.teams);
+		this.rounds = this.setBracketRounds(this.teams);
+		this.teams = this.fillOutBracket(this.teams);
+		this.teams.sort((a, b) => {
+			if (a.averageTrophies < b.averageTrophies) {
+				return 1;
+			}
+			if (a.averageTrophies > b.averageTrophies) {
+				return -1;
+			}
+			return 0;
+		});
+		this.setseeds();
+		this.teams = this.sortTeams(this.teams);
 	}
 
-	fillOutBracket() {}
+	setBracketRounds(teams) {
+		let rounds = 0;
+		while (Math.pow(2, rounds) < teams.length) {
+			rounds += 1;
+		}
+		return rounds;
+	}
+
+	fillOutBracket(teams) {
+		while (teams.length < Math.pow(2, this.rounds)) {
+			teams.push(new ShadowTeam());
+		}
+		return teams;
+	}
+
+	setseeds() {
+		for (const i in this.teams) {
+			this.teams[i].seed = parseInt(i) + 1;
+		}
+	}
 
 	sortTeams(teams) {
 		let sortedarr = [];
 
 		let ink = 0;
-		var start = 0;
+		let start = 0;
 		for (let i = 1; i <= teams.length; i = Math.pow(2, ink)) {
 			for (let j = start; j < Math.pow(2, ink); j++) {
 				start = j;
-				numb = j;
-				console.log(numb);
+				let numb = j;
 				if (sortedarr.length == 0) {
 					sortedarr.push(teams[0]);
 				} else {
 					for (let k = 0; k < sortedarr.length; k++) {
-						if (sortedarr[k] + teams[numb] == i + 1) {
+						if (sortedarr[k].seed + teams[numb].seed == i + 1) {
 							sortedarr.splice(k + 1, 0, teams[numb]);
 							break;
 						}
 					}
 				}
 			}
-			ink += 1;
+			ink++;
 		}
 		return sortedarr;
 	}
