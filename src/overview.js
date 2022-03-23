@@ -10,7 +10,7 @@ export class Choose extends Component {
         <div>
           <br/> Overview of Tournaments <br/>
 
-          <NavLink to="/overview">Tournament 1 ...<br/><br/></NavLink>
+          <NavLink to="/tournamentPage">Tournament 1<br/><br/></NavLink>
 
 
           <NavLink to="/new">New tournament</NavLink>
@@ -28,10 +28,20 @@ export class New extends Component {
       <br/>Select tournament type 
 
         <select value={this.name} onChange={(event) => (this.name = event.currentTarget.value)}>
-          <option value="Kari">Kari</option>
-          <option value="Ola">Ola</option>
-          <option value="Eli">Eli</option>
-        </select>
+          <option value="bracket">Bracket</option>
+          <option value="roundrobin">Round robin</option>
+        </select><br/><br/>
+
+        Select match type 
+
+        <select value={this.name} onChange={(event) => (this.name = event.currentTarget.value)}>
+          <option value="">1v1</option>
+          <option value="">2v2 - Generated teams</option>
+          <option value="">2v2 - Custom Teams</option>
+          <option value="">1v1 Double Elixir</option>
+          <option value="">2v2 - Double </option>
+          <option value="">Round robin</option>
+        </select><br/><br/>
       
     </div>;
   }
