@@ -1,5 +1,10 @@
 class ShadowTeam {
-	constructor() {
+	constructor(seed) {
+		if (seed == undefined) {
+			('');
+		} else {
+			this.seed = seed;
+		}
 		this.averageTrophies = 0;
 	}
 }
