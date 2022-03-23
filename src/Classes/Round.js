@@ -79,7 +79,15 @@ class Round {
 	addMatches() {
 		for (let i = 0; i < this.teams.length / 2; i++) {
 			this.matches.push(
-				new Match(this.teams[i * 2], this.teams[i * 2 + 1], i + this.firstMatchNumber, this)
+				new Match(
+					this.teams[i * 2],
+					this.teams[i * 2 + 1],
+					i + this.firstMatchNumber,
+					this,
+					i,
+					false,
+					false
+				)
 			);
 		}
 	}

@@ -1,11 +1,21 @@
 import Round from './Round';
 
 class Torunament {
+	name;
+	TorunamentId;
 	generalSettings = null;
 	teams = [];
 	rounds = [];
 
-	constructor() {}
+	constructor(name, TorunamentId, teams) {
+		this.name = name;
+		this.TorunamentId = TorunamentId;
+		if (teams != false) {
+			this.teams = teams;
+			//until more implimented
+			this.createBrackets();
+		}
+	}
 
 	startTournament() {
 		if (generalSettings.torunamentType == 'brackets') {
