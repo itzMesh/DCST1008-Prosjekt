@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
+import { TournamentPage, EditTournamentPage } from './Pages/TournamentPage';
 import tester from './Classes/TestClasses';
 
 import { Login, Signup, Start } from './login';
 import { Choose, New, Overview } from './overview';
-
 
 class Menu extends Component {
 	render() {
@@ -15,6 +15,7 @@ class Menu extends Component {
 				Menu:
 				<NavLink to="/">Home page</NavLink>
 				<NavLink to="/page1">Page 1</NavLink>
+				<NavLink to="/tournamentPage">TournamentPage</NavLink>
 				<NavLink to="/page2">Page 2</NavLink>
 			</div>
 		);
@@ -23,6 +24,7 @@ class Menu extends Component {
 
 class Home extends Component {
 	render() {
+		return <div>Hjemmeside</div>;
 		return <div>Home page</div>;
 	}
 }
@@ -45,11 +47,13 @@ ReactDOM.render(
 			<Menu />
 			<Route exact path="/" component={Home} />
 			<Route exact path="/page1" component={Page1} />
+			<Route exact path="/tournamentPage" component={TournamentPage} />
+			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
 			<Route exact path="/page2" component={Page2} />
 
 			<Route exact path="/new" component={New} />
-            <Route exact path="/overview" component={Overview} />
-            <Route exact path="/choose" component={Choose} />
+			<Route exact path="/overview" component={Overview} />
+			<Route exact path="/choose" component={Choose} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
