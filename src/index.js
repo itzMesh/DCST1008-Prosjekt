@@ -44,12 +44,15 @@ class Page2 extends Component {
 ReactDOM.render(
 	<HashRouter>
 		<div>
-			<Menu />
+			<Start />
 			<Route exact path="/" component={Home} />
 			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/tournamentPage" component={TournamentPage} />
 			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
 			<Route exact path="/page2" component={Page2} />
+
+			<Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
 
 			<Route exact path="/new" component={New} />
 			<Route exact path="/overview" component={Overview} />
@@ -58,3 +61,5 @@ ReactDOM.render(
 	</HashRouter>,
 	document.getElementById('root')
 );
+
+
