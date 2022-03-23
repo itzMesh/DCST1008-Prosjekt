@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
 import tester from './Classes/TestClasses';
 
+import { Login, Signup, Start } from './login';
+import { Choose, New, Overview } from './overview';
+
+
 class Menu extends Component {
 	render() {
 		return (
@@ -42,6 +46,10 @@ ReactDOM.render(
 			<Route exact path="/" component={Home} />
 			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/page2" component={Page2} />
+
+			<Route exact path="/new" component={New} />
+            <Route exact path="/overview" component={Overview} />
+            <Route exact path="/choose" component={Choose} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
