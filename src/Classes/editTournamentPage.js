@@ -1,34 +1,32 @@
-import * as React from 'react';
-import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 
-class EditTournamentPage extends Component {
-	matchInfo = null;
+class EditService {
+	getWinners(success) {
+		pool.query('SELECT * FROM GameMatch', (error, results) => {
+			if (error) return console.error(error);
 
-	render() {
-		if (!this.matchInfo) return null;
-
-		return (
-			<ul>
-				<li>Completed: {this.matchInfo.Completed}</li>
-				<li>Winner: {this.matchInfo.Winner}</li>
-			</ul>
-		);
+			success(results);
+		});
 	}
 
-	mounted() {
-		pool.query(
-			'SELECT MatchID, Completed, Winner FROM GameMatch WHERE MatchID=?',
-			[this.props.match.params.MatchID],
-			(error, results) => {
-				if (error) return console.error(error); // If error, show error in console (in red text) and return
+	getWinner(MatchID, success) {
+		pool.query('SELECT * FROM GameMatch WHERE MatchID=?', [MatchID], (error, results) => {
+			if (error) return console.error(error);
 
-				this.matchInfo = results;
+			success(results[0]);
+		});
+	}
+
+	updateWinner(match, success) {
+		pool.query(
+			'UPDATE GameMatch SET Completed=?, Team1Score=?, Team2Score=? WHERE MatchID=?',
+			[match.Completed, match.Team1Score, match.Team2Score, match.MatchID],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success();
 			}
 		);
 	}
 }
-
-export default EditTournamentPage;
+export let editService = new EditService();

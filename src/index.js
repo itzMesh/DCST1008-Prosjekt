@@ -35,7 +35,7 @@ ReactDOM.render(
 			<Route exact path="/" component={Home} />
 			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/tournamentPage" component={TournamentPage} />
-			<Route exact path="/matches/:MatchID" component={EditTournamentPage} />
+			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
