@@ -7,6 +7,7 @@ class Match {
 	MatchNumber;
 	matchSeed;
 	winner;
+	matchFinished;
 
 	constructor(team0, team1, MatchNumber, round) {
 		this.round = round;
