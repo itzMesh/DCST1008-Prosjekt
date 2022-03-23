@@ -42,7 +42,7 @@ else Create new
     
     A-->U: Created
     
-    loop Loops ever time a player is added
+    loop Loops every time a player is added or deleted
     
         U->A: Add person or team
         A-->U: Added
@@ -50,7 +50,7 @@ else Create new
         U->A: Remove person or team
         A-->U: Removed
     
-        U->A: Type inname, clan name and trophies
+        U->A: Type in name, clan name and trophies
         A-->U: Typed
         
     
