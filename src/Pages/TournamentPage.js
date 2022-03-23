@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 import { editService } from '../Classes/editTournamentPage';
 
@@ -11,11 +11,14 @@ export class TournamentPage extends Component {
 	matches = [];
 	teamMember = [];
 	team = [];
+	tournamentChoser = null;
 	render() {
+		if (!this.tournamentChoser) return null;
+		console.log(this.tournamentChoser);
 		return (
 			<ul>
 				{this.matches
-					.filter((e) => e.TournamentID == eksternTournamentID)
+					.filter((e) => e.TournamentID == this.tournamentChoser.TournamentID)
 					.map((matchInfo) => (
 						<div key={matchInfo.MatchID}>
 							Kampnummer:
@@ -25,7 +28,7 @@ export class TournamentPage extends Component {
 							<br></br>
 							Team 1:
 							{this.team
-								.filter((e) => e.TeamID == matchInfo.Team1)
+								.filter((x) => x.TeamID == matchInfo.Team1)
 								.map((teamName) => (
 									<em key={teamName.TeamID}> {teamName.TeamName}</em>
 								))}
@@ -40,13 +43,15 @@ export class TournamentPage extends Component {
 							{this.team
 								.filter((e) => e.TeamID == matchInfo.Team2)
 								.map((teamName) => (
-									<em key={teamName.TeamID}> {teamName.TeamName}</em>
+									<em key={'Team2' + teamName.TeamID}> {teamName.TeamName}</em>
 								))}
 							<ul>
 								{this.teamMember
 									.filter((e) => e.TeamID == matchInfo.Team2)
 									.map((teamMembers) => (
-										<li key={teamMembers.TeamID}>{teamMembers.PlayerName}</li>
+										<li key={'Team2' + teamMembers.TeamID}>
+											{teamMembers.PlayerName}
+										</li>
 									))}
 							</ul>
 							<br></br>
@@ -76,6 +81,17 @@ export class TournamentPage extends Component {
 
 			this.team = results;
 		});
+		pool.query(
+			'SELECT TournamentID FROM Tournament WHERE TournamentID= ?',
+			[this.props.match.params.TournamentID],
+
+			(error, results) => {
+				if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+				this.tournamentChoser = results[0];
+			}
+		);
+		console.log([this.props.match.params.TournamentID]);
 	}
 }
 

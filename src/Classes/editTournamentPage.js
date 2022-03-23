@@ -1,20 +1,23 @@
 import { pool } from '../mysql-pool';
 
 class EditService {
-	getWinners(success) {
-		pool.query('SELECT * FROM GameMatch', (error, results) => {
-			if (error) return console.error(error);
-
-			success(results);
-		});
-	}
-
 	getWinner(MatchID, success) {
 		pool.query('SELECT * FROM GameMatch WHERE MatchID=?', [MatchID], (error, results) => {
 			if (error) return console.error(error);
 
 			success(results[0]);
 		});
+	}
+	getTournament(TournamentID, success) {
+		pool.query(
+			'SELECT * FROM Tournament WHERE TournamentID=?',
+			[TournamentID],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success(results[0]);
+			}
+		);
 	}
 
 	updateWinner(match, success) {
