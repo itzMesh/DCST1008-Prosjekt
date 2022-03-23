@@ -22,7 +22,8 @@ export class Start extends Component {
 
 export class Login extends Component {
   render() {
-    return <div> 
+    return <div>
+      <br/> 
       <input type="text" placeholder="Username" /><br />
       <input type="password" placeholder="Password" /><br />
       <NavLink to="/choose">
@@ -34,7 +35,8 @@ export class Login extends Component {
 
 export class Signup extends Component {
   render() {
-    return <div><input type="text" placeholder="Username" /><br />
+    return <div>
+      <br/><input type="text" placeholder="Username" /><br />
     <input type="password" placeholder="Password" /><br />
     <input type="password" placeholder="Confirm password" /><br />
     <NavLink to="/choose">

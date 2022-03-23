@@ -39,14 +39,26 @@ export class New extends Component {
           <option value="">2v2 - Generated teams</option>
           <option value="">2v2 - Custom Teams</option>
           <option value="">1v1 Double Elixir</option>
-          <option value="">2v2 - Double </option>
-          <option value="">Round robin</option>
+          <option value="">2v2 - Double Elixir</option>
+          <option value="">2v2 - Double Elixir</option>
         </select><br/><br/>
+
+        Amount of rounds
+
+        <select value={this.name} onChange={(event) => (this.name = event.currentTarget.value)}>
+          <option value="bracket">Best of 1</option>
+          <option value="roundrobin">Best of 3</option>
+        </select><br/><br/>
+
+        <NavLink to="/bracket">
+          <button type="button">Create tournament</button>
+        </NavLink>
+
+        
       
     </div>;
   }
 }
-
 
 export class Overview extends Component {
   render() {

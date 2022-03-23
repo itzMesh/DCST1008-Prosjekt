@@ -7,6 +7,7 @@ import tester from './Classes/TestClasses';
 
 import { Login, Signup, Start } from './login';
 import { Choose, New, Overview } from './overview';
+import { Add } from './players';
 
 class Menu extends Component {
 	render() {
@@ -57,9 +58,10 @@ ReactDOM.render(
 			<Route exact path="/new" component={New} />
 			<Route exact path="/overview" component={Overview} />
 			<Route exact path="/choose" component={Choose} />
+
+			<Route exact path="/bracket" component={Add} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
 );
-
 
