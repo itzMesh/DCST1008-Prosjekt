@@ -34,7 +34,7 @@ export class Choose extends Component {
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+			if (error) return console.error(error); 
 
 			this.tournaments = results;
 		});
@@ -42,12 +42,20 @@ export class Choose extends Component {
 }
 
 export class New extends Component {
+	tourname = '';
 	bestof = '';
 	type = '';
 	gamemode = 0;
 	render() {
 		return (
 			<div>
+				<br />
+				Tournament name
+				<input
+					value={this.tourname}
+					onChange={(event) => (this.tourname = event.currentTarget.value)}
+				/>
+				<br />
 				<br />
 				Select tournament type
 				<select

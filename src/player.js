@@ -56,7 +56,7 @@ export class AddOne extends Component {
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
-						<div key={i}>
+						<div key={i} style={{ float: 'left' }}>
 							<em key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
 							</em>
@@ -82,18 +82,7 @@ export class AddOne extends Component {
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 
-		console.log(this.teams);
-
-		// let ny = React.createElement("div", {}, "Team: " + this.team + ' Name: ' + this.name1 + ' Trophies: ' + this.trophies1 +
-		//                                         ' Name: ' + this.name2 + ' Trophies: ' + this.trophies2)
-
-		// let nytt = document.createElement("div")
-		// nytt.id = 'nytt';
-		// document.body.appendChild(nytt);
-
-		// ReactDOM.render(
-		//   ny,
-		//   document.getElementById('nytt')
-		// );
+    this.name1 = '';
+		this.trophies1 = '';
 	}
 }
