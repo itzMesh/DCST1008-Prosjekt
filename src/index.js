@@ -9,24 +9,9 @@ import { Login, Signup, Start } from './login';
 import { Choose, New, Overview } from './overview';
 import { Add } from './players';
 
-class Menu extends Component {
-	render() {
-		return (
-			<div>
-				Menu:
-				<NavLink to="/">Home page</NavLink>
-				<NavLink to="/page1">Page 1</NavLink>
-				<NavLink to="/tournamentPage">TournamentPage</NavLink>
-				<NavLink to="/page2">Page 2</NavLink>
-			</div>
-		);
-	}
-}
-
 class Home extends Component {
 	render() {
 		return <div>Hjemmeside</div>;
-		return <div>Home page</div>;
 	}
 }
 
@@ -46,7 +31,7 @@ ReactDOM.render(
 	<HashRouter>
 		<div>
 			<Start />
-			<Route exact path="/" component={Home} />
+			<Route exact path="/" component={Login} />
 			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/tournamentPage/:TournamentID" component={TournamentPage} />
 			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
