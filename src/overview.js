@@ -8,7 +8,14 @@ export class Choose extends Component {
 	tournaments = [];
 	render() {
 		return (
-			<div>
+			<div
+				style={{
+					backgroundColor: 'lightgray',
+					width: '100%',
+					height: '100%',
+					fontSize: '40px',
+				}}
+			>
 				<br /> Overview of Tournaments <br />
 				{this.tournaments.map((tournament) => (
 					<li key={tournament.TournamentID}>

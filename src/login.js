@@ -22,16 +22,49 @@ export class Login extends Component {
 	render() {
 		console.log(this.userdata);
 		return (
-			<div>
-				<br />
-				<input type="text" placeholder="Username" />
-				<br />
-				<input type="password" placeholder="Password" />
-				<br />
-				<NavLink to="/choose">
-					<button type="button">Login</button>
-				</NavLink>
-			</div>
+			<body
+				style={{
+					backgroundColor: 'lightblue',
+					height: '950px',
+				}}
+			>
+				<div
+					style={{
+						backgroundColor: '#FFE5B4',
+						width: '400px',
+						height: '400px',
+						marginLeft: '40%',
+						borderRadius: '25%',
+					}}
+				>
+					<br />
+					<input
+						style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
+						type="text"
+						placeholder="Username"
+					/>
+					<br />
+					<input
+						style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
+						type="password"
+						placeholder="Password"
+					/>
+					<br />
+					<NavLink to="/choose">
+						<button
+							style={{
+								marginLeft: '100px',
+								marginTop: '50px',
+								height: '30px',
+								width: '100px',
+							}}
+							type="button"
+						>
+							Login
+						</button>
+					</NavLink>
+				</div>
+			</body>
 		);
 	}
 	mounted() {
