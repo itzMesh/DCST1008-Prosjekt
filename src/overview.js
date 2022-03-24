@@ -38,16 +38,17 @@ export class Choose extends Component {
 }
 
 export class New extends Component {
-
-  name = 0
+	bestof = '';
+	type = '';
+	gamemode = 0;
 	render() {
 		return (
 			<div>
 				<br />
 				Select tournament type
 				<select
-					value={this.name}
-					onChange={(event) => (this.name = event.currentTarget.value)}
+					value={this.type}
+					onChange={(event) => (this.type = event.currentTarget.value)}
 				>
 					<option value="bracket">Bracket</option>
 					<option value="roundrobin">Round robin</option>
@@ -56,8 +57,8 @@ export class New extends Component {
 				<br />
 				Select match type
 				<select
-					value={this.name}
-					onChange={(event) => (this.name = event.currentTarget.value)}
+					value={this.gamemode}
+					onChange={(event) => (this.gamemode = event.currentTarget.value)}
 				>
 					<option value="0">1v1</option>
 					<option value="0">2v2 - Generated teams</option>
@@ -70,15 +71,15 @@ export class New extends Component {
 				<br />
 				Amount of rounds
 				<select
-					value={this.name}
-					onChange={(event) => (this.name = event.currentTarget.value)}
+					value={this.bestof}
+					onChange={(event) => (this.bestof = event.currentTarget.value)}
 				>
 					<option value="bracket">Best of 1</option>
 					<option value="roundrobin">Best of 3</option>
 				</select>
 				<br />
 				<br />
-				<NavLink to={"/players/" + this.name}>
+				<NavLink to={'/players/' + this.gamemode}>
 					<button type="button">Create tournament</button>
 				</NavLink>
 			</div>
