@@ -8,6 +8,7 @@ import Torunament from '../Classes/Tournament';
 import TeamMember from '../Classes/TeamMember';
 import Team from '../Classes/Team';
 import Match from '../Classes/Match';
+import ShadowTeam from '../Classes/ShadowTeam';
 
 export let tournament = null;
 
@@ -146,7 +147,7 @@ export class TournamentPage extends Component {
 		function thirdDatabase(inn) {
 			return new Promise((resolve) => {
 				pool.query(
-					'SELECT TeamID, TeamName FROM Team WHERE TournamentID= ?',
+					'SELECT TeamID, IsShadow, TeamName FROM Team WHERE TournamentID= ?',
 					[tournamentID],
 					(error, results) => {
 						if (error) return console.error(error); // If error, show error in console (in red text) and return
@@ -183,7 +184,11 @@ export class TournamentPage extends Component {
 				let promTournamentChoser = table[3];
 
 				for (const i of promTeam) {
-					teamObj.push(new Team(i.TeamName, i.TeamID));
+					if (!i.isShadow) {
+						teamObj.push(new Team(i.TeamName, i.TeamID));
+					} else {
+						teamObj.push(new ShadowTeam());
+					}
 				}
 
 				for (const i of promTeamMember) {
