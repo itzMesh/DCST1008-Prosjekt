@@ -56,7 +56,7 @@ export class AddOne extends Component {
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
-						<div key={i}>
+						<div key={i} style={{ float: 'left' }}>
 							<em key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
 							</em>
@@ -81,5 +81,8 @@ export class AddOne extends Component {
 		// if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
+
+    this.name1 = '';
+		this.trophies1 = '';
 	}
 }
