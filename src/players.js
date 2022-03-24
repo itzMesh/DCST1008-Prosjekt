@@ -1,18 +1,27 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { pool } from './mysql-pool';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { settings } from './overview';
+import { tournament } from './Pages/TournamentPage';
+import Team from './Classes/Team';
+import TeamMember from './Classes/TeamMember';
 
 export class Add extends Component {
-	team = '';
-	name1 = '';
-	trophies1 = '';
-	name2 = '';
-	trophies2 = '';
+	team = 'Best team';
+	name1 = 'Jo';
+	trophies1 = '2000';
+	name2 = 'Martin';
+	trophies2 = '69';
 	teams = [];
 	form = null;
+	tournaments = [];
+	teamObj = [];
 
 	render() {
+		if (this.tournaments.length == 0) return null;
+
 		return (
 			<div>
 				<form ref={(instance) => (this.form = instance)}>
@@ -108,23 +117,31 @@ export class Add extends Component {
 		);
 	}
 
+	mounted() {
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.tournaments = results;
+			this.tournaments = this.tournaments.map((Tournament) => Tournament.TournamentID);
+			this.tournaments.sort((a, b) => b - a);
+			console.log(this.tournaments);
+		});
+	}
+
+	createObjects() {
+		console.log(this.teams[0]);
+		for (const i of this.teams) {
+			let aTeam = new Team(i[0], 0);
+			aTeam.addMember(new TeamMember(i[1][0], i[1][1]));
+			aTeam.addMember(new TeamMember(i[2][0], i[2][1]));
+			this.teamObj.push(aTeam);
+		}
+	}
+
 	buttonClicked() {
-		// if (!this.form.reportValidity()) return;
-
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
-
 		console.log(this.teams);
-
-		// let ny = React.createElement("div", {}, "Team: " + this.team + ' Name: ' + this.name1 + ' Trophies: ' + this.trophies1 +
-		//                                         ' Name: ' + this.name2 + ' Trophies: ' + this.trophies2)
-
-		// let nytt = document.createElement("div")
-		// nytt.id = 'nytt';
-		// document.body.appendChild(nytt);
-
-		// ReactDOM.render(
-		//   ny,
-		//   document.getElementById('nytt')
-		// );
+		this.createObjects();
+		console.log(this.teamObj);
 	}
 }
