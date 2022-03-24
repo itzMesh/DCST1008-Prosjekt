@@ -5,7 +5,7 @@ class ShadowTeam {
 		} else {
 			this.seed = seed;
 		}
-		this.averageTrophies = 0;
+		this.averageTrophies = -1;
 	}
 }
 

@@ -1,11 +1,21 @@
 import Round from './Round';
 
 class Torunament {
+	name;
+	TorunamentId;
 	generalSettings = null;
 	teams = [];
 	rounds = [];
 
-	constructor() {}
+	constructor(name, TorunamentId, teams) {
+		this.name = name;
+		this.TorunamentId = TorunamentId;
+		if (teams != false) {
+			this.teams = teams;
+			//until more implimented
+			this.createBrackets();
+		}
+	}
 
 	startTournament() {
 		if (generalSettings.torunamentType == 'brackets') {
@@ -17,6 +27,7 @@ class Torunament {
 
 	createBrackets() {
 		this.numberOfRounds = this.setBracketRounds(this.teams);
+		this.playWalkover();
 	}
 
 	setBracketRounds(teams) {
@@ -34,6 +45,16 @@ class Torunament {
 			roundNumber += 1;
 		}
 		return numberOfRounds;
+	}
+
+	playWalkover() {
+		for (const i of this.rounds[0].matches) {
+			if (i.teams[0].constructor.name == 'ShadowTeam') {
+				i.updateScore(0, 3);
+			} else if (i.teams[1].constructor.name == 'ShadowTeam') {
+				i.updateScore(3, 0);
+			}
+		}
 	}
 }
 
