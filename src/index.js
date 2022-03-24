@@ -9,7 +9,7 @@ import { Login, Signup, Start } from './login';
 import { Choose, New, Overview } from './overview';
 import { Add } from './players';
 import { AddOne } from './player';
-import { Bracket } from './bracket'
+import { Bracket } from './bracket';
 import { ShowTournamentPage } from './Pages/ShowTournamentPage';
 
 class Home extends Component {
