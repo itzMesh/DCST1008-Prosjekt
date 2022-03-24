@@ -26,13 +26,15 @@ export class Login extends Component {
 		return (
 			<body
 				style={{
-					backgroundColor: 'lightblue',
+					// backgroundColor: 'lightblue',
+					backgroundColor: '#2C2F33',
 					height: '950px',
 				}}
 			>
 				<div
 					style={{
-						backgroundColor: '#FFE5B4',
+						// backgroundColor: '#FFE5B4',
+						backgroundColor: '#5865F2',
 						width: '400px',
 						height: '400px',
 						marginLeft: '40%',

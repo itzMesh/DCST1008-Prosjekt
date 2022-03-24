@@ -8,6 +8,8 @@ import tester from './Classes/TestClasses';
 import { Login, Signup, Start } from './login';
 import { Choose, New, Overview } from './overview';
 import { Add } from './players';
+import { AddOne } from './player';
+import { Bracket } from './bracket'
 import { ShowTournamentPage } from './Pages/ShowTournamentPage';
 
 class Home extends Component {
@@ -50,7 +52,10 @@ ReactDOM.render(
 			<Route exact path="/overview" component={Overview} />
 			<Route exact path="/choose" component={Choose} />
 
-			<Route exact path="/bracket" component={Add} />
+			<Route exact path="/players/1" component={Add} />
+			<Route exact path="/players/0" component={AddOne} />
+
+			<Route exact path="/bracket" component={Bracket} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
