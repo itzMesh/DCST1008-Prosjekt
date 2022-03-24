@@ -66,7 +66,21 @@ export class Add extends Component {
 						Add team
 					</button>
 				</form>
-
+				<NavLink to="/bracket">
+					<button
+						style={{
+							backgroundColor: 'red',
+              size: 'large',
+              marginLeft: '700px',
+							marginTop: '10px',
+							height: '40px',
+							width: '100px',
+						}}
+						type="button"
+					>
+						Create Tournament
+					</button>
+				</NavLink>
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
@@ -91,7 +105,7 @@ export class Add extends Component {
 	}
 
 	buttonClicked() {
-		if (!this.form.reportValidity()) return;
+		// if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 
