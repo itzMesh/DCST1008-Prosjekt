@@ -3,7 +3,7 @@ import Torunament from './Tournament';
 import TeamMember from './TeamMember';
 
 function tester() {
-	let torunamentTest = new Torunament();
+	let torunamentTest = new Torunament('test', 0, false);
 	let teamlist = [];
 
 	function addPlayer(name, trophies) {

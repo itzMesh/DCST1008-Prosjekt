@@ -1,8 +1,7 @@
 class TeamMember {
-	constructor(name, trophies, clanName) {
+	constructor(name, trophies) {
 		this.name = name;
 		this.trophies = trophies;
-		this.clanName = clanName;
 	}
 }
 

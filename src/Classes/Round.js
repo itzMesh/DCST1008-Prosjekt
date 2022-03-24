@@ -33,7 +33,7 @@ class Round {
 			roundNumber == 0
 				? 0
 				: this.tournament.rounds[roundNumber - 1].firstMatchNumber +
-				  this.tournament.rounds[roundNumber - 1].teams.length +
+				  this.tournament.rounds[roundNumber - 1].numberOfRounds +
 				  1;
 		this.addMatches();
 	}
