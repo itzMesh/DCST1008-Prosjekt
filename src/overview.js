@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { pool } from './mysql-pool';
 
+export let settings = { name: '', bestOf: '', type: '', gamemode: '' };
+
 export class Choose extends Component {
 	tournaments = [];
 	render() {
@@ -42,6 +44,7 @@ export class New extends Component {
 	bestof = '';
 	type = '';
 	gamemode = 0;
+
 	render() {
 		return (
 			<div>
@@ -88,10 +91,20 @@ export class New extends Component {
 				<br />
 				<br />
 				<NavLink to={'/players/' + this.gamemode}>
-					<button type="button">Create tournament</button>
+					<button onClick={this.setSettings()} type="button">
+						Create tournament
+					</button>
 				</NavLink>
 			</div>
 		);
+	}
+
+	setSettings() {
+		settings.name = this.tourname;
+		settings.bestOf = this.bestof;
+		settings.gamemode = this.gamemode;
+		settings.type = this.type;
+		console.log(settings);
 	}
 }
 
