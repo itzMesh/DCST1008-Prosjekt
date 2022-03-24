@@ -38,6 +38,8 @@ export class Choose extends Component {
 }
 
 export class New extends Component {
+
+  name = 0
 	render() {
 		return (
 			<div>
@@ -57,12 +59,12 @@ export class New extends Component {
 					value={this.name}
 					onChange={(event) => (this.name = event.currentTarget.value)}
 				>
-					<option value="">1v1</option>
-					<option value="">2v2 - Generated teams</option>
-					<option value="">2v2 - Custom Teams</option>
-					<option value="">1v1 Double Elixir</option>
-					<option value="">2v2 - Double Elixir</option>
-					<option value="">2v2 - Double Elixir</option>
+					<option value="0">1v1</option>
+					<option value="0">2v2 - Generated teams</option>
+					<option value="1">2v2 - Custom Teams</option>
+					<option value="0">1v1 Double Elixir</option>
+					<option value="0">2v2 - Double Elixir - Generated teams</option>
+					<option value="1">2v2 - Double Elixir - Custom Teams</option>
 				</select>
 				<br />
 				<br />
@@ -76,7 +78,7 @@ export class New extends Component {
 				</select>
 				<br />
 				<br />
-				<NavLink to="/bracket">
+				<NavLink to={"/players/" + this.name}>
 					<button type="button">Create tournament</button>
 				</NavLink>
 			</div>
