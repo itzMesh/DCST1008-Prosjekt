@@ -9,7 +9,7 @@ import TeamMember from '../Classes/TeamMember';
 import Team from '../Classes/Team';
 import Match from '../Classes/Match';
 
-let tournament = null;
+export let tournament = null;
 
 export class TournamentPage extends Component {
 	matches = [];
@@ -20,13 +20,19 @@ export class TournamentPage extends Component {
 	teamObjects = [];
 	teamMemberObjects = [];
 	matchObjects = [];
+
+	link = '';
+	loded = 'Loding from database';
 	render() {
 		if (!this.tournamentObject) return null;
 
 		console.log(this.tournamentObject);
 		return (
 			<div>
-				{this.tournamentObject.rounds.map((round) => (
+				<div>{this.loded}</div>
+				<NavLink to={this.link}>{'When loded click here'}</NavLink>
+
+				{/* {this.tournamentObject.rounds.map((round) => (
 					<div>
 						<div key={round.roundNumber}>Round {round.roundNumber + 1}:</div>
 						<ul key={round.roundNumber + 'm'}>
@@ -52,7 +58,7 @@ export class TournamentPage extends Component {
 							))}
 						</ul>
 					</div>
-				))}
+				))} */}
 
 				{/*<div>round1:</div>
 				<ul>
@@ -189,7 +195,7 @@ export class TournamentPage extends Component {
 						}
 					}
 				}
-
+				console.log(teamObj);
 				tournamentObj = new Torunament(
 					promTournamentChoser[0].TournamentName,
 					promTournamentChoser[0].TournamentID,
@@ -267,6 +273,14 @@ export class TournamentPage extends Component {
 			this.tournamentObject = out[2];
 			tournament = this.tournamentObject;
 			this.matchObjects = out[3];
+
+			this.link =
+				'/tournamentpage/' +
+				this.tournamentObject.TournamentID +
+				'/' +
+				this.tournamentObject.TournamentID;
+
+			this.loded = 'Finished loading, you may now proceed';
 		})();
 	}
 
