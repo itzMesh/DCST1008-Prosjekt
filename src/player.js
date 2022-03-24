@@ -61,7 +61,11 @@ export class AddOne extends Component {
 								Name: {team[1][0]} Trophies {team[1][1]}
 							</em>
 
-							<button type="button" onClick={(i) => this.teams.splice(i, 1)}>
+							<button
+								type="button"
+								id={i}
+								onClick={(i) => this.teams.splice(i.target.id, 1)}
+							>
 								x
 							</button>
 							<br />

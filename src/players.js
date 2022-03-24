@@ -70,8 +70,8 @@ export class Add extends Component {
 					<button
 						style={{
 							backgroundColor: 'red',
-              size: 'large',
-              marginLeft: '700px',
+							size: 'large',
+							marginLeft: '700px',
 							marginTop: '10px',
 							height: '40px',
 							width: '100px',
@@ -92,7 +92,11 @@ export class Add extends Component {
 							<div key={2}>
 								Name: {team[2][0]} Trophies {team[2][1]}
 							</div>
-							<button type="button" onClick={(i) => this.teams.splice(i, 1)}>
+							<button
+								type="button"
+								id={i}
+								onClick={(i) => this.teams.splice(i.target.id, 1)}
+							>
 								x
 							</button>
 							<br />
