@@ -30,7 +30,7 @@ export class Choose extends Component {
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+			if (error) return console.error(error); 
 
 			this.tournaments = results;
 		});
