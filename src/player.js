@@ -31,7 +31,7 @@ export class AddOne extends Component {
 						size="10"
 						onChange={(event) => (this.trophies1 = event.currentTarget.value)}
 						required
-					/>			
+					/>
 					<br />
 					<br />
 					<button type="button" onClick={this.buttonClicked}>
@@ -42,8 +42,8 @@ export class AddOne extends Component {
 					<button
 						style={{
 							backgroundColor: 'blue',
-              size: 'large',
-              marginLeft: '700px',
+							size: 'large',
+							marginLeft: '700px',
 							marginTop: '10px',
 							height: '40px',
 							width: '100px',
@@ -57,12 +57,15 @@ export class AddOne extends Component {
 				<div>
 					{this.teams.map((team, i) => (
 						<div key={i}>
-						
 							<em key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
 							</em>
 
-							<button type="button" onClick={(i) => this.teams.splice(i, 1)}>
+							<button
+								type="button"
+								id={i}
+								onClick={(i) => this.teams.splice(i.target.id, 1)}
+							>
 								x
 							</button>
 							<br />
