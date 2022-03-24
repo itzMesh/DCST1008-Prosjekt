@@ -38,12 +38,20 @@ export class Choose extends Component {
 }
 
 export class New extends Component {
+	tourname = '';
 	bestof = '';
 	type = '';
 	gamemode = 0;
 	render() {
 		return (
 			<div>
+				<br />
+				Tournament name
+				<input
+					value={this.tourname}
+					onChange={(event) => (this.tourname = event.currentTarget.value)}
+				/>
+				<br />
 				<br />
 				Select tournament type
 				<select
