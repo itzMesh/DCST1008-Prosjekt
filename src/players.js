@@ -93,7 +93,7 @@ export class Add extends Component {
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
-						<div key={i}>
+						<div key={i} style={{ float: 'left' }}>
 							<div key={0}>Team: {team[0]}</div>
 							<div key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
@@ -143,5 +143,10 @@ export class Add extends Component {
 		console.log(this.teams);
 		this.createObjects();
 		console.log(this.teamObj);
+		this.team = '';
+		this.name1 = '';
+		this.trophies1 = '';
+		this.name2 = '';
+		this.trophies2 = '';
 	}
 }
