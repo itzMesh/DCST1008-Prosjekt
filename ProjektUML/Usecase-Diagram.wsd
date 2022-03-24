@@ -9,7 +9,7 @@ rectangle Application{
     usecase "Add player" as AP
     usecase "Remove player" as RM
     usecase "Add Team" as AT
-    usecase "Sort x" as S
+    usecase "Sort Tournaments" as S
     usecase "Tournament Overview" as TO
     usecase "Add Score" as AS
     usecase "Verification" as V
