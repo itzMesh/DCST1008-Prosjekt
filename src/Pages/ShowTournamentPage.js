@@ -32,7 +32,9 @@ export class ShowTournamentPage extends Component {
 								{round.matches.map((match) => (
 									<div>
 										<div key={match.matchNumber}>
-											<div key={0}>Match {match.matchNumber}</div>
+											<div key={0} style={{ fontSize: '25px' }}>
+												Match {match.matchNumber}
+											</div>
 											{match.teams
 												.filter(
 													(team) => team.constructor.name != 'ShadowTeam'
@@ -40,11 +42,11 @@ export class ShowTournamentPage extends Component {
 												.map((team) => (
 													<div key={team.id}>
 														<em key={0}>
-															{team.name}
+															<b>{team.name}: </b>
 															{team.teamMembers.map((member) => (
-																<li key={member.name}>
-																	{member.name}
-																</li>
+																<em key={member.name}>
+																	{'"' + member.name + '" '}
+																</em>
 															))}
 														</em>
 													</div>

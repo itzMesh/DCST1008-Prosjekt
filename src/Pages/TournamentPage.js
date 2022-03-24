@@ -195,6 +195,7 @@ export class TournamentPage extends Component {
 					let aTeamMember = new TeamMember(i.PlayerName, i.PlayerTrophies);
 					teamMemberObj.push(aTeamMember);
 					for (const j of teamObj) {
+						console.log(j.id == i.TeamID, 'se her');
 						if (j.id == i.TeamID) {
 							j.addMember(aTeamMember);
 						}
@@ -273,6 +274,7 @@ export class TournamentPage extends Component {
 				this.matchObjects
 			);
 			console.log(out);
+
 			this.teamObjects = out[0];
 			this.teamMemberObjects = out[1];
 			this.tournamentObject = out[2];
