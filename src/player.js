@@ -81,19 +81,5 @@ export class AddOne extends Component {
 		// if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
-
-		console.log(this.teams);
-
-		// let ny = React.createElement("div", {}, "Team: " + this.team + ' Name: ' + this.name1 + ' Trophies: ' + this.trophies1 +
-		//                                         ' Name: ' + this.name2 + ' Trophies: ' + this.trophies2)
-
-		// let nytt = document.createElement("div")
-		// nytt.id = 'nytt';
-		// document.body.appendChild(nytt);
-
-		// ReactDOM.render(
-		//   ny,
-		//   document.getElementById('nytt')
-		// );
 	}
 }
