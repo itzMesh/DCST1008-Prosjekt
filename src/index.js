@@ -10,6 +10,7 @@ import { Choose, New, Overview } from './overview';
 import { Add } from './players';
 import { AddOne } from './player';
 import { Bracket } from './bracket'
+import { ShowTournamentPage } from './Pages/ShowTournamentPage';
 
 class Home extends Component {
 	render() {
@@ -36,6 +37,11 @@ ReactDOM.render(
 			<Route exact path="/" component={Login} />
 			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/tournamentPage/:TournamentID" component={TournamentPage} />
+			<Route
+				exact
+				path="/tournamentPage/:TournamentID/:TournamentID"
+				component={ShowTournamentPage}
+			/>
 			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
 			<Route exact path="/page2" component={Page2} />
 
