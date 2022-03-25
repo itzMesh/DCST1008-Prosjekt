@@ -10,7 +10,7 @@ import Team from '../Classes/Team';
 import Match from '../Classes/Match';
 import ShadowTeam from '../Classes/ShadowTeam';
 
-export let tournament = null;
+export let tournamentpage = [null, new Date()];
 
 export class TournamentPage extends Component {
 	matches = [];
@@ -278,7 +278,7 @@ export class TournamentPage extends Component {
 			this.teamObjects = out[0];
 			this.teamMemberObjects = out[1];
 			this.tournamentObject = out[2];
-			tournament = this.tournamentObject;
+			tournamentpage = [this.tournamentObject, new Date()];
 			this.matchObjects = out[3];
 
 			this.link =

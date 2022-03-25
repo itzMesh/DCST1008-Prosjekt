@@ -7,11 +7,13 @@ import { pool } from './mysql-pool';
 export class Start extends Component {
 	render() {
 		return (
-			<div className="start"> 
+			<div className="start" style={{ opacity: '0' }}>
 				Login:
 				<NavLink to="/login"> Login </NavLink>
 				Sign up:
 				<NavLink to="/signup"> Sign up </NavLink>
+				Overview:
+				<NavLink to="/choose"> Choose </NavLink>
 				Dev shortcut:
 				<NavLink to="/tournamentPage/1"> Dev shortcut:</NavLink>
 			</div>
@@ -24,51 +26,43 @@ export class Login extends Component {
 	render() {
 		console.log(this.userdata);
 		return (
-			<body
+			<div
 				style={{
-					// backgroundColor: 'lightblue',
-					backgroundColor: '#2C2F33',
-					height: '950px',
+					// backgroundColor: '#FFE5B4',
+					backgroundColor: '#5865F2',
+					width: '400px',
+					height: '400px',
+					marginLeft: '40%',
+					borderRadius: '25%',
 				}}
 			>
-				<div
-					style={{
-						// backgroundColor: '#FFE5B4',
-						backgroundColor: '#5865F2',
-						width: '400px',
-						height: '400px',
-						marginLeft: '40%',
-						borderRadius: '25%',
-					}}
-				>
-					<br />
-					<input
-						style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
-						type="text"
-						placeholder="Username"
-					/>
-					<br />
-					<input
-						style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
-						type="password"
-						placeholder="Password"
-					/>
-					<br />
-					<NavLink to="/choose">
-						<button
-							style={{
-								marginLeft: '100px',
-								marginTop: '50px',
-								height: '30px',
-								width: '100px',
-							}}
-							type="button"
-						>
-							Login
-						</button>
-					</NavLink>
-				</div>
-			</body>
+				<br />
+				<input
+					style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
+					type="text"
+					placeholder="Username"
+				/>
+				<br />
+				<input
+					style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
+					type="password"
+					placeholder="Password"
+				/>
+				<br />
+				<NavLink to="/choose">
+					<button
+						style={{
+							marginLeft: '100px',
+							marginTop: '50px',
+							height: '30px',
+							width: '100px',
+						}}
+						type="button"
+					>
+						Login
+					</button>
+				</NavLink>
+			</div>
 		);
 	}
 	mounted() {

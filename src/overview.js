@@ -4,18 +4,24 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { pool } from './mysql-pool';
 
+export let settings = { name: '', bestOf: '', type: '', gamemode: '' };
+
 export class Choose extends Component {
 	tournaments = [];
 	render() {
 		return (
 			<div
 				style={{
-					backgroundColor: 'lightgray',
-					width: '100%',
-					height: '100%',
 					fontSize: '40px',
 				}}
 			>
+				<h1
+					style={{
+						textAlign: 'center',
+					}}
+				>
+					Clasnering
+				</h1>
 				<br /> Overview of Tournaments <br />
 				{this.tournaments.map((tournament) => (
 					<li key={tournament.TournamentID}>
@@ -42,6 +48,7 @@ export class New extends Component {
 	bestof = '';
 	type = '';
 	gamemode = 0;
+
 	render() {
 		return (
 			<div>
@@ -88,10 +95,20 @@ export class New extends Component {
 				<br />
 				<br />
 				<NavLink to={'/players/' + this.gamemode}>
-					<button type="button">Create tournament</button>
+					<button onClick={this.setSettings()} type="button">
+						Create tournament
+					</button>
 				</NavLink>
 			</div>
 		);
+	}
+
+	setSettings() {
+		settings.name = this.tourname;
+		settings.bestOf = this.bestof;
+		settings.gamemode = this.gamemode;
+		settings.type = this.type;
+		console.log(settings);
 	}
 }
 
