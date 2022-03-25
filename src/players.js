@@ -1,18 +1,31 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { pool } from './mysql-pool';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { settings } from './overview';
+import Team from './Classes/Team';
+import TeamMember from './Classes/TeamMember';
+import Torunament from './Classes/Tournament';
+
+export let tournamentplayers = [null, new Date()];
 
 export class Add extends Component {
-	team = '';
-	name1 = '';
-	trophies1 = '';
-	name2 = '';
-	trophies2 = '';
+	team = 'Best team';
+	name1 = 'Jo';
+	trophies1 = '2000';
+	name2 = 'Martin';
+	trophies2 = '69';
 	teams = [];
 	form = null;
+	tournaments = [];
+	teamObj = [];
+	link = '';
+	tournamentcreator = [];
 
 	render() {
+		if (this.tournaments.length == 0) return null;
+
 		return (
 			<div>
 				<form ref={(instance) => (this.form = instance)}>
@@ -66,21 +79,40 @@ export class Add extends Component {
 						Add team
 					</button>
 				</form>
-				<NavLink to="/bracket">
-					<button
-						style={{
-							backgroundColor: 'red',
-							size: 'large',
-							marginLeft: '700px',
-							marginTop: '10px',
-							height: '40px',
-							width: '100px',
-						}}
-						type="button"
-					>
-						Create Tournament
-					</button>
-				</NavLink>
+
+				<button
+					onClick={() => this.createObjects()}
+					style={{
+						backgroundColor: 'red',
+						size: 'large',
+						marginLeft: '700px',
+						marginTop: '10px',
+						height: '40px',
+						width: '100px',
+					}}
+					type="button"
+				>
+					Create Tournament
+				</button>
+				{this.tournamentcreator.map(() => (
+					<NavLink to={this.link}>
+						<button
+							onClick={() => this.createObjects()}
+							style={{
+								backgroundColor: 'red',
+								size: 'large',
+								marginLeft: '700px',
+								marginTop: '50px',
+								height: '40px',
+								width: '100px',
+							}}
+							type="button"
+						>
+							Show Torunament
+						</button>
+					</NavLink>
+				))}
+
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
@@ -108,11 +140,42 @@ export class Add extends Component {
 		);
 	}
 
-	buttonClicked() {
-	  // if (!this.form.reportValidity()) return;  
-    
-		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
+	mounted() {
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
+			this.tournaments = results;
+			this.tournaments = this.tournaments.map((Tournament) => Tournament.TournamentID);
+			this.tournaments.sort((a, b) => b - a);
+			console.log(this.tournaments);
+		});
+	}
+
+	createObjects() {
+		if (this.teams.length > 1) {
+			this.teamObj = [];
+			console.log(this.teams[0]);
+			for (const i of this.teams) {
+				let aTeam = new Team(i[0], 0);
+				aTeam.addMember(new TeamMember(i[1][0], parseInt(i[1][1])));
+				aTeam.addMember(new TeamMember(i[2][0], parseInt(i[2][1])));
+				this.teamObj.push(aTeam);
+			}
+			tournamentplayers = [
+				new Torunament(settings.name, this.tournaments[0] + 1, this.teamObj),
+				new Date(),
+			];
+			this.tournamentcreator[0] = true;
+			this.link =
+				'/tournamentpage/' +
+				tournamentplayers[0].TournamentID +
+				'/' +
+				tournamentplayers[0].TournamentID;
+		}
+	}
+
+	buttonClicked() {
+		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 		this.team = '';
 		this.name1 = '';
 		this.trophies1 = '';
