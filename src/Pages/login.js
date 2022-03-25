@@ -14,10 +14,8 @@ export class Login extends Component {
 				<br />
 				<input className="input" type="password" placeholder="Password" />
 				<br />
-				<NavLink to="/overview">
-					<button className="login" type="button">
+				<NavLink className="login" to="/overview">
 						Login
-					</button>
 				</NavLink>
 			</div>
 		);
