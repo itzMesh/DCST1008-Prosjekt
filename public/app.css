@@ -48,7 +48,11 @@ em {
 
 .overview {
 	font-family: clash;
-	font-size: 30px;
+	font-size: 32px;
+	color: #FFD700;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgb(231, 199, 16);
+	padding-left: 5px;
 }
 
 .title {
