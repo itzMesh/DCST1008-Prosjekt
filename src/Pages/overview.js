@@ -9,7 +9,7 @@ export class Overview extends Component {
 		return (
 			<div className="overview">
 				<h1 className="title">Clasnering</h1>
-				<br /> Overview of Tournaments <br />
+				Overview of Tournaments <br />
 				{this.tournaments.map((tournament) => (
 					<li className="login" key={tournament.TournamentID}>
 						<NavLink
