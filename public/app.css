@@ -1,0 +1,30 @@
+@font-face {
+	src: url(fonts/Prohibition.ttf);
+	font-family: pro;
+}
+
+@font-face {
+	src: url(fonts/Ancoa.otf);
+	font-family: anc;
+}
+
+body {
+	background-image: url(images/logo.png), url(images/king.png), url(images/clash.png);
+	background-repeat: no-repeat;
+	/* background-size: 300% 300%; */
+	/* background-position: center; */
+	background-size: cover;
+}
+
+.start {
+	font-family: anc;
+	font-size: 28px;
+	color: white;
+	text-shadow: 4px 4px 4px #aaa;
+}
+.start:hover {
+	font-family: pro;
+	font-size: 29px;
+	color: white;
+	text-shadow: 4px 4px 4px #aaa;
+}
