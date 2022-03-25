@@ -28,9 +28,10 @@ export class TournamentPage extends Component {
 
 		console.log(this.tournamentObject);
 		return (
-			<div>
+			<div className="text">
+				<br />
 				<div>{this.loded}</div>
-				<NavLink to={this.link}>{'When loded click here'}</NavLink>
+				<NavLink className="login" to={this.link}>{'When loaded click here'}</NavLink>
 
 				{/* {this.tournamentObject.rounds.map((round) => (
 					<div>

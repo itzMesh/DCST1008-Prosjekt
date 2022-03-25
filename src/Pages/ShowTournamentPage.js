@@ -13,7 +13,8 @@ export class ShowTournamentPage extends Component {
 		if (!this.tournamentObject) return null;
 
 		return (
-			<div>
+			<div className="small">
+				<br />
 				<div>Tester</div>
 				{this.tournamentObject.rounds.map((round) => (
 					<div>

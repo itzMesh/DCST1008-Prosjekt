@@ -26,8 +26,9 @@ export class AddSinglePlayer extends Component {
 			<div>
 				<form ref={(instance) => (this.form = instance)}>
 					<br />
-					<br /> Player 1
+					<br /> <em className="text">Player</em>
 					<input
+						className="input"
 						type="text"
 						value={this.name1}
 						placeholder="Nickname"
@@ -36,6 +37,7 @@ export class AddSinglePlayer extends Component {
 						required
 					/>
 					<input
+						className="input"
 						type="number"
 						value={this.trophies1}
 						placeholder="Trophies"
@@ -45,38 +47,25 @@ export class AddSinglePlayer extends Component {
 					/>
 					<br />
 					<br />
-					<button type="button" onClick={this.buttonClicked}>
-						Add team
-					</button>
 				</form>
+				{/* <NavLink className="login" onClick={this.buttonClicked}>
+						Add team
+				</NavLink> */}
+				
+				
+				<em className="login" type="button" onClick={this.buttonClicked}>
+					Add team
+				</em>
 
-				<button
-					onClick={() => this.createObjects()}
-					style={{
-						backgroundColor: 'blue',
-						size: 'large',
-						marginLeft: '700px',
-						marginTop: '10px',
-						height: '40px',
-						width: '100px',
-					}}
-					type="button"
-				>
+				<button className="login" type="button" onClick={() => this.createObjects()}>
 					Create Tournament
 				</button>
 
 				{this.tournamentcreator.map(() => (
 					<NavLink to={this.link}>
 						<button
+							className="login"
 							onClick={() => this.createObjects()}
-							style={{
-								backgroundColor: 'red',
-								size: 'large',
-								marginLeft: '700px',
-								marginTop: '50px',
-								height: '40px',
-								width: '100px',
-							}}
 							type="button"
 						>
 							Show Torunament
@@ -86,12 +75,13 @@ export class AddSinglePlayer extends Component {
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
-						<div key={i} style={{ float: 'left' }}>
+						<div className="small" key={i} style={{ float: 'left' }}>
 							<em key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
 							</em>
 
 							<button
+								className="login"
 								type="button"
 								id={i}
 								onClick={(i) => this.teams.splice(i.target.id, 1)}
