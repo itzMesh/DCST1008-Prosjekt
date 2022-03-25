@@ -3,7 +3,6 @@ import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 
-
 export class Login extends Component {
 	userdata = [];
 	render() {
@@ -32,7 +31,7 @@ export class Login extends Component {
 					placeholder="Password"
 				/>
 				<br />
-				<NavLink to="/choose">
+				<NavLink to="/overview">
 					<button
 						style={{
 							marginLeft: '100px',
@@ -56,5 +55,3 @@ export class Login extends Component {
 		});
 	}
 }
-
-

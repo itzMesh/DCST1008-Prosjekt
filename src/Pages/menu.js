@@ -11,7 +11,7 @@ export class Menu extends Component {
 				Sign up:
 				<NavLink to="/signup"> Sign up </NavLink>
 				Overview:
-				<NavLink to="/choose"> Choose </NavLink>
+				<NavLink to="/overview"> Choose </NavLink>
 				Dev shortcut:
 				<NavLink to="/tournamentPage/1"> Dev shortcut:</NavLink>
 			</div>

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export class New extends Component {
+export let settings = { name: '', bestOf: '', type: '', gamemode: '' };
+
+export class NewTournament extends Component {
 	tourname = '';
 	bestof = '';
 	type = '';

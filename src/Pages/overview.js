@@ -3,8 +3,6 @@ import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 
-export let settings = { name: '', bestOf: '', type: '', gamemode: '' };
-
 export class Overview extends Component {
 	tournaments = [];
 	render() {
@@ -35,11 +33,9 @@ export class Overview extends Component {
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
-			if (error) return console.error(error); 
+			if (error) return console.error(error);
 
 			this.tournaments = results;
 		});
 	}
 }
-
-

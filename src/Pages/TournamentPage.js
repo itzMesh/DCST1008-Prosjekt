@@ -3,14 +3,13 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
 import { pool } from '../mysql-pool';
-import { editService } from '../Classes/editService';
 import Torunament from '../Classes/tournament';
 import TeamMember from '../Classes/teamMember';
 import Team from '../Classes/team';
 import Match from '../Classes/match';
 import ShadowTeam from '../Classes/shadowTeam';
 
-export let tournamentpage = [null, new Date()];
+export let tournamentPageObj = [null, new Date()];
 
 export class TournamentPage extends Component {
 	matches = [];
@@ -25,7 +24,7 @@ export class TournamentPage extends Component {
 	link = '';
 	loded = 'Loding from database';
 	render() {
-		if (!this.tournamentObject) return null;
+		//if (!this.tournamentObject) return null;
 
 		console.log(this.tournamentObject);
 		return (
@@ -278,7 +277,7 @@ export class TournamentPage extends Component {
 			this.teamObjects = out[0];
 			this.teamMemberObjects = out[1];
 			this.tournamentObject = out[2];
-			tournamentpage = [this.tournamentObject, new Date()];
+			tournamentPageObj = [this.tournamentObject, new Date()];
 			this.matchObjects = out[3];
 
 			this.link =
@@ -293,5 +292,3 @@ export class TournamentPage extends Component {
 
 	makeTournament(table) {}
 }
-
-

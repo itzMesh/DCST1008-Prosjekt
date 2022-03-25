@@ -1,14 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
-import { pool } from '../mysql-pool';
 import { editService } from '../Classes/editService';
-import Torunament from '../Classes/tournament';
-import TeamMember from '../Classes/teamMember';
-import Team from '../Classes/team';
-import Match from '../Classes/match';
-import ShadowTeam from '../Classes/shadowTeam';
 
 export class EditTournamentPage extends Component {
 	match = null;

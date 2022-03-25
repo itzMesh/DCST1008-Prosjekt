@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from './mysql-pool';
+import { pool } from '../mysql-pool';
 import { NavLink } from 'react-router-dom';
-import { settings } from './Pages/overview';
-import Team from './Classes/Team';
-import TeamMember from './Classes/TeamMember';
-import Torunament from './Classes/Tournament';
+import { settings } from './newTournament';
+import Team from '../Classes/team';
+import TeamMember from '../Classes/teamMember';
+import Torunament from '../Classes/tournament';
 
 export let tournamentplayers = [null, new Date()];
 

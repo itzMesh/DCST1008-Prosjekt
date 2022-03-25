@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
-import { TournamentPage, EditTournamentPage } from './Pages/tournamentPage';
 import tester from './Classes/testClasses';
 
-import { Login} from './Pages/login';
+import { Signup } from './Pages/signup';
 import { Menu } from './Pages/menu';
-import { Signup} from './Pages/signup';
-import { Choose, New, Overview } from './Pages/overview';
-import { Add } from './players';
-import { AddOne } from './Pages/addSinglePlayer';
-import { ShowTournamentPage } from './Pages/showTournamentPage';
-
-
+import { AddSinglePlayer } from './Pages/addSinglePlayer';
+import { AddTwoPlayerTeams } from './Pages/addTwoPlayerTeams';
+import { EditTournamentPage } from './Pages/editTournamentPage';
+import { Login } from './Pages/login';
+import { NewTournament } from './Pages/newTournament';
+import { Overview } from './Pages/overview';
+import { ShowTournamentPage } from './Pages/ShowTournamentPage';
+import { TournamentPage } from './Pages/tournamentPage';
 
 ReactDOM.render(
 	<HashRouter>
@@ -31,12 +30,11 @@ ReactDOM.render(
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/signup" component={Signup} />
 
-			<Route exact path="/new" component={New} />
+			<Route exact path="/new" component={NewTournament} />
 			<Route exact path="/overview" component={Overview} />
-			<Route exact path="/choose" component={Choose} />
 
-			<Route exact path="/players/1" component={Add} />
-			<Route exact path="/players/0" component={AddOne} />
+			<Route exact path="/players/1" component={AddTwoPlayerTeams} />
+			<Route exact path="/players/0" component={AddSinglePlayer} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')
