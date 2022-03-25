@@ -36,6 +36,7 @@ export class ShowTournamentPage extends Component {
 										<div key={match.matchNumber}>
 											<div key={0} style={{ fontSize: '25px' }}>
 												<NavLink
+													className="login"
 													to={
 														'/matches/edit/' +
 														round.roundNumber +

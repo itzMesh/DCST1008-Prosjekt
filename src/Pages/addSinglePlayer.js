@@ -53,27 +53,25 @@ export class AddSinglePlayer extends Component {
 				{/* <NavLink className="login" onClick={this.buttonClicked}>
 						Add team
 				</NavLink> */}
-				
-				
-				<em className="login" type="button" onClick={this.buttonClicked}>
-					Add team
-				</em>
+				<div>
+					<em className="login" onClick={this.buttonClicked}>
+						Add team
+					</em>
+					<em className="login" onClick={() => this.createObjects()}>
+						Create Tournament
+					</em>
 
-				<button className="login" type="button" onClick={() => this.createObjects()}>
-					Create Tournament
-				</button>
-
-				{this.tournamentcreator.map(() => (
-					<NavLink to={this.link}>
-						<button
+					{this.tournamentcreator.map(() => (
+						<NavLink
 							className="login"
+							to={this.link}
 							onClick={() => this.createObjects()}
 							type="button"
 						>
 							Show Torunament
-						</button>
-					</NavLink>
-				))}
+						</NavLink>
+					))}
+				</div>
 				<br />
 				<div>
 					{this.teams.map((team, i) => (

@@ -82,22 +82,21 @@ export class AddTwoPlayerTeams extends Component {
 					<br />
 					<br />
 				</form>
-				<button className="login" type="button" onClick={this.buttonClicked}>
+				<em className="login" type="button" onClick={this.buttonClicked}>
 					Add team
-				</button>
+				</em>
 
-				<button className="login" onClick={() => this.createObjects()} type="button">
+				<em className="login" onClick={() => this.createObjects()} type="button">
 					Create Tournament
-				</button>
+				</em>
 				{this.tournamentcreator.map(() => (
-					<NavLink to={this.link}>
-						<button
-							className="login"
-							onClick={() => this.createObjects()}
-							type="button"
-						>
-							Show Torunament
-						</button>
+					<NavLink
+						to={this.link}
+						className="login"
+						onClick={() => this.createObjects()}
+						type="button"
+					>
+						Show Torunament
 					</NavLink>
 				))}
 

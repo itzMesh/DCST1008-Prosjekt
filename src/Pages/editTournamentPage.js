@@ -22,35 +22,39 @@ export class EditTournamentPage extends Component {
 		return (
 			<div>
 				<ul>
-					<li>
+					<li className="text">
 						Completed:{' '}
 						<input
+							className="input"
 							type="text"
 							value={this.match.Completed}
 							onChange={(event) => (this.match.Completed = event.currentTarget.value)}
 						/>
 					</li>
-					<li>
+					<li className="text">
 						{this.match.teams[0].name} Score:{' '}
 						<input
+							className="input"
 							type="number"
 							value={this.score1}
 							onChange={(event) => (this.score1 = event.currentTarget.value)}
 						/>
 					</li>
-					<li>
+					<li className="text">
 						{this.match.teams[1].name} Score:{' '}
 						<input
+							className="input"
 							type="number"
 							value={this.score2}
 							onChange={(event) => (this.score2 = event.currentTarget.value)}
 						/>
 					</li>
 				</ul>
-				<button type="button" onClick={this.save}>
+				<em className="login" onClick={this.save}>
 					Save
-				</button>
+				</em>
 				<NavLink
+					className="login"
 					to={
 						'/tournamentPage/' +
 						this.tournamentObject.TorunamentId +
@@ -58,7 +62,7 @@ export class EditTournamentPage extends Component {
 						this.tournamentObject.TorunamentId
 					}
 				>
-					<button type="button">Send to tournament</button>
+					Back
 				</NavLink>
 			</div>
 		);
