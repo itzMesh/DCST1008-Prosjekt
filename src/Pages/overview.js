@@ -11,14 +11,19 @@ export class Overview extends Component {
 				<h1 className="title">Clasnering</h1>
 				<br /> Overview of Tournaments <br />
 				{this.tournaments.map((tournament) => (
-					<li key={tournament.TournamentID}>
-						<NavLink to={'/tournamentpage/' + tournament.TournamentID}>
+					<li className="login" key={tournament.TournamentID}>
+						<NavLink
+							className="login"
+							to={'/tournamentpage/' + tournament.TournamentID}
+						>
 							{tournament.TournamentName}
 						</NavLink>
 					</li>
 				))}
 				<br />
-				<NavLink to="/new">New tournament</NavLink>
+				<NavLink className="login" to="/new">
+					New tournament
+				</NavLink>
 			</div>
 		);
 	}
