@@ -7,8 +7,7 @@ import { pool } from './mysql-pool';
 export class Start extends Component {
 	render() {
 		return (
-			// <div style={{ opacity: '0' }}>
-			<div>
+			<div className="start" style={{ opacity: '0' }}>
 				Login:
 				<NavLink to="/login"> Login </NavLink>
 				Sign up:
