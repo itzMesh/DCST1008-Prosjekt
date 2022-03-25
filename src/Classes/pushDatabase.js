@@ -5,22 +5,29 @@ import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 
 class UpdateDatabase {
-	deleteTournament(TournamentID, success) {
-		pool.query(
-			'DELETE FROM Tournament1 WHERE TournamentID=?',
-			[TournamentID],
-			(error, results) => {
-				if (error) return console.error(error);
+	// deleteTournament(TournamentID, success) {
+	// 	pool.query(
+	// 		'DELETE FROM Tournament1 WHERE TournamentID=?',
+	// 		[TournamentID],
+	// 		(error, results) => {
+	// 			if (error) return console.error(error);
 
-				success();
-			}
-		);
-	}
+	// 			success();
+	// 		}
+	// 	);
+	// }
 	addTournament(tournamentObject, success) {
+		console.log(
+			tournamentObject.name,
+			tournamentObject.generalSettings.type,
+			tournamentObject.generalSettings.gamemode
+		);
+
 		pool.query(
-			'INSERT INTO Tournament1 (TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?)',
+			'INSERT INTO Tournament1 (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
 			[
-				tournamentObject.generalSettings.name,
+				tournamentObject.TorunamentId,
+				tournamentObject.name,
 				tournamentObject.generalSettings.type,
 				tournamentObject.generalSettings.gamemode,
 			],

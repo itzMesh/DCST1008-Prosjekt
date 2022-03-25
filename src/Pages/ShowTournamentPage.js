@@ -80,22 +80,26 @@ export class ShowTournamentPage extends Component {
 	}
 
 	save() {
-		let TournamentID = this.tournamentObject.TorunamentId;
-		updateDatabase.deleteTournament(this.props.match.params.TournamentID, () =>
-			console.log('slettet good tournament')
+		// updateDatabase.deleteTournament(this.props.match.params.TournamentID, () =>
+		// 	console.log('slettet good tournament')
+		// );
+		console.log(
+			this.tournamentObject,
+			this.tournamentObject.generalSettings.type,
+			this.tournamentObject.generalSettings.gamemode
 		);
 		updateDatabase.addTournament(this.tournamentObject, () => {
 			console.log('lagt til good Tournament');
 		});
-		updateDatabase.deleteGameMatch(this.props.match.params.TournamentID, () =>
-			console.log('slettet good GameMatch')
-		);
-		for (const round of this.tournamentObject.rounds) {
-			for (const matchInfo of round.matches) {
-				updateDatabase.addGameMatch(matchInfo, () => {
-					console.log('lagt til good gamematch');
-				});
-			}
-		}
+		// updateDatabase.deleteGameMatch(this.props.match.params.TournamentID, () =>
+		// 	console.log('slettet good GameMatch')
+		// );
+		// for (const round of this.tournamentObject.rounds) {
+		// 	for (const matchInfo of round.matches) {
+		// 		updateDatabase.addGameMatch(matchInfo, () => {
+		// 			console.log('lagt til good gamematch');
+		// 		});
+		// 	}
+		// }
 	}
 }
