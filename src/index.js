@@ -11,7 +11,7 @@ import { EditTournamentPage } from './Pages/editTournamentPage';
 import { Login } from './Pages/login';
 import { NewTournament } from './Pages/newTournament';
 import { Overview } from './Pages/overview';
-import { ShowTournamentPage } from './Pages/ShowTournamentPage';
+import { ShowTournamentPage } from './Pages/showTournamentPage';
 import { TournamentPage } from './Pages/tournamentPage';
 
 ReactDOM.render(
@@ -25,7 +25,7 @@ ReactDOM.render(
 				path="/tournamentPage/:TournamentID/:TournamentID"
 				component={ShowTournamentPage}
 			/>
-			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
+			<Route exact path="/matches/edit/:Match" component={EditTournamentPage} />
 
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/signup" component={Signup} />
