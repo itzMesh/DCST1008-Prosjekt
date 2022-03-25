@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 
-export let settings = { name: '', bestOf: '', type: '', gamemode: '' };
+export let settings = { name: '', type: '', gamemode: '' };
 
 export class NewTournament extends Component {
 	tourname = '';
@@ -68,7 +68,6 @@ export class NewTournament extends Component {
 
 	setSettings() {
 		settings.name = this.tourname;
-		settings.bestOf = this.bestof;
 		settings.gamemode = this.gamemode;
 		settings.type = this.type;
 		console.log(settings);

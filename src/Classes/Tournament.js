@@ -7,9 +7,10 @@ class Torunament {
 	teams = [];
 	rounds = [];
 
-	constructor(name, TorunamentId, teams) {
+	constructor(name, TorunamentId, teams, generalSettings) {
 		this.name = name;
 		this.TorunamentId = TorunamentId;
+		this.generalSettings = generalSettings;
 		if (teams != false) {
 			this.teams = teams;
 			//until more implimented

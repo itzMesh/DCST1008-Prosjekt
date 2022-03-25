@@ -12,6 +12,8 @@ export class ShowTournamentPage extends Component {
 	render() {
 		if (!this.tournamentObject) return null;
 
+		console.log(this.tournamentObject);
+
 		return (
 			<div className="small">
 				<br />
@@ -39,11 +41,15 @@ export class ShowTournamentPage extends Component {
 													<div key={team.id}>
 														<em key={0}>
 															<b>{team.name}: </b>
-															{team.teamMembers.map((member) => (
-																<em key={member.name}>
-																	{'"' + member.name + '" '}
-																</em>
-															))}
+															{team.teamMembers.length == 1 ? (
+																<em></em>
+															) : (
+																team.teamMembers.map((member) => (
+																	<em key={member.name}>
+																		{'"' + member.name + '" '}
+																	</em>
+																))
+															)}
 														</em>
 													</div>
 												))}

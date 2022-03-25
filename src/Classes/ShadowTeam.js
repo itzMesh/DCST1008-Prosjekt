@@ -1,5 +1,9 @@
 class ShadowTeam {
-	constructor(seed) {
+	tournamentID;
+	seed;
+
+	constructor(tournamentID, seed) {
+		this.tournamentID = tournamentID;
 		if (seed == undefined) {
 			('');
 		} else {

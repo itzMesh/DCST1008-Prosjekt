@@ -1,5 +1,6 @@
 import ShadowTeam from './shadowTeam';
 import Match from './match';
+import Torunament from './tournament';
 
 class Round {
 	tournament;
@@ -39,7 +40,7 @@ class Round {
 
 	fillOutTeams(teams) {
 		while (teams.length < Math.pow(2, this.numberOfRounds - this.roundNumber)) {
-			teams.push(new ShadowTeam());
+			teams.push(new ShadowTeam(this.tournament.TorunamentId));
 		}
 		return teams;
 	}
@@ -85,6 +86,7 @@ class Round {
 					i + this.firstMatchNumber,
 					this,
 					i,
+					false,
 					false,
 					false
 				)

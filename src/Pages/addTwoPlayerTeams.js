@@ -17,13 +17,15 @@ export class AddTwoPlayerTeams extends Component {
 	trophies2 = '69';
 	teams = [];
 	form = null;
-	tournaments = [];
+	tournamentIDs = [];
 	teamObj = [];
 	link = '';
 	tournamentcreator = [];
+	teamIDs = [];
+	teamID = 0;
 
 	render() {
-		if (this.tournaments.length == 0) return null;
+		if (this.tournamentIDs.length == 0) return null;
 
 		return (
 			<div>
@@ -131,25 +133,37 @@ export class AddTwoPlayerTeams extends Component {
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
-			this.tournaments = results;
-			this.tournaments = this.tournaments.map((Tournament) => Tournament.TournamentID);
-			this.tournaments.sort((a, b) => b - a);
-			console.log(this.tournaments);
+			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			console.log(this.tournamentIDs);
+		});
+		pool.query('SELECT TeamID FROM Team', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.teamIDs = results;
+			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
+			this.teamIDs.sort((a, b) => b - a);
 		});
 	}
 
 	createObjects() {
 		if (this.teams.length > 1) {
 			this.teamObj = [];
-			console.log(this.teams[0]);
+			this.teamID = parseInt(this.teamIDs[0]);
 			for (const i of this.teams) {
-				let aTeam = new Team(i[0], 0);
-				aTeam.addMember(new TeamMember(i[1][0], parseInt(i[1][1])));
-				aTeam.addMember(new TeamMember(i[2][0], parseInt(i[2][1])));
+				this.teamID++;
+				let aTeam = new Team(i[0], this.teamID, this.tournamentIDs[0] + 1);
+				aTeam.addMember(
+					new TeamMember(i[1][0], parseInt(i[1][1]), aTeam.id, this.tournamentIDs[0] + 1)
+				);
+				aTeam.addMember(
+					new TeamMember(i[2][0], parseInt(i[2][1]), aTeam.id, this.tournamentIDs[0] + 1)
+				);
 				this.teamObj.push(aTeam);
 			}
 			tournamentplayers = [
-				new Torunament(settings.name, this.tournaments[0] + 1, this.teamObj),
+				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
 			this.tournamentcreator[0] = true;
