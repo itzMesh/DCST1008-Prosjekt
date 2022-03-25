@@ -79,7 +79,6 @@ export class ShowTournamentPage extends Component {
 	}
 
 	save() {
-		let match = [];
 		let TournamentID = this.tournamentObject.TorunamentId;
 		updateDatabase.deleteTournament(this.props.match.params.TournamentID, () =>
 			console.log('slettet good tournament')
@@ -91,20 +90,11 @@ export class ShowTournamentPage extends Component {
 			console.log('slettet good GameMatch')
 		);
 		for (const round of this.tournamentObject.rounds) {
-			for (const match of round.matches) {
-				console.log(
-					match.completed,
-					match.ind,
-					match.results,
-					match.round.roundNumber,
-					match.teams[0].id,
-					match.teams[1].id,
-					match.round.tournament.TorunamentId
-				);
+			for (const matchInfo of round.matches) {
+				updateDatabase.addGameMatch(matchInfo, () => {
+					console.log('lagt til good gamematch');
+				});
 			}
 		}
-		updateDatabase.addGameMatch(this.tournamentObject, () => {
-			console.log('lagt til good Tournament');
-		});
 	}
 }
