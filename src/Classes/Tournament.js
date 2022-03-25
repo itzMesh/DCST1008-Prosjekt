@@ -1,4 +1,4 @@
-import Round from './Round';
+import Round from './round';
 
 class Torunament {
 	name;

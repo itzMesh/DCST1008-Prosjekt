@@ -1,5 +1,3 @@
-import ShadowTeam from './ShadowTeam';
-
 class Match {
 	round;
 	teams = [];

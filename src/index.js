@@ -1,41 +1,24 @@
 import * as React from 'react';
-import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
-import { TournamentPage, EditTournamentPage } from './Pages/TournamentPage';
-import tester from './Classes/TestClasses';
+import tester from './Classes/testClasses';
 
-import { Login, Signup, Start } from './login';
-import { Choose, New, Overview } from './overview';
-import { Add } from './players';
-import { AddOne } from './player';
-import { Bracket } from './bracket';
+import { Signup } from './Pages/signup';
+import { Menu } from './Pages/menu';
+import { AddSinglePlayer } from './Pages/addSinglePlayer';
+import { AddTwoPlayerTeams } from './Pages/addTwoPlayerTeams';
+import { EditTournamentPage } from './Pages/editTournamentPage';
+import { Login } from './Pages/login';
+import { NewTournament } from './Pages/newTournament';
+import { Overview } from './Pages/overview';
 import { ShowTournamentPage } from './Pages/ShowTournamentPage';
-
-class Home extends Component {
-	render() {
-		return <div>Hjemmeside</div>;
-	}
-}
-
-class Page1 extends Component {
-	render() {
-		return <div>Page 1</div>;
-	}
-}
-
-class Page2 extends Component {
-	render() {
-		return <div>Page 2</div>;
-	}
-}
+import { TournamentPage } from './Pages/tournamentPage';
 
 ReactDOM.render(
 	<HashRouter>
 		<div>
-			<Start />
+			<Menu />
 			<Route exact path="/" component={Login} />
-			<Route exact path="/page1" component={Page1} />
 			<Route exact path="/tournamentPage/:TournamentID" component={TournamentPage} />
 			<Route
 				exact
@@ -43,19 +26,15 @@ ReactDOM.render(
 				component={ShowTournamentPage}
 			/>
 			<Route exact path="/matches/:MatchID/edit" component={EditTournamentPage} />
-			<Route exact path="/page2" component={Page2} />
 
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/signup" component={Signup} />
 
-			<Route exact path="/new" component={New} />
+			<Route exact path="/new" component={NewTournament} />
 			<Route exact path="/overview" component={Overview} />
-			<Route exact path="/choose" component={Choose} />
 
-			<Route exact path="/players/1" component={Add} />
-			<Route exact path="/players/0" component={AddOne} />
-
-			<Route exact path="/bracket" component={Bracket} />
+			<Route exact path="/players/1" component={AddTwoPlayerTeams} />
+			<Route exact path="/players/0" component={AddSinglePlayer} />
 		</div>
 	</HashRouter>,
 	document.getElementById('root')

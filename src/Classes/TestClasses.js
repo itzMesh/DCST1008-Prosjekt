@@ -1,6 +1,6 @@
-import Team from './Team';
-import Torunament from './Tournament';
-import TeamMember from './TeamMember';
+import Team from './team';
+import Torunament from './tournament';
+import TeamMember from './teamMember';
 
 function tester() {
 	let torunamentTest = new Torunament('test', 0, false);

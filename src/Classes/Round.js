@@ -1,5 +1,5 @@
-import ShadowTeam from './ShadowTeam';
-import Match from './Match';
+import ShadowTeam from './shadowTeam';
+import Match from './match';
 
 class Round {
 	tournament;

@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
-import { pool } from '../mysql-pool';
-import { editService } from '../Classes/editTournamentPage';
-import Torunament from '../Classes/Tournament';
-import TeamMember from '../Classes/TeamMember';
-import Team from '../Classes/Team';
-import Match from '../Classes/Match';
-import { tournamentplayers } from '../players';
-import { tournamentpage } from './TournamentPage';
-import { tournamentplayer } from '../player';
+import { tournamentplayer } from './addSinglePlayer';
+import { tournamentplayers } from './addTwoPlayerTeams';
+import { tournamentPageObj } from './tournamentPage';
 
 export class ShowTournamentPage extends Component {
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
-		this.tournamentp[1] > tournamentpage[1] ? this.tournamentp[0] : tournamentpage[0];
+		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
 
 	render() {
 		if (!this.tournamentObject) return null;
