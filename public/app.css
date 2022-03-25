@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko&effect=shadow-multiple');
+
 @font-face {
 	src: url(fonts/Clash.ttf);
 	font-family: clash;
@@ -7,8 +9,6 @@
 	src: url(fonts/Ancoa.otf);
 	font-family: anc;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
 
 body {
 	background-image: url(images/clash.png);
@@ -26,10 +26,11 @@ em {
 .login {
 	font-family: clash;
 	font-size: 28px;
-	color: #FFD700;
+	color: #ffd700;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px rgb(231, 199, 16);
 	padding-left: 5px;
+	/* border-radius: 50%; */
 }
 
 .login:hover {
@@ -49,7 +50,24 @@ em {
 .overview {
 	font-family: clash;
 	font-size: 32px;
-	color: #FFD700;
+	color: #ffd700;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgb(231, 199, 16);
+	padding-left: 5px;
+}
+
+.text {
+	font-family: clash;
+	font-size: 25px;
+	color: #ffbb00;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgb(231, 199, 16);
+	padding-left: 5px;
+}
+.small {
+	font-family: clash;
+	font-size: 15px;
+	color: #eeff00;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px rgb(231, 199, 16);
 	padding-left: 5px;
@@ -63,6 +81,6 @@ em {
 
 .input {
 	font-family: clash;
-	font-size: 25px;
-	color: #FFD700;
+	font-size: 20px;
+	color: #ffd700;
 }

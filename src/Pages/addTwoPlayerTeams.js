@@ -30,8 +30,9 @@ export class AddTwoPlayerTeams extends Component {
 		return (
 			<div>
 				<form ref={(instance) => (this.form = instance)}>
-					<br />
+					<br /> <em className="text">Team</em>
 					<input
+						className="input"
 						type="text"
 						value={this.team}
 						placeholder="Team name"
@@ -39,8 +40,9 @@ export class AddTwoPlayerTeams extends Component {
 						onChange={(event) => (this.team = event.currentTarget.value)}
 						required
 					/>
-					<br /> Player 1
+					<br /> <em className="text">Player 1</em>
 					<input
+						className="input"
 						type="text"
 						value={this.name1}
 						placeholder="Nickname"
@@ -49,6 +51,7 @@ export class AddTwoPlayerTeams extends Component {
 						required
 					/>
 					<input
+						className="input"
 						type="number"
 						value={this.trophies1}
 						placeholder="Trophies"
@@ -57,8 +60,9 @@ export class AddTwoPlayerTeams extends Component {
 						required
 					/>
 					<br />
-					Player 2
+					<em className="text">Player 2</em>
 					<input
+						className="input"
 						type="text"
 						value={this.name2}
 						placeholder="Nickname"
@@ -67,6 +71,7 @@ export class AddTwoPlayerTeams extends Component {
 						required
 					/>
 					<input
+						className="input"
 						type="number"
 						value={this.trophies2}
 						placeholder="Trophies"
@@ -76,37 +81,19 @@ export class AddTwoPlayerTeams extends Component {
 					/>
 					<br />
 					<br />
-					<button type="button" onClick={this.buttonClicked}>
-						Add team
-					</button>
 				</form>
+				<button className="login" type="button" onClick={this.buttonClicked}>
+					Add team
+				</button>
 
-				<button
-					onClick={() => this.createObjects()}
-					style={{
-						backgroundColor: 'red',
-						size: 'large',
-						marginLeft: '700px',
-						marginTop: '10px',
-						height: '40px',
-						width: '100px',
-					}}
-					type="button"
-				>
+				<button className="login" onClick={() => this.createObjects()} type="button">
 					Create Tournament
 				</button>
 				{this.tournamentcreator.map(() => (
 					<NavLink to={this.link}>
 						<button
+							className="login"
 							onClick={() => this.createObjects()}
-							style={{
-								backgroundColor: 'red',
-								size: 'large',
-								marginLeft: '700px',
-								marginTop: '50px',
-								height: '40px',
-								width: '100px',
-							}}
 							type="button"
 						>
 							Show Torunament
@@ -117,7 +104,7 @@ export class AddTwoPlayerTeams extends Component {
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
-						<div key={i} style={{ float: 'left' }}>
+						<div className="small" key={i} style={{ float: 'left' }}>
 							<div key={0}>Team: {team[0]}</div>
 							<div key={1}>
 								Name: {team[1][0]} Trophies {team[1][1]}
@@ -126,6 +113,7 @@ export class AddTwoPlayerTeams extends Component {
 								Name: {team[2][0]} Trophies {team[2][1]}
 							</div>
 							<button
+								className="login"
 								type="button"
 								id={i}
 								onClick={(i) => this.teams.splice(i.target.id, 1)}

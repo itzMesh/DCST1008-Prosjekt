@@ -14,15 +14,17 @@ export class NewTournament extends Component {
 		return (
 			<div>
 				<br />
-				Tournament name
+				<em className="text">Tournament name</em>
 				<input
+					className="input"
 					value={this.tourname}
 					onChange={(event) => (this.tourname = event.currentTarget.value)}
 				/>
 				<br />
 				<br />
-				Select tournament type
+				<em className="text">Select tournament type</em>
 				<select
+					className="input"
 					value={this.type}
 					onChange={(event) => (this.type = event.currentTarget.value)}
 				>
@@ -31,8 +33,9 @@ export class NewTournament extends Component {
 				</select>
 				<br />
 				<br />
-				Select match type
+				<em className="text">Select match type</em>
 				<select
+					className="input"
 					value={this.gamemode}
 					onChange={(event) => (this.gamemode = event.currentTarget.value)}
 				>
@@ -45,8 +48,9 @@ export class NewTournament extends Component {
 				</select>
 				<br />
 				<br />
-				Amount of rounds
+				<em className="text">Amount of rounds</em>
 				<select
+					className="input"
 					value={this.bestof}
 					onChange={(event) => (this.bestof = event.currentTarget.value)}
 				>
@@ -55,10 +59,8 @@ export class NewTournament extends Component {
 				</select>
 				<br />
 				<br />
-				<NavLink to={'/players/' + this.gamemode}>
-					<button onClick={this.setSettings()} type="button">
-						Create tournament
-					</button>
+				<NavLink className="login" to={'/players/' + this.gamemode}>
+					Create tournament
 				</NavLink>
 			</div>
 		);

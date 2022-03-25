@@ -13,10 +13,8 @@ export class Signup extends Component {
 				<br />
 				<input className="input" type="password" placeholder="Confirm password" />
 				<br />
-				<NavLink to="/overview">
-					<button className="login" type="button">
+				<NavLink className="login" to="/overview">
 						Sign up
-					</button>
 				</NavLink>
 			</div>
 		);
