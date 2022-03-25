@@ -1,6 +1,6 @@
 @font-face {
-	src: url(fonts/Prohibition.ttf);
-	font-family: pro;
+	src: url(fonts/Clash.ttf);
+	font-family: clash;
 }
 
 @font-face {
@@ -18,13 +18,13 @@ body {
 }
 
 .start {
-	font-family: anc;
+	font-family: clash;
 	font-size: 28px;
 	color: white;
-	text-shadow: 4px 4px 4px #aaa;
+	text-shadow: 1px 1px 1px #aaa;
 }
 .start:hover {
-	font-family: pro;
+	font-family: clash;
 	font-size: 29px;
 	color: white;
 	text-shadow: 4px 4px 4px #aaa;
