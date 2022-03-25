@@ -10,7 +10,7 @@
 
 body {
 	background-image: url(images/clash.png);
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat; */
 	/* background-size: 300% 300%; */
 	/* url(images/logo.png), url(images/king.png), */
 	/* background-position: center; */
