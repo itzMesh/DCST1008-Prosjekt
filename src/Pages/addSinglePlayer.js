@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from './mysql-pool';
-import ReactDOM from 'react-dom';
+import { pool } from '../mysql-pool';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { settings } from './overview';
-import Torunament from './Classes/Tournament';
-import Team from './Classes/Team';
-import TeamMember from './Classes/TeamMember';
+import Torunament from '../Classes/tournament';
+import Team from '../Classes/team';
+import TeamMember from '../Classes/teamMember';
 
 export let tournamentplayer = [null, new Date()];
 
-export class AddOne extends Component {
+export class AddSinglePlayer extends Component {
 	team = '';
 	name1 = '';
 	trophies1 = '';

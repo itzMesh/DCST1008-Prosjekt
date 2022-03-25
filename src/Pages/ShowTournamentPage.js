@@ -3,14 +3,14 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
 import { pool } from '../mysql-pool';
-import { editService } from '../Classes/editTournamentPage';
-import Torunament from '../Classes/Tournament';
-import TeamMember from '../Classes/TeamMember';
-import Team from '../Classes/Team';
-import Match from '../Classes/Match';
+import { editService } from '../Classes/editService';
+import Torunament from '../Classes/tournament';
+import TeamMember from '../Classes/teamMember';
+import Team from '../Classes/team';
+import Match from '../Classes/match';
 import { tournamentplayers } from '../players';
-import { tournamentpage } from './TournamentPage';
-import { tournamentplayer } from '../player';
+import { tournamentpage } from './tournamentPage';
+import { tournamentplayer } from './addSinglePlayer';
 
 export class ShowTournamentPage extends Component {
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;

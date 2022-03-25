@@ -1,4 +1,4 @@
-import ShadowTeam from './ShadowTeam';
+import ShadowTeam from './shadowTeam';
 
 class Team extends ShadowTeam {
 	teamMembers = [];
