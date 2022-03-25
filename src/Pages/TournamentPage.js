@@ -146,7 +146,7 @@ export class TournamentPage extends Component {
 		function thirdDatabase(inn) {
 			return new Promise((resolve) => {
 				pool.query(
-					'SELECT TeamID, IsShadow, TeamName FROM Team WHERE TournamentID= ?',
+					'SELECT TeamID, TournamentID, IsShadow, TeamName FROM Team WHERE TournamentID= ?',
 					[tournamentID],
 					(error, results) => {
 						if (error) return console.error(error); // If error, show error in console (in red text) and return
@@ -161,7 +161,7 @@ export class TournamentPage extends Component {
 		function fourthDatabase(inn) {
 			return new Promise((resolve) => {
 				pool.query(
-					'SELECT TournamentID, TournamentName FROM Tournament WHERE TournamentID= ?',
+					'SELECT TournamentID, TournamentName, TournamentType, TournamentGamemode FROM Tournament WHERE TournamentID= ?',
 					[tournamentID],
 
 					(error, results) => {
@@ -184,14 +184,19 @@ export class TournamentPage extends Component {
 
 				for (const i of promTeam) {
 					if (!i.isShadow) {
-						teamObj.push(new Team(i.TeamName, i.TeamID));
+						teamObj.push(new Team(i.TeamName, i.TeamID, i.TournamentID));
 					} else {
 						teamObj.push(new ShadowTeam());
 					}
 				}
 
 				for (const i of promTeamMember) {
-					let aTeamMember = new TeamMember(i.PlayerName, i.PlayerTrophies);
+					let aTeamMember = new TeamMember(
+						i.PlayerName,
+						i.PlayerTrophies,
+						i.TeamID,
+						promTournamentChoser[0].TournamentID
+					);
 					teamMemberObj.push(aTeamMember);
 					for (const j of teamObj) {
 						console.log(j.id == i.TeamID, 'se her');
@@ -204,7 +209,11 @@ export class TournamentPage extends Component {
 				tournamentObj = new Torunament(
 					promTournamentChoser[0].TournamentName,
 					promTournamentChoser[0].TournamentID,
-					teamObj
+					teamObj,
+					{
+						type: promTournamentChoser[0].TournamentType,
+						gamemode: promTournamentChoser[0].TournamentGamemode,
+					}
 				);
 
 				for (const i of promMatches) {
@@ -232,7 +241,8 @@ export class TournamentPage extends Component {
 								tournamentObj.rounds[i.RoundNumber],
 								i.MatchNumber,
 								i.Team1Score,
-								i.Team2Score
+								i.Team2Score,
+								i.Completed
 							)
 						);
 					}
