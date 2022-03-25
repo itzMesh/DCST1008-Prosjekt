@@ -158,9 +158,9 @@ export class AddSinglePlayer extends Component {
 			this.tournamentcreator[0] = true;
 			this.link =
 				'/tournamentpage/' +
-				tournamentplayer[0].TournamentID +
+				(this.tournamentIDs[0] + 1) +
 				'/' +
-				tournamentplayer[0].TournamentID;
+				(this.tournamentIDs[0] + 1);
 		}
 	}
 }

@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
-
+import { updateDatabase } from '../Classes/pushDatabase';
 export class ShowTournamentPage extends Component {
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
@@ -13,10 +13,14 @@ export class ShowTournamentPage extends Component {
 		if (!this.tournamentObject) return null;
 
 		console.log(this.tournamentObject);
-
+		console.log(this.tournamentObject.TorunamentId, 'se her');
 		return (
 			<div>
-				<div>Tester</div>
+				<div>
+					<button type="button" onClick={this.save}>
+						Save
+					</button>
+				</div>
 				{this.tournamentObject.rounds.map((round) => (
 					<div>
 						<div
@@ -62,5 +66,35 @@ export class ShowTournamentPage extends Component {
 				))}
 			</div>
 		);
+	}
+
+	save() {
+		let match = [];
+		let TournamentID = this.tournamentObject.TorunamentId;
+		updateDatabase.deleteTournament(this.props.match.params.TournamentID, () =>
+			console.log('slettet good tournament')
+		);
+		updateDatabase.addTournament(this.tournamentObject, () => {
+			console.log('lagt til good Tournament');
+		});
+		updateDatabase.deleteGameMatch(this.props.match.params.TournamentID, () =>
+			console.log('slettet good GameMatch')
+		);
+		for (const round of this.tournamentObject.rounds) {
+			for (const match of round.matches) {
+				console.log(
+					match.completed,
+					match.ind,
+					match.results,
+					match.round.roundNumber,
+					match.teams[0].id,
+					match.teams[1].id,
+					match.round.tournament.TorunamentId
+				);
+			}
+		}
+		updateDatabase.addGameMatch(this.tournamentObject, () => {
+			console.log('lagt til good Tournament');
+		});
 	}
 }
