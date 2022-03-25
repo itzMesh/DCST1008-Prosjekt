@@ -6,9 +6,8 @@ export let settings = { name: '', type: '', gamemode: '' };
 
 export class NewTournament extends Component {
 	tourname = '';
-	bestof = '';
-	type = '';
-	gamemode = 0;
+	type = 'bracket';
+	gamemode = '1v1,0';
 
 	render() {
 		return (
@@ -39,27 +38,28 @@ export class NewTournament extends Component {
 					value={this.gamemode}
 					onChange={(event) => (this.gamemode = event.currentTarget.value)}
 				>
-					<option value="0">1v1</option>
-					<option value="0">2v2 - Generated teams</option>
-					<option value="1">2v2 - Custom Teams</option>
-					<option value="0">1v1 Double Elixir</option>
-					<option value="0">2v2 - Double Elixir - Generated teams</option>
-					<option value="1">2v2 - Double Elixir - Custom Teams</option>
+					<option value="1v1,0">1v1</option>
+					<option disabled value="2v2G,0">
+						2v2 - Generated teams
+					</option>
+					<option value="2v2C,1">2v2 - Custom Teams</option>
+					<option disabled value="1v1De,0">
+						1v1 Double Elixir
+					</option>
+					<option disabled value="2v2GDe,0">
+						2v2 - Double Elixir - Generated teams
+					</option>
+					<option disabled value="2v2GCe,1">
+						2v2 - Double Elixir - Custom Teams
+					</option>
 				</select>
 				<br />
 				<br />
-				<em className="text">Amount of rounds</em>
-				<select
-					className="input"
-					value={this.bestof}
-					onChange={(event) => (this.bestof = event.currentTarget.value)}
+				<NavLink
+					onClick={() => this.setSettings()}
+					className="login"
+					to={'/players/' + this.gamemode.split(',')[1]}
 				>
-					<option value="bracket">Best of 1</option>
-					<option value="roundrobin">Best of 3</option>
-				</select>
-				<br />
-				<br />
-				<NavLink className="login" to={'/players/' + this.gamemode}>
 					Create tournament
 				</NavLink>
 			</div>
@@ -68,8 +68,8 @@ export class NewTournament extends Component {
 
 	setSettings() {
 		settings.name = this.tourname;
-		settings.gamemode = this.gamemode;
+		settings.gamemode = this.gamemode.split(',')[0];
 		settings.type = this.type;
-		console.log(settings);
+		console.log(this.gamemode.split[1]);
 	}
 }
