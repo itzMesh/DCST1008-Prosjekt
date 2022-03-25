@@ -8,6 +8,8 @@
 	font-family: anc;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+
 body {
 	background-image: url(images/clash.png);
 	/* background-repeat: no-repeat; */
@@ -17,15 +19,46 @@ body {
 	background-size: cover;
 }
 
-.start {
+em {
+	font-style: normal;
+}
+
+.login {
 	font-family: clash;
 	font-size: 28px;
-	color: white;
-	text-shadow: 1px 1px 1px #aaa;
+	color: #FFD700;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgb(231, 199, 16);
+	padding-left: 5px;
 }
-.start:hover {
+
+.login:hover {
 	font-family: clash;
 	font-size: 29px;
-	color: white;
-	text-shadow: 4px 4px 4px #aaa;
+	color: #fdf913;
+	text-decoration: none;
+	/* text-shadow: 2px 2px 2px rgb(236, 222, 183); */
+	padding-left: 5px;
+}
+
+.main {
+	font-family: clash;
+	font-size: 20px;
+}
+
+.overview {
+	font-family: clash;
+	font-size: 30px;
+}
+
+.title {
+	font-family: clash;
+	text-align: center;
+	font-size: 60px;
+}
+
+.input {
+	font-family: clash;
+	font-size: 25px;
+	color: #FFD700;
 }

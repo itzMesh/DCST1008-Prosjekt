@@ -7,14 +7,16 @@ export class Signup extends Component {
 		return (
 			<div>
 				<br />
-				<input type="text" placeholder="Username" />
+				<input className="input" type="text" placeholder="Username" />
 				<br />
-				<input type="password" placeholder="Password" />
+				<input className="input" type="password" placeholder="Password" />
 				<br />
-				<input type="password" placeholder="Confirm password" />
+				<input className="input" type="password" placeholder="Confirm password" />
 				<br />
 				<NavLink to="/overview">
-					<button type="button">Sign up</button>
+					<button className="login" type="button">
+						Sign up
+					</button>
 				</NavLink>
 			</div>
 		);

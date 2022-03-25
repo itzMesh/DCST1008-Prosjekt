@@ -5,15 +5,27 @@ import { NavLink } from 'react-router-dom';
 export class Menu extends Component {
 	render() {
 		return (
-			<div className="start">
-				Login:
-				<NavLink to="/login"> Login </NavLink>
-				Sign up:
-				<NavLink to="/signup"> Sign up </NavLink>
-				Overview:
-				<NavLink to="/overview"> Choose </NavLink>
-				Dev shortcut:
-				<NavLink to="/tournamentPage/1"> Dev shortcut:</NavLink>
+			<div>
+				<em className="login">
+					<NavLink className="login" to="/login">
+						{' '}
+						Login{' '}
+					</NavLink>
+				</em>
+				<em className="login">
+					<NavLink className="login" to="/signup">
+						{' '}
+						Sign up{' '}
+					</NavLink>
+				</em>
+				<em className="login">
+					<NavLink className="login" to="/overview">
+						{' '}
+						Overview{' '}
+					</NavLink>
+				</em>
+
+				<NavLink to="/tournamentPage/1"> Dev shårtkøtt:</NavLink>
 			</div>
 		);
 	}
