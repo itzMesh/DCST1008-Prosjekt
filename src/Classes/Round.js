@@ -31,10 +31,9 @@ class Round {
 		this.teams = this.sortTeams(this.teams);
 		this.firstMatchNumber =
 			roundNumber == 0
-				? 0
+				? 1
 				: this.tournament.rounds[roundNumber - 1].firstMatchNumber +
-				  this.tournament.rounds[roundNumber - 1].numberOfRounds +
-				  1;
+				  this.tournament.rounds[roundNumber - 1].numberOfRounds;
 		this.addMatches();
 	}
 
@@ -78,6 +77,7 @@ class Round {
 
 	addMatches() {
 		for (let i = 0; i < this.teams.length / 2; i++) {
+			console.log(i);
 			this.matches.push(
 				new Match(
 					this.teams[i * 2],
