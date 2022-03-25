@@ -1,7 +1,9 @@
 class TeamMember {
-	constructor(name, trophies) {
+	constructor(name, trophies, teamID, tournamentID) {
 		this.name = name;
 		this.trophies = trophies;
+		this.teamID = teamID;
+		this.tournamentID = tournamentID;
 	}
 }
 
