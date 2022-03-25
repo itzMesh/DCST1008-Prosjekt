@@ -28,9 +28,10 @@ em {
 	font-size: 28px;
 	color: #ffd700;
 	text-decoration: none;
-	text-shadow: 1px 1px 1px rgb(231, 199, 16);
+	/* text-shadow: 1px 1px 1px rgb(231, 199, 16); */
 	padding-left: 5px;
 	/* border-radius: 50%; */
+	user-select: none;
 }
 
 .login:hover {
@@ -40,6 +41,8 @@ em {
 	text-decoration: none;
 	/* text-shadow: 2px 2px 2px rgb(236, 222, 183); */
 	padding-left: 5px;
+	user-select: none;
+	cursor: pointer;
 }
 
 .main {
@@ -52,7 +55,6 @@ em {
 	font-size: 32px;
 	color: #ffd700;
 	text-decoration: none;
-	text-shadow: 1px 1px 1px rgb(231, 199, 16);
 	padding-left: 5px;
 }
 
@@ -61,7 +63,6 @@ em {
 	font-size: 25px;
 	color: #ffbb00;
 	text-decoration: none;
-	text-shadow: 1px 1px 1px rgb(231, 199, 16);
 	padding-left: 5px;
 }
 .small {
@@ -69,7 +70,6 @@ em {
 	font-size: 15px;
 	color: #eeff00;
 	text-decoration: none;
-	text-shadow: 1px 1px 1px rgb(231, 199, 16);
 	padding-left: 5px;
 }
 
@@ -82,5 +82,5 @@ em {
 .input {
 	font-family: clash;
 	font-size: 20px;
-	color: #ffd700;
+	color: #424242;
 }
