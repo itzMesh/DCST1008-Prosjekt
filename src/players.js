@@ -4,9 +4,11 @@ import { pool } from './mysql-pool';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { settings } from './overview';
-import { tournament } from './Pages/TournamentPage';
 import Team from './Classes/Team';
 import TeamMember from './Classes/TeamMember';
+import Torunament from './Classes/Tournament';
+
+export let tournamentplayers = [null, new Date()];
 
 export class Add extends Component {
 	team = 'Best team';
@@ -18,6 +20,8 @@ export class Add extends Component {
 	form = null;
 	tournaments = [];
 	teamObj = [];
+	link = '';
+	tournamentcreator = [];
 
 	render() {
 		if (this.tournaments.length == 0) return null;
@@ -75,21 +79,40 @@ export class Add extends Component {
 						Add team
 					</button>
 				</form>
-				<NavLink to="/bracket">
-					<button
-						style={{
-							backgroundColor: 'red',
-							size: 'large',
-							marginLeft: '700px',
-							marginTop: '10px',
-							height: '40px',
-							width: '100px',
-						}}
-						type="button"
-					>
-						Create Tournament
-					</button>
-				</NavLink>
+
+				<button
+					onClick={() => this.createObjects()}
+					style={{
+						backgroundColor: 'red',
+						size: 'large',
+						marginLeft: '700px',
+						marginTop: '10px',
+						height: '40px',
+						width: '100px',
+					}}
+					type="button"
+				>
+					Create Tournament
+				</button>
+				{this.tournamentcreator.map(() => (
+					<NavLink to={this.link}>
+						<button
+							onClick={() => this.createObjects()}
+							style={{
+								backgroundColor: 'red',
+								size: 'large',
+								marginLeft: '700px',
+								marginTop: '50px',
+								height: '40px',
+								width: '100px',
+							}}
+							type="button"
+						>
+							Show Torunament
+						</button>
+					</NavLink>
+				))}
+
 				<br />
 				<div>
 					{this.teams.map((team, i) => (
@@ -129,20 +152,30 @@ export class Add extends Component {
 	}
 
 	createObjects() {
-		console.log(this.teams[0]);
-		for (const i of this.teams) {
-			let aTeam = new Team(i[0], 0);
-			aTeam.addMember(new TeamMember(i[1][0], i[1][1]));
-			aTeam.addMember(new TeamMember(i[2][0], i[2][1]));
-			this.teamObj.push(aTeam);
+		if (this.teams.length > 1) {
+			this.teamObj = [];
+			console.log(this.teams[0]);
+			for (const i of this.teams) {
+				let aTeam = new Team(i[0], 0);
+				aTeam.addMember(new TeamMember(i[1][0], parseInt(i[1][1])));
+				aTeam.addMember(new TeamMember(i[2][0], parseInt(i[2][1])));
+				this.teamObj.push(aTeam);
+			}
+			tournamentplayers = [
+				new Torunament(settings.name, this.tournaments[0] + 1, this.teamObj),
+				new Date(),
+			];
+			this.tournamentcreator[0] = true;
+			this.link =
+				'/tournamentpage/' +
+				tournamentplayers[0].TournamentID +
+				'/' +
+				tournamentplayers[0].TournamentID;
 		}
 	}
 
 	buttonClicked() {
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
-		console.log(this.teams);
-		this.createObjects();
-		console.log(this.teamObj);
 		this.team = '';
 		this.name1 = '';
 		this.trophies1 = '';
