@@ -8,15 +8,18 @@ import Torunament from '../Classes/Tournament';
 import TeamMember from '../Classes/TeamMember';
 import Team from '../Classes/Team';
 import Match from '../Classes/Match';
-import { tournament } from './TournamentPage';
+import { tournamentplayers } from '../players';
+import { tournamentpage } from './TournamentPage';
+import { tournamentplayer } from '../player';
 
 export class ShowTournamentPage extends Component {
-	tournamentObject = tournament;
+	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
+	tournamentObject =
+		this.tournamentp[1] > tournamentpage[1] ? this.tournamentp[0] : tournamentpage[0];
 
 	render() {
 		if (!this.tournamentObject) return null;
 
-		console.log(this.tournamentObject);
 		return (
 			<div>
 				<div>Tester</div>
