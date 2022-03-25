@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { NavLink } from 'react-router-dom';
 import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
@@ -12,7 +13,7 @@ export class ShowTournamentPage extends Component {
 	render() {
 		if (!this.tournamentObject) return null;
 
-		console.log(this.tournamentObject);
+		console.log(tournamentPageObj);
 
 		return (
 			<div className="small">
@@ -31,7 +32,16 @@ export class ShowTournamentPage extends Component {
 									<div>
 										<div key={match.matchNumber}>
 											<div key={0} style={{ fontSize: '25px' }}>
-												Match {match.matchNumber}
+												<NavLink
+													to={
+														'/matches/edit/' +
+														round.roundNumber +
+														',' +
+														match.ind
+													}
+												>
+													Match {match.matchNumber}
+												</NavLink>
 											</div>
 											{match.teams
 												.filter(
