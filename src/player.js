@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { pool } from './mysql-pool';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { settings } from './overview';
@@ -17,7 +18,7 @@ export class AddOne extends Component {
 	form = null;
 	link = '';
 	tournamentcreator = [];
-	tournaments;
+	tournaments = [];
 
 	render() {
 		if (this.tournaments.length == 0) return null;
@@ -133,7 +134,7 @@ export class AddOne extends Component {
 			this.teamObj = [];
 			console.log(this.teams[0]);
 			for (const i of this.teams) {
-				let aTeam = new Team(i[0], 0);
+				let aTeam = new Team(i[1][0], 0);
 				aTeam.addMember(new TeamMember(i[1][0], parseInt(i[1][1])));
 				this.teamObj.push(aTeam);
 			}
