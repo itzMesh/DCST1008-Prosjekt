@@ -21,6 +21,7 @@ class Match {
 		}
 	}
 
+	//updates the score as well as sending the winner to the next round
 	updateScore(score0, score1) {
 		this.results[0] = score0;
 		this.results[1] = score1;
