@@ -23,6 +23,7 @@ export class TournamentPage extends Component {
 
 	link = '';
 	loded = 'Loding from database';
+	canlink = [];
 	render() {
 		//if (!this.tournamentObject) return null;
 
@@ -31,7 +32,11 @@ export class TournamentPage extends Component {
 			<div className="text">
 				<br />
 				<div>{this.loded}</div>
-				<NavLink className="login" to={this.link}>{'When loaded click here'}</NavLink>
+				{this.canlink.map(() => (
+					<NavLink isActive={false} className="login" to={this.link}>
+						{'When loaded click here'}
+					</NavLink>
+				))}
 
 				{/* {this.tournamentObject.rounds.map((round) => (
 					<div>
@@ -298,6 +303,7 @@ export class TournamentPage extends Component {
 				this.tournamentObject.TournamentID;
 
 			this.loded = 'Finished loading, you may now proceed';
+			this.canlink[0] = 'a';
 		})();
 	}
 
