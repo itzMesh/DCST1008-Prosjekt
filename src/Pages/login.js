@@ -8,39 +8,14 @@ export class Login extends Component {
 	render() {
 		console.log(this.userdata);
 		return (
-			<div
-				style={{
-					// backgroundColor: '#FFE5B4',
-					backgroundColor: '#5865F2',
-					width: '400px',
-					height: '400px',
-					marginLeft: '40%',
-					borderRadius: '25%',
-				}}
-			>
+			<div>
 				<br />
-				<input
-					style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
-					type="text"
-					placeholder="Username"
-				/>
+				<input className="input" type="text" placeholder="Username" />
 				<br />
-				<input
-					style={{ marginLeft: '100px', marginTop: '50px', height: '30px' }}
-					type="password"
-					placeholder="Password"
-				/>
+				<input className="input" type="password" placeholder="Password" />
 				<br />
 				<NavLink to="/overview">
-					<button
-						style={{
-							marginLeft: '100px',
-							marginTop: '50px',
-							height: '30px',
-							width: '100px',
-						}}
-						type="button"
-					>
+					<button className="login" type="button">
 						Login
 					</button>
 				</NavLink>
