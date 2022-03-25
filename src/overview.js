@@ -12,12 +12,16 @@ export class Choose extends Component {
 		return (
 			<div
 				style={{
-					backgroundColor: 'lightgray',
-					width: '100%',
-					height: '100%',
 					fontSize: '40px',
 				}}
 			>
+				<h1
+					style={{
+						textAlign: 'center',
+					}}
+				>
+					Clasnering
+				</h1>
 				<br /> Overview of Tournaments <br />
 				{this.tournaments.map((tournament) => (
 					<li key={tournament.TournamentID}>
