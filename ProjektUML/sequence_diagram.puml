@@ -57,8 +57,6 @@ else Create new
         
     end
     U->A: Create setup and send to tournament page
-    A->D: Creates tournament
-    D-->A: Tournament loads
     A-->U: Tournament ready
 end
 
