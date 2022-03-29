@@ -8,7 +8,7 @@ class UpdateDatabase {
 	deleteTournament(TournamentID, success) {
 		console.log(TournamentID);
 		pool.query(
-			'DELETE FROM Tournament1 WHERE TournamentID=?',
+			'DELETE FROM Tournament WHERE TournamentID=?',
 			[TournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
@@ -25,7 +25,7 @@ class UpdateDatabase {
 		);
 
 		pool.query(
-			'INSERT INTO Tournament1 (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
+			'INSERT INTO Tournament (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
 			[
 				tournamentObject.TorunamentId,
 				tournamentObject.name,
@@ -41,7 +41,7 @@ class UpdateDatabase {
 	}
 	deleteGameMatch(TournamentID, success) {
 		pool.query(
-			'DELETE FROM GameMatch1 WHERE TournamentID=?',
+			'DELETE FROM GameMatch WHERE TournamentID=?',
 			[TournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
@@ -52,7 +52,7 @@ class UpdateDatabase {
 	}
 	addGameMatch(match, success) {
 		pool.query(
-			'INSERT INTO GameMatch1 (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Completed, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+			'INSERT INTO GameMatch (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Completed, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
 			[
 				match.round.tournament.TorunamentId,
 				match.ind,
@@ -71,7 +71,7 @@ class UpdateDatabase {
 		);
 	}
 	deleteTeams(TournamentID, success) {
-		pool.query('DELETE FROM Team1 WHERE TournamentID=?', [TournamentID], (error, results) => {
+		pool.query('DELETE FROM Team WHERE TournamentID=?', [TournamentID], (error, results) => {
 			if (error) return console.error(error);
 
 			success();
@@ -80,7 +80,7 @@ class UpdateDatabase {
 
 	addTeam(team, success) {
 		pool.query(
-			'INSERT INTO Team1 (TeamID, TeamName, IsShadow, TournamentID) VALUES (?, ?, ?, ?)',
+			'INSERT INTO Team (TeamID, TeamName, IsShadow, TournamentID) VALUES (?, ?, ?, ?)',
 			[team.id, team.name, team.constructor.name != 'ShadowTeam' ? 0 : 1, team.tournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
@@ -92,7 +92,7 @@ class UpdateDatabase {
 
 	deleteTeamMember(TournamentID, success) {
 		pool.query(
-			'DELETE FROM TeamMember1 WHERE TournamentID=?',
+			'DELETE FROM TeamMember WHERE TournamentID=?',
 			[TournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
@@ -104,7 +104,7 @@ class UpdateDatabase {
 
 	addTeamMember(teamMemberInfo, success) {
 		pool.query(
-			'INSERT INTO TeamMember1 (PlayerName, PlayerTrophies, TeamID, TournamentID) VALUES (?, ?, ?, ?)',
+			'INSERT INTO TeamMember (PlayerName, PlayerTrophies, TeamID, TournamentID) VALUES (?, ?, ?, ?)',
 			[
 				teamMemberInfo.name,
 				teamMemberInfo.trophies,
