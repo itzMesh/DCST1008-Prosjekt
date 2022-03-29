@@ -138,7 +138,8 @@ export class TournamentPage extends Component {
 		function secondDatabase(inn) {
 			return new Promise((resolve) => {
 				pool.query(
-					'SELECT MatchID, RoundNumber, TournamentID, MatchNumber, Team1, Team2, Completed, Team1Score, Team2Score FROM GameMatch',
+					'SELECT MatchID, RoundNumber, TournamentID, MatchNumber, Team1, Team2, Completed, Team1Score, Team2Score FROM GameMatch WHERE TournamentID= ?',
+					[tournamentID],
 					(error, results) => {
 						if (error) return console.error(error); // If error, show error in console (in red text) and return
 
@@ -229,6 +230,7 @@ export class TournamentPage extends Component {
 						? a.RoundNumber - b.RoundNumber
 						: a.MatchNumber - b.MatchNumber
 				);
+				console.log(promMatches);
 				for (const i of promMatches) {
 					tournamentObj.rounds[i.RoundNumber].matches[i.MatchNumber].updateScore(
 						i.Team1Score,
