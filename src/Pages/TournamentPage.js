@@ -23,6 +23,7 @@ export class TournamentPage extends Component {
 
 	link = '';
 	loded = 'Loding from database';
+	canlink = [];
 	render() {
 		//if (!this.tournamentObject) return null;
 
@@ -31,7 +32,11 @@ export class TournamentPage extends Component {
 			<div className="text">
 				<br />
 				<div>{this.loded}</div>
-				<NavLink className="login" to={this.link}>{'When loaded click here'}</NavLink>
+				{this.canlink.map(() => (
+					<NavLink className="login" to={this.link}>
+						{'When loaded click here'}
+					</NavLink>
+				))}
 
 				{/* {this.tournamentObject.rounds.map((round) => (
 					<div>
@@ -184,10 +189,11 @@ export class TournamentPage extends Component {
 				let promTournamentChoser = table[3];
 
 				for (const i of promTeam) {
-					if (!i.isShadow) {
+					console.log(i.IsShadow);
+					if (!i.IsShadow) {
 						teamObj.push(new Team(i.TeamName, i.TeamID, i.TournamentID));
 					} else {
-						teamObj.push(new ShadowTeam());
+						teamObj.push(new ShadowTeam(i.TournamentID));
 					}
 				}
 
@@ -199,14 +205,14 @@ export class TournamentPage extends Component {
 						promTournamentChoser[0].TournamentID
 					);
 					teamMemberObj.push(aTeamMember);
-					for (const j of teamObj) {
-						console.log(j.id == i.TeamID, 'se her');
+					for (const j of teamObj.filter(
+						(team) => team.constructor.name != 'ShadowTeam'
+					)) {
 						if (j.id == i.TeamID) {
 							j.addMember(aTeamMember);
 						}
 					}
 				}
-				console.log(teamObj);
 				tournamentObj = new Torunament(
 					promTournamentChoser[0].TournamentName,
 					promTournamentChoser[0].TournamentID,
@@ -217,36 +223,17 @@ export class TournamentPage extends Component {
 					}
 				);
 
+				console.log(tournamentObj);
+				promMatches.sort((a, b) =>
+					a.RoundNumber != b.RoundNumber
+						? a.RoundNumber - b.RoundNumber
+						: a.MatchNumber - b.MatchNumber
+				);
 				for (const i of promMatches) {
-					let team1 = null;
-					let team2 = null;
-					for (const j of teamObj) {
-						if (i.Team1 == j.id) {
-							team1 = j;
-						}
-						if (i.Team2 == j.id) {
-							team2 = j;
-						}
-					}
-					let matchnumb =
-						i.RoundNumber == 0
-							? 1 + i.MatchNumber
-							: tournamentObj.rounds[i.RoundNumber - 1].firstMatchNumber +
-							  i.MatchNumber;
-					if (i.TournamentID == tournamentObj.TorunamentId) {
-						matchObj.push(
-							new Match(
-								team1,
-								team2,
-								matchnumb,
-								tournamentObj.rounds[i.RoundNumber],
-								i.MatchNumber,
-								i.Team1Score,
-								i.Team2Score,
-								i.Completed
-							)
-						);
-					}
+					tournamentObj.rounds[i.RoundNumber].matches[i.MatchNumber].updateScore(
+						i.Team1Score,
+						i.Team2Score
+					);
 				}
 
 				for (const i of matchObj) {
@@ -283,7 +270,6 @@ export class TournamentPage extends Component {
 				this.tournamentObject,
 				this.matchObjects
 			);
-			console.log(out);
 
 			this.teamObjects = out[0];
 			this.teamMemberObjects = out[1];
@@ -298,6 +284,7 @@ export class TournamentPage extends Component {
 				this.tournamentObject.TournamentID;
 
 			this.loded = 'Finished loading, you may now proceed';
+			this.canlink[0] = 'a';
 		})();
 	}
 
