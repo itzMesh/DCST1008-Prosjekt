@@ -60,7 +60,7 @@ export class NewTournament extends Component {
 					className="login"
 					to={'/players/' + this.gamemode.split(',')[1]}
 				>
-					Create tournament
+					Setup tournament
 				</NavLink>
 			</div>
 		);
