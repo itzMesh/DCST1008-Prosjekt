@@ -5,6 +5,11 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
+import { template } from '@babel/core';
+import { run } from '@babel/core/lib/transformation';
+
+let tournamentID = 0;
+
 export class ShowTournamentPage extends Component {
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
@@ -80,27 +85,108 @@ export class ShowTournamentPage extends Component {
 	}
 
 	save() {
-		updateDatabase.deleteTournament(this.props.match.params.TournamentID, () =>
-			console.log('slettet good tournament')
-		);
+		function delTournament(inn) {
+			console.log(inn, '1');
+			console.log(tournamentID);
+			return new Promise((resolve) => {
+				updateDatabase.deleteTournament(tournamentID, () => resolve(inn));
+			});
+		}
 
-		console.log(
-			this.tournamentObject,
-			this.tournamentObject.generalSettings.type,
-			this.tournamentObject.generalSettings.gamemode
-		);
-		updateDatabase.addTournament(this.tournamentObject, () => {
-			console.log('lagt til good Tournament');
-		});
-		updateDatabase.deleteGameMatch(this.props.match.params.TournamentID, () =>
-			console.log('slettet good GameMatch')
-		);
-		for (const round of this.tournamentObject.rounds) {
-			for (const matchInfo of round.matches) {
-				updateDatabase.addGameMatch(matchInfo, () => {
-					console.log('lagt til good gamematch');
+		function delGameMatch(inn) {
+			console.log(inn, '2');
+
+			return new Promise((resolve) => {
+				updateDatabase.deleteGameMatch(tournamentID, () => resolve(inn));
+			});
+		}
+
+		function delTeams(inn) {
+			console.log(inn, '3');
+
+			return new Promise((resolve) => {
+				updateDatabase.deleteTeams(tournamentID, () => resolve(inn));
+			});
+		}
+
+		function delTeamMember(inn) {
+			console.log(inn), '4';
+
+			return new Promise((resolve) => {
+				updateDatabase.deleteTeamMember(tournamentID, () => resolve(inn));
+			});
+		}
+
+		function addsTournament(inn) {
+			console.log(inn, '5');
+			return new Promise((resolve) => {
+				updateDatabase.addTournament(inn[0], () => {
+					resolve(inn);
 				});
+			});
+		}
+
+		function addsGameMatch(inn) {
+			return new Promise((resolve) => {
+				for (const round of inn[0].rounds) {
+					for (const matchInfo of round.matches) {
+						updateDatabase.addGameMatch(matchInfo, () => {
+							console.log('lagt til good gamematch');
+						});
+					}
+				}
+				resolve(inn);
+			});
+		}
+
+		function addsTeam(inn) {
+			return new Promise((resolve) => {
+				for (const team of inn[0].teams) {
+					updateDatabase.addTeam(team, () => {
+						console.log('lagt til team');
+					});
+				}
+				resolve(inn);
+			});
+		}
+
+		function addsTeamMember(inn) {
+			return new Promise((resolve) => {
+				for (const teamMembers of inn[0].teams.filter(
+					(team) => team.constructor.name != 'ShadowTeam'
+				)) {
+					for (const teamMemberInfo of teamMembers.teamMembers) {
+						updateDatabase.addTeamMember(teamMemberInfo, () => {
+							console.log('lagt til teamMembers');
+						});
+					}
+				}
+				resolve(inn);
+			});
+		}
+
+		async function kjør(inn) {
+			try {
+				console.log(inn[0]);
+				let a = await delTournament(inn);
+				let b = await delGameMatch(a);
+				let c = await delTeams(b);
+				let d = await delTeamMember(c);
+				let e = await addsTournament(d);
+				let f = await addsGameMatch(e);
+				let g = await addsTeam(f);
+				let h = await addsTeamMember(g);
+				return h;
+			} catch (error) {
+				console.error(error);
 			}
 		}
+
+		(async () => {
+			tournamentID = this.tournamentObject.TorunamentId;
+			console.log(this.tournamentObject.TorunamentId, 'se her');
+			let message = await kjør([this.tournamentObject]);
+			console.log(message);
+		})();
 	}
 }
