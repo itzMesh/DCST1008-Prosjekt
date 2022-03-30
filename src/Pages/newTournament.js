@@ -19,6 +19,7 @@ export class NewTournament extends Component {
 						className="input"
 						value={this.tourname}
 						onChange={(event) => (this.tourname = event.currentTarget.value)}
+						required
 					/>
 					<br />
 					<br />
@@ -69,7 +70,7 @@ export class NewTournament extends Component {
 	}
 
 	setSettings() {
-		// if (!this.form.reportValidity()) return;
+		if (!this.form.reportValidity()) return;
 
 		settings.name = this.tourname;
 		settings.gamemode = this.gamemode.split(',')[0];
