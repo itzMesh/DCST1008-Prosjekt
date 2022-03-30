@@ -10,7 +10,7 @@ export class Overview extends Component {
 			<div className="overview">
 				<h1 className="title">Clasnering</h1>
 				Overview of Tournaments <br />
-				<div style={{ overflow: 'auto', height: '200px', width: '650px' }}>
+				<div className="scroll">
 					{this.tournaments.map((tournament) => (
 						<li className="login" key={tournament.TournamentID}>
 							<NavLink
