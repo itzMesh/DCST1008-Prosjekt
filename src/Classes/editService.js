@@ -22,8 +22,8 @@ class EditService {
 
 	updateWinner(match, success) {
 		pool.query(
-			'UPDATE GameMatch SET Completed=?, Team1Score=?, Team2Score=? WHERE MatchID=?',
-			[match.Completed, match.Team1Score, match.Team2Score, match.MatchID],
+			'UPDATE GameMatch SET Team1Score=?, Team2Score=? WHERE MatchID=?',
+			[match.Team1Score, match.Team2Score, match.MatchID],
 			(error, results) => {
 				if (error) return console.error(error);
 

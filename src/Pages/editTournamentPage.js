@@ -23,15 +23,6 @@ export class EditTournamentPage extends Component {
 			<div>
 				<ul>
 					<li className="text">
-						Completed:{' '}
-						<input
-							className="input"
-							type="text"
-							value={this.match.Completed}
-							onChange={(event) => (this.match.Completed = event.currentTarget.value)}
-						/>
-					</li>
-					<li className="text">
 						{this.match.teams[0].name} Score:{' '}
 						<input
 							className="input"

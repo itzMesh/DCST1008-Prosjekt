@@ -52,14 +52,13 @@ class UpdateDatabase {
 	}
 	addGameMatch(match, success) {
 		pool.query(
-			'INSERT INTO GameMatch (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Completed, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+			'INSERT INTO GameMatch (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?)',
 			[
 				match.round.tournament.TorunamentId,
 				match.ind,
 				match.round.roundNumber,
 				match.teams[0].id,
 				match.teams[1].id,
-				match.completed,
 				match.results.length != 2 ? 0 : match.results[0],
 				match.results.length != 2 ? 0 : match.results[1],
 			],
