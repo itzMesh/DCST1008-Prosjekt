@@ -1,13 +1,6 @@
 import { pool } from '../mysql-pool';
 
 class EditService {
-	getWinner(MatchID, success) {
-		pool.query('SELECT * FROM GameMatch WHERE MatchID=?', [MatchID], (error, results) => {
-			if (error) return console.error(error);
-
-			success(results[0]);
-		});
-	}
 	getTournament(TournamentID, success) {
 		pool.query(
 			'SELECT * FROM Tournament WHERE TournamentID=?',
