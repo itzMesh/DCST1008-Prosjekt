@@ -6,16 +6,14 @@ class Match {
 	matchSeed;
 	winner;
 	matchFinished;
-	completed;
 
-	constructor(team0, team1, matchNumber, round, ind, score0, score1, completed) {
+	constructor(team0, team1, matchNumber, round, ind, score0, score1) {
 		this.round = round;
 		this.ind = ind;
 		this.teams[0] = team0;
 		this.teams[1] = team1;
 		this.matchNumber = matchNumber;
 		this.matchSeed = team0.seed < team1.seed ? team0.seed : team1.seed;
-		this.completed = completed;
 		if (score0 != false && score1 != false) {
 			this.updateScore(score0, score1);
 		}
