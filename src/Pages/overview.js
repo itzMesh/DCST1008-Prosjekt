@@ -3,9 +3,7 @@ import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 import { updateDatabase } from '../Classes/pushDatabase';
-// import { dialog } from 'electron';
-import { alert } from './widgets';
-const { dialog } = require('electron').remote.dialog;
+import { alert } from '../widgets';
 
 export class Overview extends Component {
 	tournaments = [];
@@ -35,14 +33,13 @@ export class Overview extends Component {
 		);
 	}
 	delete(id) {
-		console.log(dialog);
-		// if (dialog.showOpenDialog({ properties: ['delete', 'cancel'] } == 'delete')()) {
-		// 	// updateDatabase.deleteTournament(id.TournamentID, () => console.log());
-		// 	// updateDatabase.deleteGameMatch(id.TournamentID, () => console.log());
-		// 	// updateDatabase.deleteTeams(id.TournamentID, () => console.log());
-		// 	// updateDatabase.deleteTeamMember(id.TournamentID, () => console.log());
-		// 	// this.mounted();
-		// }
+		alert('Do you want to delete  ' + id.TournamentName + ' for ever');
+
+		// updateDatabase.deleteTournament(id.TournamentID, () => console.log());
+		// updateDatabase.deleteGameMatch(id.TournamentID, () => console.log());
+		// updateDatabase.deleteTeams(id.TournamentID, () => console.log());
+		// updateDatabase.deleteTeamMember(id.TournamentID, () => console.log());
+		// this.mounted();
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
