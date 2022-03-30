@@ -23,6 +23,7 @@ export class ShowTournamentPage extends Component {
 		return (
 			<div className="small">
 				<div>
+					<br />
 					<em className="login" onClick={this.save} type="button">
 						Save
 					</em>
