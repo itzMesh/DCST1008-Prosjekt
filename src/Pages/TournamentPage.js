@@ -22,7 +22,7 @@ export class TournamentPage extends Component {
 	matchObjects = [];
 
 	link = '';
-	loded = 'Loding from database';
+	loded = 'Loading from database';
 	canlink = [];
 	render() {
 		//if (!this.tournamentObject) return null;

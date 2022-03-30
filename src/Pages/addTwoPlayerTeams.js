@@ -175,6 +175,8 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	buttonClicked() {
+		if (!this.form.reportValidity()) return;
+
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 		this.team = '';
 		this.name1 = '';
