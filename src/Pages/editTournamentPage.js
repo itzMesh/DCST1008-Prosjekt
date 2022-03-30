@@ -50,11 +50,10 @@ export class EditTournamentPage extends Component {
 						/>
 					</li>
 				</ul>
-				<em className="login" onClick={this.save}>
-					Save
-				</em>
+
 				<NavLink
 					className="login"
+					onClick={this.save}
 					to={
 						'/tournamentPage/' +
 						this.tournamentObject.TorunamentId +
@@ -62,7 +61,7 @@ export class EditTournamentPage extends Component {
 						this.tournamentObject.TorunamentId
 					}
 				>
-					Back
+					Save
 				</NavLink>
 			</div>
 		);
