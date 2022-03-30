@@ -24,8 +24,6 @@ export class Menu extends Component {
 						Overview{' '}
 					</NavLink>
 				</em>
-
-				<NavLink to="/tournamentPage/1"> Dev shårtkøtt:</NavLink>
 			</div>
 		);
 	}

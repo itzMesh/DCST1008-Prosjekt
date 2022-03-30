@@ -23,9 +23,9 @@ export class ShowTournamentPage extends Component {
 		return (
 			<div className="small">
 				<div>
-					<button type="button" onClick={this.save}>
+					<em className="login" onClick={this.save} type="button">
 						Save
-					</button>
+					</em>
 				</div>
 				{this.tournamentObject.rounds.map((round) => (
 					<div>
