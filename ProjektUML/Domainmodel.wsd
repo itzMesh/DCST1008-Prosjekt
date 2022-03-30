@@ -2,34 +2,23 @@
 
 
 Entity user{
-    ⠀ID
-    ⠀Password
+
 }
 
 
 Class team{
-    members
-    teamName
-    AvrageTrophies
+   
 }
 
 class teamMember{
-    name
-    trophies
-    clanname
+   
 }
 
 Class tournament{
-    user
-    team
-    rounds
-    type
-}
+   }
 
 Class matches{
-    result
-    team
-    victory
+    
 }
 
 
@@ -37,9 +26,9 @@ Class matches{
 
 
 
-user "1..1" -- "0..*" tournament : Goes to
-teamMember "1,2" -- "1..1" team : Member of 
-tournament "1..1" -- "2..*"team : Playing in
-tournament "1..1" -- "1..* "matches : Playing in
-team"2..2"-- "1..1" matches : Plays in
+user  --  tournament : Goes to
+teamMember  --  team : Member of 
+tournament  -- team : Playing in
+tournament  --  matches : Playing in
+team --  matches : Plays in
 @enduml
