@@ -28,6 +28,8 @@ export class NewTournament extends Component {
 						className="input"
 						value={this.type}
 						onChange={(event) => (this.type = event.currentTarget.value)}
+						placeholder="0"
+						required
 					>
 						<option value="bracket">Bracket</option>
 						<option value="roundrobin">Round robin</option>
@@ -39,7 +41,11 @@ export class NewTournament extends Component {
 						className="input"
 						value={this.gamemode}
 						onChange={(event) => (this.gamemode = event.currentTarget.value)}
+						required
 					>
+						{/* <option value="" disabled selected hidden>
+							Select your option
+						</option> */}
 						<option value="1v1,0">1v1</option>
 						<option disabled value="2v2G,0">
 							2v2 - Generated teams
@@ -69,8 +75,10 @@ export class NewTournament extends Component {
 		);
 	}
 
-	setSettings() {
-		if (!this.form.reportValidity()) return;
+	setSettings(event) {
+		if (!this.form.reportValidity()) {
+			event.preventDefault();
+		}
 
 		settings.name = this.tourname;
 		settings.gamemode = this.gamemode.split(',')[0];
