@@ -3,13 +3,21 @@ import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 import { updateDatabase } from '../Classes/pushDatabase';
-import { alert } from '../widgets';
-
+let x;
 export class Overview extends Component {
 	tournaments = [];
 	render() {
 		return (
 			<div className="overview">
+				<div className="confirm" id="confirm">
+					<p id="tournamentName"></p>
+					<button className="login" onClick={() => this.delete()}>
+						Yes
+					</button>
+					<button className="login" onClick={() => this.nodelete()}>
+						No
+					</button>
+				</div>
 				<h1 className="title">Clasnering</h1>
 				Overview of Tournaments <br />
 				<div className="scroll">
@@ -21,7 +29,7 @@ export class Overview extends Component {
 							>
 								{tournament.TournamentName}
 							</NavLink>
-							<button onClick={() => this.delete(tournament)}>X</button>
+							<button onClick={() => this.confirm(tournament)}>X</button>
 						</li>
 					))}
 				</div>
@@ -32,14 +40,24 @@ export class Overview extends Component {
 			</div>
 		);
 	}
-	delete(id) {
-		alert('Do you want to delete  ' + id.TournamentName + ' for ever');
+	confirm(id) {
+		document.getElementById('confirm').style.visibility = 'visible';
 
-		// updateDatabase.deleteTournament(id.TournamentID, () => console.log());
-		// updateDatabase.deleteGameMatch(id.TournamentID, () => console.log());
-		// updateDatabase.deleteTeams(id.TournamentID, () => console.log());
-		// updateDatabase.deleteTeamMember(id.TournamentID, () => console.log());
-		// this.mounted();
+		x = id;
+		console.log(id);
+		document.getElementById('tournamentName').innerText =
+			'Are you sure you want to delete "' + id.TournamentName + '"';
+	}
+	nodelete() {
+		document.getElementById('confirm').style.visibility = 'hidden';
+	}
+	delete() {
+		document.getElementById('confirm').style.visibility = 'hidden';
+		updateDatabase.deleteTournament(x.TournamentID, () => console.log());
+		updateDatabase.deleteGameMatch(x.TournamentID, () => console.log());
+		updateDatabase.deleteTeams(x.TournamentID, () => console.log());
+		updateDatabase.deleteTeamMember(x.TournamentID, () => console.log());
+		this.mounted();
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
