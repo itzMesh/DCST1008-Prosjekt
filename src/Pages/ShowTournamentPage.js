@@ -93,6 +93,20 @@ export class ShowTournamentPage extends Component {
 						</div>
 					</div>
 				))}
+				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
+					<div id="scoreBoard">
+						<table>
+							{this.tournamentObject.teams.map((member) => (
+								<tr>
+									<td>{member.name}</td>
+									<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
+								</tr>
+							))}
+						</table>
+					</div>
+				) : (
+					<em></em>
+				)}
 			</div>
 		);
 	}
