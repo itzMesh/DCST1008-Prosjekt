@@ -11,6 +11,7 @@ class Torunament {
 		this.name = name;
 		this.TorunamentId = TorunamentId;
 		this.generalSettings = generalSettings;
+		console.log(this);
 		if (teams != false) {
 			this.teams = teams;
 			this.startTournament();
