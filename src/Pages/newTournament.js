@@ -74,6 +74,5 @@ export class NewTournament extends Component {
 		settings.name = this.tourname;
 		settings.gamemode = this.gamemode.split(',')[0];
 		settings.type = this.type;
-		console.log(this.gamemode.split[1]);
 	}
 }
