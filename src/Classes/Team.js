@@ -3,6 +3,8 @@ import ShadowTeam from './shadowTeam';
 class Team extends ShadowTeam {
 	teamMembers = [];
 	id = '';
+	score = [];
+	pointDifference = [];
 	constructor(name, id, tournamentID) {
 		super(tournamentID);
 		this.name = name;
