@@ -53,7 +53,10 @@ class Match {
 				this.round.tournament.rounds[this.round.roundNumber + 1].matches = [];
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
 			}
-		} else if (this.score0 != 0 && this.round.tournament.generalSettings.type != 'bracket') {
+		} else if (
+			(score0 != 0 || this.results.length != 0) &&
+			this.round.tournament.generalSettings.type != 'bracket'
+		) {
 			this.teams[0].score[this.round.roundNumber] = 1;
 			this.teams[1].score[this.round.roundNumber] = 1;
 		}
