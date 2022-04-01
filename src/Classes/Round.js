@@ -9,29 +9,35 @@ class Round {
 	numberOfRounds;
 	matches = [];
 	teams = [];
+	type = '';
 
 	//tournament is the Object the round is a part of
 	constructor(numberOfRounds, roundNumber, tournament, teams) {
 		this.tournament = tournament;
 		this.roundNumber = roundNumber;
 		this.numberOfRounds = numberOfRounds;
-		if (teams != undefined) {
+		if (teams != false) {
 			this.teams = teams;
 		}
-		this.teams = this.fillOutTeams(this.teams);
-		//sorts team by average thropies
-		this.teams.sort((a, b) => {
-			if (a.averageTrophies < b.averageTrophies) {
-				return 1;
-			}
-			if (a.averageTrophies > b.averageTrophies) {
-				return -1;
-			}
-			return 0;
-		});
-
-		this.setseeds();
-		this.teams = this.sortTeams(this.teams);
+		if (this.tournament.generalSettings.type == 'bracket') {
+			this.teams = this.fillOutTeams(this.teams);
+			//sorts team by average thropies
+			this.teams.sort((a, b) => {
+				if (a.averageTrophies < b.averageTrophies) {
+					return 1;
+				}
+				if (a.averageTrophies > b.averageTrophies) {
+					return -1;
+				}
+				return 0;
+			});
+			this.setseeds();
+			this.teams = this.sortTeams(this.teams);
+		} else {
+			console.log(this.teams);
+			this.teams = this.shuffleTeams();
+		}
+		console.log(this.teams);
 		//uses previous round to set first match number
 		this.firstMatchNumber =
 			roundNumber == 0
@@ -82,9 +88,17 @@ class Round {
 		return sortedarr;
 	}
 
+	shuffleTeams() {
+		let out = [];
+		for (let i = 0; i < Math.floor(this.teams.length / 2); i++) {
+			out.push(this.teams[i], this.teams[this.teams.length - 1 - i]);
+		}
+		return out;
+	}
+
 	//adds matches to the rounds
 	addMatches() {
-		for (let i = 0; i < this.teams.length / 2; i++) {
+		for (let i = 0; i < Math.floor(this.teams.length / 2); i++) {
 			this.matches.push(
 				new Match(
 					this.teams[i * 2],
@@ -92,8 +106,6 @@ class Round {
 					i + this.firstMatchNumber,
 					this,
 					i,
-					false,
-					false,
 					false
 				)
 			);
