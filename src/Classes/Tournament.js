@@ -13,16 +13,15 @@ class Torunament {
 		this.generalSettings = generalSettings;
 		if (teams != false) {
 			this.teams = teams;
-			//until more implimented
-			this.createBrackets();
+			this.startTournament();
 		}
 	}
 
 	startTournament() {
-		if (generalSettings.torunamentType == 'brackets') {
-			createBrackets();
+		if (this.generalSettings.type == 'bracket') {
+			this.createBrackets();
 		} else {
-			createRoundRobin();
+			this.createRoundRobin();
 		}
 	}
 
@@ -41,7 +40,7 @@ class Torunament {
 			if (roundNumber == 0) {
 				this.rounds.push(new Round(numberOfRounds, 0, this, teams));
 			} else {
-				this.rounds.push(new Round(numberOfRounds, roundNumber, this));
+				this.rounds.push(new Round(numberOfRounds, roundNumber, this, false));
 			}
 			roundNumber += 1;
 		}
@@ -56,6 +55,30 @@ class Torunament {
 				i.updateScore(3, 0);
 			}
 		}
+	}
+	createRoundRobin() {
+		this.numberOfRounds = this.setRoundRobinRounds(this.teams);
+		this.playWalkover();
+	}
+
+	setRoundRobinRounds(teams) {
+		let numberOfRounds = teams.length - 1 + (teams.length % 2);
+		let roundNumber = 0;
+		while (roundNumber < numberOfRounds) {
+			this.rounds.push(new Round(numberOfRounds, roundNumber, this, teams));
+
+			if (teams.length % 2 == 0) {
+				let secondTeam = teams[1];
+				teams.splice(1, 1);
+				teams.push(secondTeam);
+			} else {
+				let firstTeam = teams.shift();
+				teams.push(firstTeam);
+			}
+
+			roundNumber += 1;
+		}
+		return numberOfRounds;
 	}
 }
 

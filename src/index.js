@@ -13,29 +13,34 @@ import { NewTournament } from './Pages/newTournament';
 import { Overview } from './Pages/overview';
 import { ShowTournamentPage } from './Pages/showTournamentPage';
 import { TournamentPage } from './Pages/tournamentPage';
+import { Alert } from './widgets';
 
 ReactDOM.render(
-	<HashRouter>
-		<div>
-			<Menu />
-			<Route exact path="/" component={Login} />
-			<Route exact path="/tournamentPage/:TournamentID" component={TournamentPage} />
-			<Route
-				exact
-				path="/tournamentPage/:TournamentID/:TournamentID"
-				component={ShowTournamentPage}
-			/>
-			<Route exact path="/matches/edit/:Match" component={EditTournamentPage} />
+	<div>
+		<Alert />
 
-			<Route exact path="/login" component={Login} />
-			<Route exact path="/signup" component={Signup} />
+		<HashRouter>
+			<div>
+				<Menu />
+				<Route exact path="/" component={Login} />
+				<Route exact path="/tournamentPage/:TournamentID" component={TournamentPage} />
+				<Route
+					exact
+					path="/tournamentPage/:TournamentID/:TournamentID"
+					component={ShowTournamentPage}
+				/>
+				<Route exact path="/matches/edit/:Match" component={EditTournamentPage} />
 
-			<Route exact path="/new" component={NewTournament} />
-			<Route exact path="/overview" component={Overview} />
+				<Route exact path="/login" component={Login} />
+				<Route exact path="/signup" component={Signup} />
 
-			<Route exact path="/players/1" component={AddTwoPlayerTeams} />
-			<Route exact path="/players/0" component={AddSinglePlayer} />
-		</div>
-	</HashRouter>,
+				<Route exact path="/new" component={NewTournament} />
+				<Route exact path="/overview" component={Overview} />
+
+				<Route exact path="/players/1" component={AddTwoPlayerTeams} />
+				<Route exact path="/players/0" component={AddSinglePlayer} />
+			</div>
+		</HashRouter>
+	</div>,
 	document.getElementById('root')
 );
