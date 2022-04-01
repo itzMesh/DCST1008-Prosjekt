@@ -57,18 +57,28 @@ export class ShowTournamentPage extends Component {
 												.filter(
 													(team) => team.constructor.name != 'ShadowTeam'
 												)
-												.map((team) => (
+												.map((team, i) => (
 													<div key={team.id}>
 														<em key={0}>
-															<b>{team.name}: </b>
+															<b style={{ color: 'white' }}>
+																{match.results[i]}{' '}
+															</b>
+															<b>{team.name}</b>
 															{team.teamMembers.length == 1 ? (
 																<em></em>
 															) : (
-																team.teamMembers.map((member) => (
-																	<em key={member.name}>
-																		{'"' + member.name + '" '}
-																	</em>
-																))
+																<em>
+																	<b>:</b>
+																	{team.teamMembers.map(
+																		(member) => (
+																			<em key={member.name}>
+																				{'"' +
+																					member.name +
+																					'" '}
+																			</em>
+																		)
+																	)}
+																</em>
 															)}
 														</em>
 													</div>

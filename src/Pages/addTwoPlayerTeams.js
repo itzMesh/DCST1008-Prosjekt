@@ -8,7 +8,8 @@ import TeamMember from '../Classes/teamMember';
 import Torunament from '../Classes/tournament';
 
 export let tournamentplayers = [null, new Date()];
-
+let deleteId;
+let deleteTeam;
 export class AddTwoPlayerTeams extends Component {
 	team = 'Best team';
 	name1 = 'Jo';
@@ -29,6 +30,15 @@ export class AddTwoPlayerTeams extends Component {
 
 		return (
 			<div>
+				<div className="confirmT" id="confirmT">
+					<p id="teamName"></p>
+					<button className="login" onClick={() => this.delete()}>
+						Yes
+					</button>
+					<button className="login" onClick={() => this.nodelete()}>
+						No
+					</button>
+				</div>
 				<form ref={(instance) => (this.form = instance)}>
 					<br /> <em className="text">Team</em>
 					<input
@@ -115,7 +125,7 @@ export class AddTwoPlayerTeams extends Component {
 								className="login"
 								type="button"
 								id={i}
-								onClick={(i) => this.teams.splice(i.target.id, 1)}
+								onClick={(i) => this.confirm(i, this.teams)}
 							>
 								x
 							</button>
@@ -127,7 +137,23 @@ export class AddTwoPlayerTeams extends Component {
 			</div>
 		);
 	}
+	confirm(i, teams) {
+		deleteId = i;
+		deleteTeam = teams;
+		console.log(deleteTeam[deleteId.target.id][0]);
 
+		document.getElementById('confirmT').style.visibility = 'visible';
+
+		document.getElementById('teamName').innerText =
+			'Are you sure you want to delete ' + deleteTeam[deleteId.target.id][0];
+	}
+	nodelete() {
+		document.getElementById('confirmT').style.visibility = 'hidden';
+	}
+	delete() {
+		deleteTeam.splice(deleteId.target.id, 1);
+		document.getElementById('confirmT').style.visibility = 'hidden';
+	}
 	mounted() {
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
