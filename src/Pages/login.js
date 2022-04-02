@@ -2,21 +2,38 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
+import { useNavigate } from 'react-router-dom';
+
+let user = [];
 
 export class Login extends Component {
-	userdata = [];
+	check() {
+		for (let i = 0; i < user.length; i++) {
+			if (
+				document.getElementById('username').value == user[0][i].Username &&
+				document.getElementById('password').value == user[0][i].Password
+			) {
+				// npm install react-router-dom må kjøres
+				// npm install history@5 react-router-dom@6
+
+				const navigate = useNavigate();
+				navigate('/overview');
+			} else {
+				console.log(1);
+			}
+		}
+	}
 	render() {
-		console.log(this.userdata);
 		return (
 			<div>
 				<br />
-				<input className="input" type="text" placeholder="Username" />
+				<input id="username" className="input" type="text" placeholder="Username" />
 				<br />
-				<input className="input" type="password" placeholder="Password" />
+				<input id="password" className="input" type="password" placeholder="Password" />
 				<br />
-				<NavLink className="login" to="/overview">
-						Login
-				</NavLink>
+				<button className="login" onClick={this.check}>
+					Login
+				</button>
 			</div>
 		);
 	}
@@ -24,7 +41,7 @@ export class Login extends Component {
 		pool.query('SELECT * FROM User', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
-			this.userdata = results;
+			user.push(results);
 		});
 	}
 }
