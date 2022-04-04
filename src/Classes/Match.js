@@ -35,7 +35,7 @@ class Match {
 			this.winner.score[this.round.roundNumber] = 3;
 			if (
 				this.round.roundNumber != this.round.numberOfRounds - 1 &&
-				this.round.tournament.generalSettings == 'bracket'
+				this.round.tournament.generalSettings.type == 'bracket'
 			) {
 				for (
 					let i = 0;
