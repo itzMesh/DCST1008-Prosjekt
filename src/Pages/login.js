@@ -13,9 +13,6 @@ export class Login extends Component {
 				document.getElementById('username').value == user[0][i].Username &&
 				document.getElementById('password').value == user[0][i].Password
 			) {
-				// npm install react-router-dom må kjøres
-				// npm install history@5 react-router-dom@6
-
 				const navigate = useNavigate();
 				navigate('/overview');
 			} else {

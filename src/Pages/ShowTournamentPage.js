@@ -30,69 +30,86 @@ export class ShowTournamentPage extends Component {
 						Save
 					</em>
 				</div>
-				{this.tournamentObject.rounds.map((round) => (
-					<div>
-						<div
-							key={round.roundNumber}
-							id={round.roundNumber}
-							style={{ float: 'left' }}
-						>
-							Round {round.roundNumber + 1}:
-							<ul key={round.roundNumber + 'm'}>
-								{round.matches.map((match) => (
-									<div>
-										<div key={match.matchNumber}>
-											<div key={0} style={{ fontSize: '25px' }}>
-												<NavLink
-													className="login"
-													to={
-														'/matches/edit/' +
-														round.roundNumber +
-														',' +
-														match.ind
-													}
-												>
-													Match {match.matchNumber}
-												</NavLink>
-											</div>
-											{match.teams
-												.filter(
-													(team) => team.constructor.name != 'ShadowTeam'
-												)
-												.map((team, i) => (
-													<div key={team.id}>
-														<em key={0}>
-															<b style={{ color: 'white' }}>
-																{match.results[i]}{' '}
-															</b>
-															<b>{team.name}</b>
-															{team.teamMembers.length == 1 ? (
-																<em></em>
-															) : (
-																<em>
-																	<b>:</b>
-																	{team.teamMembers.map(
-																		(member) => (
-																			<em key={member.name}>
-																				{'"' +
-																					member.name +
-																					'" '}
-																			</em>
-																		)
+				<table>
+					{this.tournamentObject.rounds.map((round) => (
+						<td style={{ verticalAlign: 'middle' }}>
+							<div>
+								<div
+									key={round.roundNumber}
+									id={round.roundNumber}
+									// style={{
+									// 	float: 'left' }
+									// }
+								>
+									Round {round.roundNumber + 1}:
+									<ul key={round.roundNumber + 'm'}>
+										{round.matches.map((match) => (
+											<tr>
+												<div key={match.matchNumber}>
+													<div key={0} style={{ fontSize: '25px' }}>
+														<NavLink
+															className="login"
+															to={
+																'/matches/edit/' +
+																round.roundNumber +
+																',' +
+																match.ind
+															}
+														>
+															Match {match.matchNumber}
+														</NavLink>
+													</div>
+													{match.teams
+														.filter(
+															(team) =>
+																team.constructor.name !=
+																'ShadowTeam'
+														)
+														.map((team, i) => (
+															<div key={team.id}>
+																<em key={0}>
+																	<b
+																		style={{
+																			color: 'white',
+																		}}
+																	>
+																		{match.results[i]}{' '}
+																	</b>
+																	<b>{team.name}</b>
+																	{team.teamMembers.length ==
+																	1 ? (
+																		<em></em>
+																	) : (
+																		<em>
+																			<b>:</b>
+																			{team.teamMembers.map(
+																				(member) => (
+																					<em
+																						key={
+																							member.name
+																						}
+																					>
+																						{'"' +
+																							member.name +
+																							'" '}
+																					</em>
+																				)
+																			)}
+																		</em>
 																	)}
 																</em>
-															)}
-														</em>
-													</div>
-												))}
-										</div>{' '}
-										<br />
-									</div>
-								))}
-							</ul>
-						</div>
-					</div>
-				))}
+															</div>
+														))}
+												</div>{' '}
+												<br />
+											</tr>
+										))}
+									</ul>
+								</div>
+							</div>
+						</td>
+					))}
+				</table>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
