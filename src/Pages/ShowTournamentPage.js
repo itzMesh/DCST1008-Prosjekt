@@ -30,21 +30,26 @@ export class ShowTournamentPage extends Component {
 						Save
 					</em>
 				</div>
-				<table>
+				<div className="Grid">
 					{this.tournamentObject.rounds.map((round) => (
-						<td style={{ verticalAlign: 'middle' }}>
-							<div>
-								<div
-									key={round.roundNumber}
-									id={round.roundNumber}
-									// style={{
-									// 	float: 'left' }
-									// }
-								>
-									Round {round.roundNumber + 1}:
+						<div>
+							<div
+								key={round.roundNumber}
+								id={round.roundNumber}
+								// style={{
+								// 	float: 'left' }
+								// }
+							>
+								Round {round.roundNumber + 1}:
+								<div className="Grid-cell">
 									<ul key={round.roundNumber + 'm'}>
 										{round.matches.map((match) => (
-											<tr>
+											<div>
+												{round.roundNumber == 0 ? (
+													<div style={{ height: '20px' }}></div>
+												) : (
+													<div style={{ height: '80px' }}></div>
+												)}
 												<div key={match.matchNumber}>
 													<div key={0} style={{ fontSize: '25px' }}>
 														<NavLink
@@ -102,14 +107,19 @@ export class ShowTournamentPage extends Component {
 														))}
 												</div>{' '}
 												<br />
-											</tr>
+												{round.roundNumber == 0 ? (
+													<div style={{ height: '10px' }}></div>
+												) : (
+													<div style={{ height: '70px' }}></div>
+												)}
+											</div>
 										))}
 									</ul>
 								</div>
 							</div>
-						</td>
+						</div>
 					))}
-				</table>
+				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
