@@ -39,7 +39,44 @@ em {
 	font-size: 29px;
 	color: #fdf913;
 	text-decoration: none;
-	/* text-shadow: 2px 2px 2px rgb(236, 222, 183); */
+	padding-left: 5px;
+	user-select: none;
+	cursor: pointer;
+}
+
+.x {
+	font-family: clash;
+	font-size: 10px;
+	color: #ffd700;
+	text-decoration: none;
+	padding-left: 5px;
+	user-select: none;
+}
+
+.x:hover {
+	font-family: clash;
+	font-size: 10px;
+	color: #fdf913;
+	text-decoration: none;
+	padding-left: 5px;
+	user-select: none;
+	cursor: pointer;
+}
+
+.xx {
+	font-family: clash;
+	font-size: 15px;
+	color: #ffd700;
+	text-decoration: none;
+	padding-left: 5px;
+	user-select: none;
+}
+
+.xx:hover {
+	font-family: clash;
+	font-size: 15px;
+	color: #fdf913;
+	text-decoration: none;
 	padding-left: 5px;
 	user-select: none;
 	cursor: pointer;
@@ -103,6 +140,7 @@ em {
 	min-width: 32px;
 	min-height: 32px;
 }
+
 .scroll::-webkit-scrollbar-thumb:hover {
 	background: #fdf913;
 	border-radius: 10px;
@@ -111,22 +149,67 @@ em {
 	min-height: 32px;
 }
 
-.confirm {
-	width: 200;
-	height: 100;
+.blurred-box {
+	width: 800px;
+	height: 170px;
 	visibility: hidden;
-	position: absolute;
-	left: 40%;
-	top: 20%;
+	background: inherit;
+	left: 20%;
+	right: 20%;
+	top: 25%;
+	border-radius: 2px;
+	background-color: rgb(218, 218, 218);
+	overflow: hidden;
 }
 
+.blurred-box:after {
+	content: '';
+	width: 800px;
+	height: 170px;
+	background: inherit;
+	position: absolute;
+	left: 20%;
+	right: 20%;
+	top: 25%;
+	box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
+	filter: blur(10px);
+}
+
+.confirm {
+	width: 800px;
+	height: 170px;
+	visibility: hidden;
+	position: absolute;
+	font-size: 25px;
+	left: 20%;
+	right: 20%;
+	top: 25%;
+	text-align: center;
+	border-radius: 10px;
+	background-color: rgb(38, 157, 255);
+}
+
+.yesno {
+	left: 20%;
+	right: 30%;
+	margin-left: 2rem;
+}
+
+.yesno:hover {
+	font-family: clash;
+	font-size: 28px;
+	color: #fdf913;
+	text-decoration: none;
+	user-select: none;
+	cursor: pointer;
+}
 .confirmT {
 	width: 200;
 	height: 100;
 	visibility: hidden;
 	position: absolute;
-	left: 40%;
-	top: 20%;
+	left: 50%;
+	top: 50%;
 }
 .teamShow {
 	overflow: auto;

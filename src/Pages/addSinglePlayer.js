@@ -91,7 +91,7 @@ export class AddSinglePlayer extends Component {
 							</em>
 
 							<button
-								className="login"
+								className="x"
 								type="button"
 								id={i}
 								onClick={(i) => this.confirm(i, this.teams)}
@@ -143,7 +143,7 @@ export class AddSinglePlayer extends Component {
 	}
 
 	buttonClicked() {
-		if (!this.form.reportValidity()) return;
+		// if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1]]);
 

@@ -9,14 +9,18 @@ export class Overview extends Component {
 	render() {
 		return (
 			<div className="overview">
-				<div className="confirm" id="confirm">
-					<p id="tournamentName"></p>
-					<button className="login" onClick={() => this.delete()}>
-						Yes
-					</button>
-					<button className="login" onClick={() => this.nodelete()}>
-						No
-					</button>
+				<div>
+					<div className="confirm" id="confirm">
+						<p id="tournamentName"></p>
+						<div>
+							<em className="yesno" onClick={() => this.delete()}>
+								Yes
+							</em>
+							<em className="yesno" onClick={() => this.nodelete()}>
+								No
+							</em>
+						</div>
+					</div>
 				</div>
 				<h1 className="title">Clasnering</h1>
 				Overview of Tournaments <br />
@@ -29,7 +33,9 @@ export class Overview extends Component {
 							>
 								{tournament.TournamentName}
 							</NavLink>
-							<button onClick={() => this.confirm(tournament)}>X</button>
+							<button className="xx" onClick={() => this.confirm(tournament)}>
+								X
+							</button>
 						</li>
 					))}
 				</div>

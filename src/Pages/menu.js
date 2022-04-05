@@ -25,10 +25,10 @@ export class Menu extends Component {
 					</NavLink>
 				</em>
 				<div class="center">
-					<a>
+					{/* <a>
 						<span data-attr="Clash">Clash</span>
 						<span data-attr="Royale">Royale</span>
-					</a>
+					</a> */}
 				</div>
 			</div>
 		);
