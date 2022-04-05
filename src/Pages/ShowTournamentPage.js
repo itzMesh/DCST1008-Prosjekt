@@ -30,14 +30,14 @@ export class ShowTournamentPage extends Component {
 				<div className="infon">{this.tournamentObject.name}</div>
 				<div className="infot">{this.tournamentObject.generalSettings.gamemode}</div>
 				<div>
-					<em className="login" onClick={this.save} type="button">
+					<em className="save" onClick={this.save} type="button">
 						Save
 					</em>
 					<em className="login" onClick={this.tegn} type="button">
 						tegn {this.test(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
-				<div className="Grid" id="grid">
+				<div className="grid" id="grid">
 					{this.tournamentObject.rounds.map((round) => (
 						<div>
 							<div
@@ -48,7 +48,7 @@ export class ShowTournamentPage extends Component {
 								// }
 							>
 								Round {round.roundNumber + 1}:
-								<div className="Grid-cell" style={{ height: this.length * 150 }}>
+								<div className="grid-cell" style={{ height: this.length * 150 }}>
 									{round.roundNumber == 0 ? (
 										<em></em>
 									) : (
