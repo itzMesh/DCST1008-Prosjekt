@@ -118,7 +118,7 @@ export class AddSinglePlayer extends Component {
 		document.getElementById('confirmT').style.visibility = 'visible';
 
 		document.getElementById('teamName').innerText =
-			'Are you sure you want to delete ' + deleteTeam[deleteId.target.id][1][0];
+			'Are you sure you want to delete "' + deleteTeam[deleteId.target.id][1][0] + '"';
 	}
 	nodelete() {
 		document.getElementById('confirmT').style.visibility = 'hidden';
