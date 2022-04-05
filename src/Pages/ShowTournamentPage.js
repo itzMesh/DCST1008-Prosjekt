@@ -18,8 +18,6 @@ export class ShowTournamentPage extends Component {
 	render() {
 		if (!this.tournamentObject) return null;
 
-		console.log(this.tournamentObject);
-		console.log(this.tournamentObject.TorunamentId, 'se her');
 		return (
 			<div className="small">
 				<canvas
@@ -40,8 +38,7 @@ export class ShowTournamentPage extends Component {
 						tegn
 					</em>
 				</div>
-
-				<div className="Grid" id="grid">
+				<div className="grid" id="grid">
 					{this.tournamentObject.rounds.map((round) => (
 						<div>
 							<div
@@ -52,9 +49,8 @@ export class ShowTournamentPage extends Component {
 								// }
 							>
 								Round {round.roundNumber + 1}:
-								<div className="Grid-cell" style={{ height: this.length * 150 }}>
-									{round.roundNumber == 0 ||
-									this.tournamentObject.generalSettings.type == 'roundrobin' ? (
+								<div className="grid-cell" style={{ height: this.length * 150 }}>
+									{round.roundNumber == 0 ? (
 										<em></em>
 									) : (
 										<div

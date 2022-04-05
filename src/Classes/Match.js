@@ -18,7 +18,6 @@ class Match {
 
 	//updates the score as well as sending the winner to the next round
 	updateScore(score0, score1) {
-		console.log(this.teams[1].constructor.name);
 		this.results[0] = score0;
 		this.results[1] = score1;
 		if (this.teams[0].constructor.name != 'ShadowTeam') {
@@ -54,7 +53,8 @@ class Match {
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
 			}
 		} else if (
-			(score0 != 0 || this.results.length != 0) &&
+			score0 != 0 &&
+			this.results.length != 0 &&
 			this.round.tournament.generalSettings.type != 'bracket'
 		) {
 			this.teams[0].score[this.round.roundNumber] = 1;

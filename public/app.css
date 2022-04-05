@@ -46,6 +46,29 @@ em {
 	cursor: pointer;
 }
 
+.save {
+	font-family: clash;
+	font-size: 27px;
+	color: #ffd700;
+	text-decoration: none;
+	/* text-shadow: 1px 1px 1px rgb(231, 199, 16); */
+	padding-left: 5px;
+	margin-right: 1rem;
+	/* border-radius: 50%; */
+	user-select: none;
+}
+
+.save:hover {
+	font-family: clash;
+	font-size: 27px;
+	color: #fdf913;
+	text-decoration: none;
+	padding-left: 5px;
+	margin-right: 1rem;
+	user-select: none;
+	cursor: pointer;
+}
+
 .loginsmall {
 	font-family: clash;
 	font-size: 20px;
@@ -279,12 +302,12 @@ em {
 	cursor: pointer;
 }
 
-.Grid {
+.grid {
 	display: flex;
 	align-items: center;
 }
 
-.Grid-cell {
+.grid-cell {
 	flex: 1;
 	text-align: center;
 	padding-right: 140px;
