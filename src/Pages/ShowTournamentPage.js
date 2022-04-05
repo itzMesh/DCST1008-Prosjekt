@@ -29,14 +29,15 @@ export class ShowTournamentPage extends Component {
 					style={{ zIndex: '-1', position: 'absolute' }}
 				></canvas>
 
-				<div className="infon">{this.tournamentObject.name}</div>
-				<div className="infot">{this.tournamentObject.generalSettings.gamemode}</div>
+				<p>{this.tournamentObject.name}</p>
+				<p>{this.tournamentObject.generalSettings.gamemode}</p>
 				<div>
+					<br />
 					<em className="login" onClick={this.save} type="button">
-						Save
+						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 					<em className="login" onClick={this.tegn} type="button">
-						tegn {this.brackets(this.tournamentObject.numberOfRounds)}
+						tegn
 					</em>
 				</div>
 
@@ -80,7 +81,7 @@ export class ShowTournamentPage extends Component {
 											<div key={match.matchNumber}>
 												<div key={0} style={{ fontSize: '25px' }}>
 													<NavLink
-														className="loginsmall"
+														className="login"
 														to={
 															'/matches/edit/' +
 															round.roundNumber +
@@ -146,7 +147,7 @@ export class ShowTournamentPage extends Component {
 				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
-						<table className="table">
+						<table>
 							{this.tournamentObject.teams.map((member) => (
 								<tr>
 									<td>{member.name}</td>
@@ -229,8 +230,6 @@ export class ShowTournamentPage extends Component {
 			hoyde.push(out);
 		}
 		console.log(hoyde);
-
-		return out;
 	}
 	save() {
 		function delTournament(inn) {
