@@ -27,7 +27,6 @@ export class TournamentPage extends Component {
 	render() {
 		//if (!this.tournamentObject) return null;
 
-		console.log(this.tournamentObject);
 		return (
 			<div className="text">
 				<br />
