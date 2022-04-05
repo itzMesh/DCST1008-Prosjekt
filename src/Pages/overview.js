@@ -23,21 +23,23 @@ export class Overview extends Component {
 					</div>
 				</div>
 				<h1 className="title">Clasnering</h1>
-				Overview of Tournaments <br />
-				<div className="scroll">
-					{this.tournaments.map((tournament) => (
-						<div key={tournament.TournamentID}>
-							<button className="xx" onClick={() => this.confirm(tournament)}>
-								X
-							</button>
-							<NavLink
-								className="login"
-								to={'/tournamentpage/' + tournament.TournamentID}
-							>
-								{tournament.TournamentName}
-							</NavLink>
-						</div>
-					))}
+				<div className="centerview">
+					Overview of Tournaments <br />
+					<div className="scroll">
+						{this.tournaments.map((tournament) => (
+							<div key={tournament.TournamentID}>
+								<button className="xx" onClick={() => this.confirm(tournament)}>
+									X
+								</button>
+								<NavLink
+									className="login"
+									to={'/tournamentpage/' + tournament.TournamentID}
+								>
+									{tournament.TournamentName}
+								</NavLink>
+							</div>
+						))}
+					</div>
 				</div>
 				<br />
 				<NavLink className="login" to="/new">
