@@ -30,14 +30,18 @@ export class AddTwoPlayerTeams extends Component {
 
 		return (
 			<div>
-				<div className="confirmT" id="confirmT">
-					<p id="teamName"></p>
-					<button className="login" onClick={() => this.delete()}>
-						Yes
-					</button>
-					<button className="login" onClick={() => this.nodelete()}>
-						No
-					</button>
+				<div className="overview">
+					<div className="confirm" id="confirmT">
+						<p id="teamName"></p>
+						<div>
+							<em className="yesno" onClick={() => this.delete()}>
+								Yes
+							</em>
+							<em className="yesno" onClick={() => this.nodelete()}>
+								No
+							</em>
+						</div>
+					</div>
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
 					<br /> <em className="text">Team</em>
@@ -111,24 +115,24 @@ export class AddTwoPlayerTeams extends Component {
 				))}
 
 				<br />
-				<div>
+				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
-							<div key={0}>Team: {team[0]}</div>
-							<div key={1}>
-								Name: {team[1][0]} Trophies {team[1][1]}
-							</div>
-							<div key={2}>
-								Name: {team[2][0]} Trophies {team[2][1]}
-							</div>
 							<button
-								className="login"
+								className="x"
 								type="button"
 								id={i}
 								onClick={(i) => this.confirm(i, this.teams)}
 							>
 								x
 							</button>
+							<em key={0}>Team: {team[0]}</em>
+							<div key={1}>
+								Name: {team[1][0]} Trophies {team[1][1]}
+							</div>
+							<div key={2}>
+								Name: {team[2][0]} Trophies {team[2][1]}
+							</div>
 							<br />
 							<br />
 						</div>
@@ -201,7 +205,7 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	buttonClicked() {
-		if (!this.form.reportValidity()) return;
+		// if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 		this.team = '';
