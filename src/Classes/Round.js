@@ -34,10 +34,8 @@ class Round {
 			this.setseeds();
 			this.teams = this.sortTeams(this.teams);
 		} else {
-			console.log(this.teams);
 			this.teams = this.shuffleTeams();
 		}
-		console.log(this.teams);
 		//uses previous round to set first match number
 		this.firstMatchNumber =
 			roundNumber == 0

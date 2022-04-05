@@ -18,8 +18,6 @@ export class ShowTournamentPage extends Component {
 	render() {
 		if (!this.tournamentObject) return null;
 
-		console.log(this.tournamentObject);
-		console.log(this.tournamentObject.TorunamentId, 'se her');
 		return (
 			<div className="small">
 				<div>
