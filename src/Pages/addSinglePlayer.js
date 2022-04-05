@@ -83,7 +83,7 @@ export class AddSinglePlayer extends Component {
 					))}
 				</div>
 				<br />
-				<div>
+				<div className="teamShow">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
 							<em key={1}>

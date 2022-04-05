@@ -128,6 +128,11 @@ em {
 	left: 40%;
 	top: 20%;
 }
+.teamShow {
+	overflow: auto;
+	height: 600px;
+	width: 600px;
+}
 /* .scroll::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 5px rgb(207, 207, 207);
 	border-radius: 10px;

@@ -111,7 +111,7 @@ export class AddTwoPlayerTeams extends Component {
 				))}
 
 				<br />
-				<div>
+				<div className="teamShow">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
 							<div key={0}>Team: {team[0]}</div>

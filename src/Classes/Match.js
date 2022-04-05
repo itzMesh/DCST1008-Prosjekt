@@ -18,19 +18,24 @@ class Match {
 
 	//updates the score as well as sending the winner to the next round
 	updateScore(score0, score1) {
-		this.teams[0].score[this.round.roundNumber] = 0;
-		this.teams[1].score[this.round.roundNumber] = 0;
+		console.log(this.teams[1].constructor.name);
 		this.results[0] = score0;
 		this.results[1] = score1;
-		this.teams[0].pointDifference[this.round.roundNumber] = score0 - score1;
-		this.teams[1].pointDifference[this.round.roundNumber] = score1 - score0;
+		if (this.teams[0].constructor.name != 'ShadowTeam') {
+			this.teams[0].score[this.round.roundNumber] = 0;
+			this.teams[0].pointDifference[this.round.roundNumber] = score0 - score1;
+		}
+		if (this.teams[1].constructor.name != 'ShadowTeam') {
+			this.teams[1].score[this.round.roundNumber] = 0;
+			this.teams[1].pointDifference[this.round.roundNumber] = score1 - score0;
+		}
 		if (score0 - score1 != 0) {
 			this.winner = score0 > score1 ? this.teams[0] : this.teams[1];
 			this.winner.seed = this.matchSeed;
 			this.winner.score[this.round.roundNumber] = 3;
 			if (
 				this.round.roundNumber != this.round.numberOfRounds - 1 &&
-				this.round.tournament.generalSettings == 'bracket'
+				this.round.tournament.generalSettings.type == 'bracket'
 			) {
 				for (
 					let i = 0;
@@ -48,7 +53,10 @@ class Match {
 				this.round.tournament.rounds[this.round.roundNumber + 1].matches = [];
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
 			}
-		} else if (this.score0 != 0) {
+		} else if (
+			(score0 != 0 || this.results.length != 0) &&
+			this.round.tournament.generalSettings.type != 'bracket'
+		) {
 			this.teams[0].score[this.round.roundNumber] = 1;
 			this.teams[1].score[this.round.roundNumber] = 1;
 		}

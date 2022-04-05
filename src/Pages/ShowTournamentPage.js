@@ -22,6 +22,8 @@ export class ShowTournamentPage extends Component {
 		console.log(this.tournamentObject.TorunamentId, 'se her');
 		return (
 			<div className="small">
+				<p>{this.tournamentObject.name}</p>
+				<p>{this.tournamentObject.generalSettings.gamemode}</p>
 				<div>
 					<br />
 					<em className="login" onClick={this.save} type="button">
@@ -91,6 +93,20 @@ export class ShowTournamentPage extends Component {
 						</div>
 					</div>
 				))}
+				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
+					<div id="scoreBoard">
+						<table>
+							{this.tournamentObject.teams.map((member) => (
+								<tr>
+									<td>{member.name}</td>
+									<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
+								</tr>
+							))}
+						</table>
+					</div>
+				) : (
+					<em></em>
+				)}
 			</div>
 		);
 	}
