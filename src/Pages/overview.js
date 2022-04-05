@@ -25,6 +25,7 @@ export class Overview extends Component {
 				<h1 className="title">Clasnering</h1>
 				<div className="centerview">
 					Overview of Tournaments <br />
+					<br />
 					<div className="scroll">
 						{this.tournaments.map((tournament) => (
 							<div key={tournament.TournamentID}>
@@ -40,11 +41,11 @@ export class Overview extends Component {
 							</div>
 						))}
 					</div>
+					<br />
+					<NavLink className="login" to="/new">
+						New tournament
+					</NavLink>
 				</div>
-				<br />
-				<NavLink className="login" to="/new">
-					New tournament
-				</NavLink>
 			</div>
 		);
 	}
