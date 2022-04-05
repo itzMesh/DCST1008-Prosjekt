@@ -29,10 +29,9 @@ export class ShowTournamentPage extends Component {
 					style={{ zIndex: '-1', position: 'absolute' }}
 				></canvas>
 
-				<p>{this.tournamentObject.name}</p>
-				<p>{this.tournamentObject.generalSettings.gamemode}</p>
+				<div className="infon">{this.tournamentObject.name}</div>
+				<div className="infot">{this.tournamentObject.generalSettings.gamemode}</div>
 				<div>
-					<br />
 					<em className="login" onClick={this.save} type="button">
 						Save
 					</em>
@@ -71,7 +70,7 @@ export class ShowTournamentPage extends Component {
 											<div key={match.matchNumber}>
 												<div key={0} style={{ fontSize: '25px' }}>
 													<NavLink
-														className="login"
+														className="loginsmall"
 														to={
 															'/matches/edit/' +
 															round.roundNumber +
@@ -137,7 +136,7 @@ export class ShowTournamentPage extends Component {
 				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
-						<table>
+						<table className="table">
 							{this.tournamentObject.teams.map((member) => (
 								<tr>
 									<td>{member.name}</td>

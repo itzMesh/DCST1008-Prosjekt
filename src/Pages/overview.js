@@ -26,17 +26,17 @@ export class Overview extends Component {
 				Overview of Tournaments <br />
 				<div className="scroll">
 					{this.tournaments.map((tournament) => (
-						<li className="login" key={tournament.TournamentID}>
+						<div key={tournament.TournamentID}>
+							<button className="xx" onClick={() => this.confirm(tournament)}>
+								X
+							</button>
 							<NavLink
 								className="login"
 								to={'/tournamentpage/' + tournament.TournamentID}
 							>
 								{tournament.TournamentName}
 							</NavLink>
-							<button className="xx" onClick={() => this.confirm(tournament)}>
-								X
-							</button>
-						</li>
+						</div>
 					))}
 				</div>
 				<br />
