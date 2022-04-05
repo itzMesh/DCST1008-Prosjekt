@@ -25,7 +25,7 @@ export class ShowTournamentPage extends Component {
 				<canvas
 					id="canvas"
 					height={this.length * 150 + 186}
-					width={document.documentElement.clientWidth}
+					width={this.tournamentObject.numberOfRounds * 500}
 					style={{ zIndex: '-1', position: 'absolute' }}
 				></canvas>
 
@@ -37,9 +37,10 @@ export class ShowTournamentPage extends Component {
 						Save
 					</em>
 					<em className="login" onClick={this.tegn} type="button">
-						tegn {this.test(this.tournamentObject.numberOfRounds)}
+						tegn {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
+
 				<div className="Grid" id="grid">
 					{this.tournamentObject.rounds.map((round) => (
 						<div>
@@ -52,7 +53,8 @@ export class ShowTournamentPage extends Component {
 							>
 								Round {round.roundNumber + 1}:
 								<div className="Grid-cell" style={{ height: this.length * 150 }}>
-									{round.roundNumber == 0 ? (
+									{round.roundNumber == 0 ||
+									this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 										<em></em>
 									) : (
 										<div
@@ -64,8 +66,16 @@ export class ShowTournamentPage extends Component {
 									{round.matches.map((match) => (
 										<div
 											style={{
-												height: 140 * 2 ** round.roundNumber + 'px',
-												width: '400px',
+												height:
+													this.tournamentObject.generalSettings.type ==
+													'bracket'
+														? 140 * 2 ** round.roundNumber + 'px'
+														: '140px',
+												width:
+													this.tournamentObject.generalSettings.type ==
+													'bracket'
+														? '400px'
+														: '300px',
 											}}
 										>
 											<div key={match.matchNumber}>
@@ -171,8 +181,48 @@ export class ShowTournamentPage extends Component {
 			tileggY = tileggY + 280;
 			console.log();
 		}
+		tileggY = 0;
+		for (let i = 0; i < this.length / 4; i++) {
+			let c = document.getElementById('canvas');
+			var ctx = c.getContext('2d');
+			ctx.beginPath();
+			ctx.moveTo(910, 240 + tileggY);
+			ctx.lineTo(1010, 240 + tileggY);
+			ctx.moveTo(910, 560 + tileggY);
+			ctx.lineTo(1010, 560 + tileggY);
+			ctx.lineTo(1010, 240 + tileggY);
+			ctx.moveTo(1010, 400 + tileggY);
+			ctx.lineTo(1110, 400 + tileggY);
+
+			ctx.lineWidth = 10;
+			ctx.stroke();
+			tileggY = tileggY + 560;
+			console.log();
+		}
+		tileggY = 0;
+		for (let i = 0; i < this.length / 8; i++) {
+			let c = document.getElementById('canvas');
+			var ctx = c.getContext('2d');
+			ctx.beginPath();
+			ctx.moveTo(1410, 400 + tileggY);
+			ctx.lineTo(1510, 400 + tileggY);
+			ctx.moveTo(1410, 1000 + tileggY);
+			ctx.lineTo(1510, 1000 + tileggY);
+			ctx.lineTo(1510, 400 + tileggY);
+			ctx.moveTo(1510, 670 + tileggY);
+			ctx.lineTo(1610, 670 + tileggY);
+
+			// ctx.lineTo(1510, 560 + tileggY);
+			// ctx.lineTo(1510, 400 + tileggY);
+			// ctx.moveTo(1510, 400 + tileggY);
+			// ctx.lineTo(1610, 400 + tileggY);
+
+			ctx.lineWidth = 10;
+			ctx.stroke();
+			console.log();
+		}
 	}
-	test(e) {
+	brackets(e) {
 		let out = 0;
 		hoyde = [0];
 		for (let i = 0; i < e; i++) {
