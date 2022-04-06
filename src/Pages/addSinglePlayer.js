@@ -83,6 +83,7 @@ export class AddSinglePlayer extends Component {
 					</NavLink>
 				</div>
 				<br />
+				<div className="infon">{settings.name}</div>
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
@@ -98,7 +99,6 @@ export class AddSinglePlayer extends Component {
 								Name: {team[1][0]}, {team[1][1]}{' '}
 								<img
 									src={'./images/trophies.png'}
-									style={{ paddingTop: '5px' }}
 									height={'25px'}
 									width={'25px'}
 								></img>
@@ -130,6 +130,7 @@ export class AddSinglePlayer extends Component {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 	mounted() {
+		console.log(settings);
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 

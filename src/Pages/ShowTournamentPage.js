@@ -5,8 +5,6 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
-import { template } from '@babel/core';
-import { run } from '@babel/core/lib/transformation';
 
 let tournamentID = 0;
 let hoyde = [];
@@ -329,7 +327,7 @@ export class ShowTournamentPage extends Component {
 			document.getElementById('confetti').style.visibility = 'visible';
 			document.getElementById('winner').style.visibility = 'visible';
 			document.getElementById('winner').innerHTML =
-				'The winner of the tournament is ' + this.tournamentObject.winner.name;
+				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
 		}
 	}
 }

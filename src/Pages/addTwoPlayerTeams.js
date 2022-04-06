@@ -114,6 +114,8 @@ export class AddTwoPlayerTeams extends Component {
 				</NavLink>
 
 				<br />
+				<div className="infon">{settings.name}</div>
+
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
@@ -127,10 +129,20 @@ export class AddTwoPlayerTeams extends Component {
 							</button>
 							<em key={0}>Team: {team[0]}</em>
 							<div key={1}>
-								Name: {team[1][0]} Trophies {team[1][1]}
+								Name: {team[1][0]}, {team[1][1]}{' '}
+								<img
+									src={'./images/trophies.png'}
+									height={'25px'}
+									width={'25px'}
+								></img>
 							</div>
 							<div key={2}>
-								Name: {team[2][0]} Trophies {team[2][1]}
+								Name: {team[2][0]}, {team[2][1]}{' '}
+								<img
+									src={'./images/trophies.png'}
+									height={'25px'}
+									width={'25px'}
+								></img>
 							</div>
 							<br />
 							<br />
