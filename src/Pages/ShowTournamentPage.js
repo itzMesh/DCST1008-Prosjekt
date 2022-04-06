@@ -73,6 +73,9 @@ export class ShowTournamentPage extends Component {
 											<div key={match.matchNumber}>
 												<div key={0} style={{ fontSize: '25px' }}>
 													<NavLink
+														onClick={(e) =>
+															this.containsShadow(e, match)
+														}
 														className="login"
 														to={
 															'/matches/edit/' +
@@ -190,6 +193,11 @@ export class ShowTournamentPage extends Component {
 			hoyde.push(out);
 		}
 		console.log(hoyde);
+	}
+	containsShadow(event, match) {
+		if (match.teams.map((e) => e.constructor.name).includes('ShadowTeam')) {
+			event.preventDefault();
+		}
 	}
 	save() {
 		function delTournament(inn) {
