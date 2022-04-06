@@ -38,12 +38,31 @@ export class ShowTournamentPage extends Component {
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
-				<div className="grid" id="grid">
+				<div
+					className={
+						this.tournamentObject.generalSettings.type == 'bracket'
+							? 'grid'
+							: 'roundGrid'
+					}
+					id="grid"
+				>
 					{this.tournamentObject.rounds.map((round) => (
 						<div onLoad={() => this.tegn(round.matches.length / 2)}>
 							<div key={round.roundNumber} id={round.roundNumber}>
 								Round {round.roundNumber + 1}:
-								<div className="grid-cell" style={{ height: this.length * 150 }}>
+								<div
+									className={
+										this.tournamentObject.generalSettings.type == 'bracket'
+											? 'grid-cell'
+											: 'roundGrid-cell'
+									}
+									style={{
+										height:
+											this.tournamentObject.generalSettings.type == 'bracket'
+												? this.length * 150
+												: 'auto',
+									}}
+								>
 									{round.roundNumber == 0 ||
 									this.tournamentObject.generalSettings.type != 'bracket' ? (
 										<em></em>
@@ -67,6 +86,11 @@ export class ShowTournamentPage extends Component {
 													'bracket'
 														? '400px'
 														: '300px',
+												float:
+													this.tournamentObject.generalSettings.type ==
+													'bracket'
+														? 'none'
+														: 'left',
 											}}
 										>
 											<div key={match.matchNumber}>
