@@ -4,6 +4,7 @@ class Torunament {
 	name;
 	TorunamentId;
 	generalSettings = null;
+	winner = null;
 	teams = [];
 	rounds = [];
 

@@ -51,6 +51,11 @@ class Match {
 				}
 				this.round.tournament.rounds[this.round.roundNumber + 1].matches = [];
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
+			} else if (
+				this.round.roundNumber == this.round.numberOfRounds - 1 &&
+				this.round.tournament.generalSettings.type == 'bracket'
+			) {
+				this.round.tournament.winner = this.winner;
 			}
 		} else if (
 			score0 != 0 &&
