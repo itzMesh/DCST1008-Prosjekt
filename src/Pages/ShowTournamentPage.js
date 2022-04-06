@@ -5,6 +5,7 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
+import { doc } from 'prettier';
 
 let tournamentID = 0;
 let hoyde = [];
@@ -148,6 +149,9 @@ export class ShowTournamentPage extends Component {
 					<div class="confetti-piece"></div>
 					<div class="confetti-piece"></div>
 					<div class="confetti-piece"></div>
+				</div>
+				<div className="saveConfirm" id="saveConfirm">
+					The tournament is saved!!!
 				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
@@ -305,6 +309,9 @@ export class ShowTournamentPage extends Component {
 				let f = await addsGameMatch(e);
 				let g = await addsTeam(f);
 				let h = await addsTeamMember(g);
+				document.getElementById('saveConfirm').style.visibility = 'visible';
+				setTimeout(() => {}, 2000);
+				document.getElementById('saveConfirm').style.visibility = 'hidden';
 				return h;
 			} catch (error) {
 				console.error(error);
