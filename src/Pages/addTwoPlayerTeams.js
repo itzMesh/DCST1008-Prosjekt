@@ -21,7 +21,6 @@ export class AddTwoPlayerTeams extends Component {
 	tournamentIDs = [];
 	teamObj = [];
 	link = '';
-	tournamentcreator = [];
 	teamIDs = [];
 	teamID = 0;
 
@@ -176,7 +175,7 @@ export class AddTwoPlayerTeams extends Component {
 		});
 	}
 
-	createObjects() {
+	createObjects(event) {
 		if (this.teams.length > 1) {
 			this.teamObj = [];
 			this.teamID = parseInt(this.teamIDs[0]);
@@ -195,12 +194,8 @@ export class AddTwoPlayerTeams extends Component {
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
-			this.tournamentcreator[0] = true;
-			this.link =
-				'/tournamentpage/' +
-				tournamentplayers[0].TournamentID +
-				'/' +
-				tournamentplayers[0].TournamentID;
+		} else {
+			event.preventDefault;
 		}
 	}
 
