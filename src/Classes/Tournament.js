@@ -82,6 +82,26 @@ class Torunament {
 		}
 		return numberOfRounds;
 	}
+
+	findRoundRobinWiner() {
+		if (
+			!this.rounds
+				.map(
+					(round) =>
+						!round.matches
+							.map((match) =>
+								match.results.reduce((p, e) => p + e) != 0 ? true : false
+							)
+							.includes(false)
+				)
+				.includes(false)
+		) {
+			this.winner = this.teams.sort(
+				(a, b) =>
+					b.score.reduce((sum, e) => sum + e, 0) - a.score.reduce((sum, e) => sum + e, 0)
+			)[0];
+		}
+	}
 }
 
 export default Torunament;
