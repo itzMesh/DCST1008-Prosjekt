@@ -36,7 +36,7 @@ export class ShowTournamentPage extends Component {
 				<div>
 					<br />
 					<em className="login" onClick={this.save} type="button">
-						Save {this.brackets(this.tournamentObject.numberOfRounds)}
+						Save tournament {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
 				<div className="grid" id="grid">
@@ -179,7 +179,7 @@ export class ShowTournamentPage extends Component {
 				ctx.lineTo(drawX + 100, drawY + tileggY);
 				ctx.moveTo(drawX + 100, drawY + 70 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 170, drawY + 70 * 2 ** j + tileggY);
-				ctx.lineWidth = 10;
+				ctx.lineWidth = 5;
 				ctx.stroke();
 				tileggY = tileggY + 280 * 2 ** j;
 			}

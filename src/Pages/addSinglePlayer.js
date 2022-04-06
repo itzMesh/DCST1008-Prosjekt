@@ -6,7 +6,6 @@ import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
-
 export let tournamentplayer = [null, new Date()];
 let deleteId;
 let deleteTeam;
@@ -96,7 +95,12 @@ export class AddSinglePlayer extends Component {
 								x
 							</button>
 							<em key={1}>
-								Name: {team[1][0]} Trophies {team[1][1]}
+								Name: {team[1][0]}, {team[1][1]}{' '}
+								<img
+									src={'../../public/images/trophies.png'}
+									height={'20px'}
+									width={'20px'}
+								></img>
 							</em>
 							<br />
 							<br />
