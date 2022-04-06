@@ -1,7 +1,7 @@
 class Match {
 	round;
 	teams = [];
-	results = [];
+	results = [0, 0];
 	matchNumber;
 	matchSeed;
 	winner;
@@ -64,6 +64,9 @@ class Match {
 		) {
 			this.teams[0].score[this.round.roundNumber] = 1;
 			this.teams[1].score[this.round.roundNumber] = 1;
+		}
+		if (this.round.tournament.generalSettings.type != 'bracket') {
+			this.round.tournament.findRoundRobinWiner();
 		}
 	}
 }
