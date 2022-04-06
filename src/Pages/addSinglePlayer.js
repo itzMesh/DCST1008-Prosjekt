@@ -97,9 +97,10 @@ export class AddSinglePlayer extends Component {
 							<em key={1}>
 								Name: {team[1][0]}, {team[1][1]}{' '}
 								<img
-									src={'../../public/images/trophies.png'}
-									height={'20px'}
-									width={'20px'}
+									src={'./images/trophies.png'}
+									style={{ paddingTop: '5px' }}
+									height={'25px'}
+									width={'25px'}
 								></img>
 							</em>
 							<br />
