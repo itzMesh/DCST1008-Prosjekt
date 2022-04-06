@@ -35,7 +35,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="login" onClick={this.save} type="button">
+					<em className="save" onClick={this.save} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -135,7 +135,22 @@ export class ShowTournamentPage extends Component {
 						</div>
 					))}
 				</div>
-				<div id="winner"></div>
+				<div className="winner" id="winner"></div>
+				<div class="confetti" id="confetti">
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
@@ -179,7 +194,8 @@ export class ShowTournamentPage extends Component {
 				ctx.lineTo(drawX + 100, drawY + tileggY);
 				ctx.moveTo(drawX + 100, drawY + 70 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 170, drawY + 70 * 2 ** j + tileggY);
-				ctx.lineWidth = 10;
+				ctx.strokeStyle = '#fdf913';
+				ctx.lineWidth = 5;
 				ctx.stroke();
 				tileggY = tileggY + 280 * 2 ** j;
 			}
@@ -310,8 +326,10 @@ export class ShowTournamentPage extends Component {
 		}
 
 		if (this.tournamentObject.winner != null) {
+			document.getElementById('confetti').style.visibility = 'visible';
+			document.getElementById('winner').style.visibility = 'visible';
 			document.getElementById('winner').innerHTML =
-				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+				'The winner of the tournament is ' + this.tournamentObject.winner.name;
 		}
 	}
 }
