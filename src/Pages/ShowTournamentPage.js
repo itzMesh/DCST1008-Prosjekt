@@ -12,7 +12,6 @@ let tournamentID = 0;
 let hoyde = [];
 export class ShowTournamentPage extends Component {
 	loaded = false;
-	alreadyLoaded = false;
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
 		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
@@ -43,13 +42,7 @@ export class ShowTournamentPage extends Component {
 				<div className="grid" id="grid">
 					{this.tournamentObject.rounds.map((round) => (
 						<div onLoad={() => this.tegn(round.matches.length / 2)}>
-							<div
-								key={round.roundNumber}
-								id={round.roundNumber}
-								// style={{
-								// 	float: 'left' }
-								// }
-							>
+							<div key={round.roundNumber} id={round.roundNumber}>
 								Round {round.roundNumber + 1}:
 								<div className="grid-cell" style={{ height: this.length * 150 }}>
 									{round.roundNumber == 0 ||
@@ -139,6 +132,7 @@ export class ShowTournamentPage extends Component {
 						</div>
 					))}
 				</div>
+				<div id="winner"></div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
@@ -162,10 +156,7 @@ export class ShowTournamentPage extends Component {
 			</div>
 		);
 	}
-	// handleClick = (e) => {
-	// 	const { linkDisabled } = this.state
-	// 	if(linkDisabled) e.preventDefault()
-	// }
+
 	tegn() {
 		let startX = 410;
 		let startY = 170;
@@ -307,15 +298,13 @@ export class ShowTournamentPage extends Component {
 		})();
 	}
 	mounted() {
-		setInterval(() => {
-			if (
-				this.loaded &&
-				!this.alreadyLoaded &&
-				this.tournamentObject.generalSettings.type == 'bracket'
-			) {
-				this.tegn();
-				this.alreadyLoaded = true;
-			}
-		}, 100);
+		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
+			this.tegn();
+		}
+
+		if (this.tournamentObject.winner != null) {
+			document.getElementById('winner').innerHTML =
+				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+		}
 	}
 }
