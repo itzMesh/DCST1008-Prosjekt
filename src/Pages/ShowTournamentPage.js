@@ -135,7 +135,22 @@ export class ShowTournamentPage extends Component {
 						</div>
 					))}
 				</div>
-				<div id="winner"></div>
+				<div className="winner" id="winner"></div>
+				<div class="confetti" id="confetti">
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+					<div class="confetti-piece"></div>
+				</div>
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
@@ -311,8 +326,10 @@ export class ShowTournamentPage extends Component {
 		}
 
 		if (this.tournamentObject.winner != null) {
+			document.getElementById('confetti').style.visibility = 'visible';
+			document.getElementById('winner').style.visibility = 'visible';
 			document.getElementById('winner').innerHTML =
-				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+				'The winner of the tournament is ' + this.tournamentObject.winner.name;
 		}
 	}
 }
