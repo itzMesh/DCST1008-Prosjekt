@@ -142,12 +142,18 @@ export class ShowTournamentPage extends Component {
 				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
 					<div id="scoreBoard">
 						<table>
-							{this.tournamentObject.teams.map((member) => (
-								<tr>
-									<td>{member.name}</td>
-									<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
-								</tr>
-							))}
+							{this.tournamentObject.teams
+								.sort(
+									(a, b) =>
+										b.score.reduce((sum, e) => sum + e, 0) -
+										a.score.reduce((sum, e) => sum + e, 0)
+								)
+								.map((member) => (
+									<tr>
+										<td>{member.name}</td>
+										<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
+									</tr>
+								))}
 						</table>
 					</div>
 				) : (
