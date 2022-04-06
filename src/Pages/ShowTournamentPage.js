@@ -162,6 +162,10 @@ export class ShowTournamentPage extends Component {
 			</div>
 		);
 	}
+	// handleClick = (e) => {
+	// 	const { linkDisabled } = this.state
+	// 	if(linkDisabled) e.preventDefault()
+	// }
 	tegn() {
 		let startX = 410;
 		let startY = 170;

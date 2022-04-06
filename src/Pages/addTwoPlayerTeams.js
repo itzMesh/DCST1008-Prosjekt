@@ -100,19 +100,19 @@ export class AddTwoPlayerTeams extends Component {
 					Add team
 				</em>
 
-				<em className="login" onClick={() => this.createObjects()} type="button">
-					Create Tournament
-				</em>
-				{this.tournamentcreator.map(() => (
-					<NavLink
-						to={this.link}
-						className="login"
-						onClick={() => this.createObjects()}
-						type="button"
-					>
-						Show Torunament
-					</NavLink>
-				))}
+				<NavLink
+					className="login"
+					to={
+						'/tournamentpage/' +
+						(this.tournamentIDs[0] + 1) +
+						'/' +
+						(this.tournamentIDs[0] + 1)
+					}
+					onClick={() => this.createObjects()}
+					type="button"
+				>
+					Create Torunament
+				</NavLink>
 
 				<br />
 				<div className="scrollPlayer">
