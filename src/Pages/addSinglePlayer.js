@@ -17,7 +17,6 @@ export class AddSinglePlayer extends Component {
 	teams = [];
 	form = null;
 	link = '';
-	tournamentcreator = [];
 	tournamentIDs = [];
 	teamIDs = [];
 	teamID = 0;
@@ -64,23 +63,21 @@ export class AddSinglePlayer extends Component {
 					<br />
 					<br />
 				</form>
-				{/* <NavLink className="login" onClick={this.buttonClicked}>
-						Add team
-				</NavLink> */}
+
 				<div>
 					<em className="login" onClick={this.buttonClicked}>
-						Add team
+						Add Player
 					</em>
 
 					<NavLink
 						className="login"
+						onClick={() => this.createObjects()}
 						to={
 							'/tournamentpage/' +
 							(this.tournamentIDs[0] + 1) +
 							'/' +
 							(this.tournamentIDs[0] + 1)
 						}
-						onClick={() => this.createObjects()}
 						type="button"
 					>
 						Create Torunament
@@ -153,7 +150,7 @@ export class AddSinglePlayer extends Component {
 		this.trophies1 = '';
 	}
 
-	createObjects() {
+	createObjects(event) {
 		console.log(this.tournamentIDs[0] + 1, 'test1');
 		if (this.teams.length > 1) {
 			this.teamObj = [];
@@ -172,12 +169,8 @@ export class AddSinglePlayer extends Component {
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
-			this.tournamentcreator[0] = true;
-			this.link =
-				'/tournamentpage/' +
-				(this.tournamentIDs[0] + 1) +
-				'/' +
-				(this.tournamentIDs[0] + 1);
+		} else {
+			event.preventDefault;
 		}
 	}
 }
