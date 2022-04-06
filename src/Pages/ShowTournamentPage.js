@@ -310,8 +310,10 @@ export class ShowTournamentPage extends Component {
 				let g = await addsTeam(f);
 				let h = await addsTeamMember(g);
 				document.getElementById('saveConfirm').style.visibility = 'visible';
-				setTimeout(() => {}, 2000);
-				document.getElementById('saveConfirm').style.visibility = 'hidden';
+				setTimeout(() => {
+					document.getElementById('saveConfirm').style.visibility = 'hidden';
+				}, 2000);
+
 				return h;
 			} catch (error) {
 				console.error(error);
