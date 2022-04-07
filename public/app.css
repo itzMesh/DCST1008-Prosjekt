@@ -12,11 +12,12 @@
 
 body {
 	background-image: url(images/clash.png);
+	background-size: cover;
 	/* background-repeat: no-repeat; */
 	/* background-size: 300% 300%; */
 	/* url(images/logo.png), url(images/king.png), */
 	/* background-position: center; */
-	background-size: cover;
+	text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(41, 41, 41), 1px 0 rgb(41, 41, 41), 0 -1px rgb(41, 41, 41);
 }
 
 em {
@@ -28,12 +29,10 @@ em {
 	font-size: 27px;
 	color: #ffd700;
 	text-decoration: none;
-	/* text-shadow: 1px 1px 1px rgb(231, 199, 16); */
 	padding-left: 5px;
 	margin-right: 1rem;
-	/* border-radius: 50%; */
+	text-transform: capitalize;
 	user-select: none;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .login:hover {
@@ -45,7 +44,7 @@ em {
 	margin-right: 1rem;
 	user-select: none;
 	cursor: pointer;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-transform: capitalize;
 }
 
 .save {
@@ -148,6 +147,7 @@ em {
 	color: #ffd700;
 	text-decoration: none;
 	padding-left: 5px;
+	text-align: center;
 }
 
 .infon {
@@ -173,6 +173,7 @@ em {
 	text-decoration: none;
 	padding-left: 5px;
 	margin-right: 1rem;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .small {
 	font-family: clash;
@@ -186,6 +187,7 @@ em {
 	font-family: clash;
 	text-align: center;
 	font-size: 60px;
+	color: #ffd700;
 }
 
 .centerview {
@@ -449,8 +451,11 @@ a:hover span:nth-child(2):after {
 	border-collapse: collapse;
 	/* width: 100%;
 	max-width: 100%; */
+	border: 1px solid;
 	white-space: nowrap;
-	background-color: rgb(0, 162, 255);
+	background-color: rgb(62, 130, 185);
+	border-color: rgb(50, 140, 192);
+	border-radius: 1px;
 }
 .tournament {
 	float: left;

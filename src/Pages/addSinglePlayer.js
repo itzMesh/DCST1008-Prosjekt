@@ -40,6 +40,7 @@ export class AddSinglePlayer extends Component {
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
 					<br />
+					<div className="title">{settings.name}</div>
 					<br /> <em className="text">Player</em>
 					<input
 						className="input"
@@ -83,7 +84,6 @@ export class AddSinglePlayer extends Component {
 					</NavLink>
 				</div>
 				<br />
-				<div className="infon">{settings.name}</div>
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
