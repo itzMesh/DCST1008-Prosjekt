@@ -70,7 +70,7 @@ export class AddSinglePlayer extends Component {
 
 					<NavLink
 						className="login"
-						onClick={() => this.createObjects()}
+						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +
 							(this.tournamentIDs[0] + 1) +
@@ -154,11 +154,12 @@ export class AddSinglePlayer extends Component {
 
 		this.name1 = '';
 		this.trophies1 = '';
+		console.log(this.teams);
 	}
 
 	createObjects(event) {
 		console.log(this.tournamentIDs[0] + 1, 'test1');
-		if (this.teams.length > 1) {
+		if (this.teams.length > 1 && settings.gamemode.substring(0, 3) == '1v1') {
 			this.teamObj = [];
 			this.teamID = parseInt(this.teamIDs[0]);
 			console.log(this.teamIDs);
@@ -170,7 +171,37 @@ export class AddSinglePlayer extends Component {
 				);
 				this.teamObj.push(aTeam);
 			}
-			console.log(this.tournamentIDs[0] + 1, 'test2');
+			tournamentplayer = [
+				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
+				new Date(),
+			];
+		} else if (
+			this.teams.length > 3 &&
+			settings.gamemode.substring(0, 4) == '2v2G' &&
+			this.teams.length % 2 == 0
+		) {
+			this.teams.sort((a, b) => a[1][1] - b[1][1]);
+			let numb = this.teams.length / 2;
+			for (let i = 0; i < numb; i++) {
+				this.teams[i][0] = 'team ' + (i + 1);
+				console.log(this.teams[this.teams.length - 1][1]);
+				this.teams[i].push(this.teams[this.teams.length - 1][1]);
+				this.teams.pop();
+			}
+			console.log(this.teams);
+			this.teamObj = [];
+			this.teamID = parseInt(this.teamIDs[0]);
+			for (const i of this.teams) {
+				this.teamID++;
+				let aTeam = new Team(i[0], this.teamID, this.tournamentIDs[0] + 1);
+				aTeam.addMember(
+					new TeamMember(i[1][0], parseInt(i[1][1]), aTeam.id, this.tournamentIDs[0] + 1)
+				);
+				aTeam.addMember(
+					new TeamMember(i[2][0], parseInt(i[2][1]), aTeam.id, this.tournamentIDs[0] + 1)
+				);
+				this.teamObj.push(aTeam);
+			}
 			tournamentplayer = [
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
