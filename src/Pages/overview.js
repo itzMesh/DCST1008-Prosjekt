@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 import { updateDatabase } from '../Classes/pushDatabase';
 let x;
+let intro = new Audio('./sound/scroll_loading_01.ogg');
+let newTour = new Audio('./sound/supercell_jingle.ogg');
+
 export class Overview extends Component {
 	tournaments = [];
 	render() {
@@ -45,7 +48,7 @@ export class Overview extends Component {
 						))}
 					</div>
 					<br />
-					<NavLink className="login" to="/new">
+					<NavLink className="login" to="/new" onClick={() => newTour.play()}>
 						New tournament
 					</NavLink>
 				</div>
@@ -77,5 +80,6 @@ export class Overview extends Component {
 
 			this.tournaments = results;
 		});
+		intro.play();
 	}
 }

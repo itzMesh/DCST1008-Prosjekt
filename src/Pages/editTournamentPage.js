@@ -13,6 +13,7 @@ export class EditTournamentPage extends Component {
 	match = null;
 	score1 = 0;
 	score2 = 0;
+	regex = '[1-9][0-9]*';
 
 	render() {
 		if (!(this.tournamentObject && this.match)) return null;
@@ -21,29 +22,37 @@ export class EditTournamentPage extends Component {
 		return (
 			<div>
 				<ul>
-					<li className="text">
-						{this.match.teams[0].name} Score:{' '}
-						<input
-							className="input"
-							type="number"
-							value={this.score1}
-							onChange={(event) => (this.score1 = event.currentTarget.value)}
-						/>
-					</li>
-					<li className="text">
-						{this.match.teams[1].name} Score:{' '}
-						<input
-							className="input"
-							type="number"
-							value={this.score2}
-							onChange={(event) => (this.score2 = event.currentTarget.value)}
-						/>
-					</li>
+					<form ref={(instance) => (this.form = instance)}>
+						<li className="text">
+							{this.match.teams[0].name} Score:{' '}
+							<input
+								className="input"
+								type="number"
+								min={0}
+								value={this.score1}
+								pattern={this.regex}
+								onInput={(event) => (this.score1 = event.currentTarget.value)}
+							/>
+						</li>
+						<li className="text">
+							{this.match.teams[1].name} Score:{' '}
+							<input
+								className="input"
+								type="number"
+								pattern={this.regex}
+								min={0}
+								value={this.score2}
+								onChange={(event) => {
+									this.score2 = event.currentTarget.value;
+								}}
+							/>
+						</li>
+					</form>
 				</ul>
 
 				<NavLink
 					className="login"
-					onClick={this.save}
+					onClick={(event) => this.save(event)}
 					to={
 						'/tournamentPage/' +
 						this.tournamentObject.TorunamentId +
@@ -56,6 +65,9 @@ export class EditTournamentPage extends Component {
 			</div>
 		);
 	}
+	checkInput1(event) {
+		this.score1 = event.currentTarget.value;
+	}
 
 	mounted() {
 		if (!this.tournamentObject) return null;
@@ -66,7 +78,11 @@ export class EditTournamentPage extends Component {
 		this.score2 = this.match.results.length != 2 ? 0 : this.match.results[1];
 	}
 
-	save() {
+	save(event) {
+		if (!this.form.reportValidity(event)) {
+			event.preventDefault();
+			return;
+		}
 		this.match.updateScore(this.score1, this.score2);
 	}
 }
