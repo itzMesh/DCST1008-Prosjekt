@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route, withRouter } from 'react-router-dom';
+import { NavLink, HashRouter, Route, withRouter, Redirect } from 'react-router-dom';
 import { pool } from '../mysql-pool';
 import Torunament from '../Classes/tournament';
 import TeamMember from '../Classes/teamMember';
@@ -32,9 +32,10 @@ export class TournamentPage extends Component {
 				<br />
 				<div>{this.loded}</div>
 				{this.canlink.map(() => (
-					<NavLink className="login" to={this.link}>
-						{'When loaded click here'}
-					</NavLink>
+					<Redirect to={this.link}></Redirect>
+					// <NavLink className="login" to={this.link}>
+					// 	{'When loaded click here'}
+					// </NavLink>
 				))}
 			</div>
 		);
