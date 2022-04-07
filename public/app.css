@@ -345,16 +345,18 @@ em {
 
 .grid {
 	display: flex;
-	align-items: center;
 }
 
 .roundGrid {
 	align-items: center;
+	display: table;
 }
 
 .roundGrid-cell {
+	display: table-row;
 	text-align: center;
-	padding-right: 140px;
+	padding-right: 160px;
+	padding-left: 50px;
 	vertical-align: middle;
 	width: 100%;
 }
