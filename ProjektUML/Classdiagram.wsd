@@ -13,36 +13,38 @@ package Database <<Database>>{
 }
 
 Package Pages <<frame>>{
-    Class LogginPage{
-        String username
-        String password
-        void login()
-    }
+    
 
-    Class IndexPage{
+    Class Overview{
         TournamentPage[] previousTournaments
         void newTorunament()
     }
 
-    Class SettingsPage{
+    Class NewTournament{
 
     }
+    Class AddSinglerPlayer{
 
-    Class SignUpPage{
-        Team[] team
-        void createTournamentSetup()
     }
+    Class AddTwoPlayerTeams{
 
+    }
+    Class Menu{
+        
+    }
     Class TournamentPage{
+        
+    }
+    Class ShowTournamentPage{
+        
+    }
+    Class EditTournamentPage{
         
     }
 }
 
 
-Class User{
-    String username
-    String password
-}
+
 
 Class Tournament{
     GeneralSettings generalSettings

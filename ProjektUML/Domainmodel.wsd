@@ -1,9 +1,7 @@
 @startuml MachineBorderThicknes
 
 
-Entity user{
 
-}
 
 
 Class team{
@@ -26,7 +24,6 @@ Class matches{
 
 
 
-user  --  tournament : Goes to
 teamMember  --  team : Member of 
 tournament  -- team : Playing in
 tournament  --  matches : Playing in

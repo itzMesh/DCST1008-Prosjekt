@@ -20,14 +20,48 @@ export class ShowTournamentPage extends Component {
 
 		return (
 			<div className="small">
-				<canvas
-					id="canvas"
-					height={this.length * 150 + 186}
-					width={this.tournamentObject.numberOfRounds * 500}
-					style={{ zIndex: '-1', position: 'absolute' }}
-				>
-					{(this.loaded = true)}
-				</canvas>
+				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
+					<div
+						id="scoreBoard"
+						style={{
+							float: 'top',
+							position: 'absolute',
+							left: this.tournamentObject.rounds[0].teams.length * 200 + 'px',
+							top: '200px',
+						}}
+					>
+						<table className="table">
+							{this.tournamentObject.teams
+								.sort(
+									(a, b) =>
+										b.score.reduce((sum, e) => sum + e, 0) -
+										a.score.reduce((sum, e) => sum + e, 0)
+								)
+								.map((member) => (
+									<tr className="tr">
+										<td className="td">{member.name}</td>
+										<td className="td">
+											{member.score.reduce((sum, e) => sum + e, 0)}
+										</td>
+									</tr>
+								))}
+						</table>
+					</div>
+				) : (
+					<em></em>
+				)}
+				{this.tournamentObject.generalSettings.type == 'bracket' ? (
+					<canvas
+						id="canvas"
+						height={this.length * 150 + 186}
+						width={this.tournamentObject.numberOfRounds * 500}
+						style={{ zIndex: '-1', position: 'absolute' }}
+					>
+						{(this.loaded = true)}
+					</canvas>
+				) : (
+					<em></em>
+				)}
 
 				<div className="infon">{this.tournamentObject.name}</div>
 				<div className="infot">{this.tournamentObject.generalSettings.gamemode}</div>
@@ -38,12 +72,46 @@ export class ShowTournamentPage extends Component {
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
-				<div className="grid" id="grid">
+				<div
+					className={
+						this.tournamentObject.generalSettings.type == 'bracket'
+							? 'grid'
+							: 'roundGrid'
+					}
+					id="grid"
+				>
+					{/* {this.tournamentObject.generalSettings.type != 'bracket' ? (<table> ) : (<em>) } */}
 					{this.tournamentObject.rounds.map((round) => (
-						<div onLoad={() => this.tegn(round.matches.length / 2)}>
-							<div key={round.roundNumber} id={round.roundNumber}>
+						<div
+							style={{
+								border:
+									this.tournamentObject.generalSettings.type != 'bracket'
+										? '#fdf913 3px inset'
+										: '',
+								marginTop:
+									this.tournamentObject.generalSettings.type != 'bracket'
+										? '30px'
+										: '',
+							}}
+						>
+							<div
+								key={round.roundNumber}
+								id={round.roundNumber}
+								className={
+									this.tournamentObject.generalSettings.type == 'bracket'
+										? 'grid-cell'
+										: 'roundGrid-cell'
+								}
+							>
 								Round {round.roundNumber + 1}:
-								<div className="grid-cell" style={{ height: this.length * 150 }}>
+								<div
+									style={{
+										height:
+											this.tournamentObject.generalSettings.type == 'bracket'
+												? this.length * 150
+												: 'auto',
+									}}
+								>
 									{round.roundNumber == 0 ||
 									this.tournamentObject.generalSettings.type != 'bracket' ? (
 										<em></em>
@@ -67,9 +135,38 @@ export class ShowTournamentPage extends Component {
 													'bracket'
 														? '400px'
 														: '300px',
+												float:
+													this.tournamentObject.generalSettings.type ==
+													'bracket'
+														? 'none'
+														: 'left',
 											}}
 										>
-											<div key={match.matchNumber}>
+											<div
+												key={match.matchNumber}
+												style={{
+													height:
+														this.tournamentObject.generalSettings
+															.type == 'bracket'
+															? '100px'
+															: '',
+													width:
+														this.tournamentObject.generalSettings
+															.type == 'bracket'
+															? '300px'
+															: '',
+													border:
+														this.tournamentObject.generalSettings
+															.type == 'bracket'
+															? '#fdf913 3px inset'
+															: '',
+													marginLeft:
+														this.tournamentObject.generalSettings
+															.type == 'bracket'
+															? '50px'
+															: '',
+												}}
+											>
 												<div key={0} style={{ fontSize: '25px' }}>
 													<NavLink
 														onClick={(e) =>
@@ -101,27 +198,39 @@ export class ShowTournamentPage extends Component {
 																>
 																	{match.results[i]}{' '}
 																</b>
-																<b>{team.name}</b>
-																{team.teamMembers.length == 1 ? (
-																	<em></em>
-																) : (
-																	<em>
-																		<b>:</b>
-																		{team.teamMembers.map(
-																			(member) => (
-																				<em
-																					key={
-																						member.name
-																					}
-																				>
-																					{'"' +
-																						member.name +
-																						'" '}
-																				</em>
-																			)
-																		)}
-																	</em>
-																)}
+																<em
+																	style={{
+																		color:
+																			match.winner != null &&
+																			match.winner.id !=
+																				team.id
+																				? 'red'
+																				: '#fdf913',
+																	}}
+																>
+																	<b>{team.name}</b>
+																	{team.teamMembers.length ==
+																	1 ? (
+																		<em></em>
+																	) : (
+																		<em>
+																			<b>:</b>
+																			{team.teamMembers.map(
+																				(member) => (
+																					<em
+																						key={
+																							member.name
+																						}
+																					>
+																						{'"' +
+																							member.name +
+																							'" '}
+																					</em>
+																				)
+																			)}
+																		</em>
+																	)}
+																</em>
 															</em>
 														</div>
 													))}
@@ -133,6 +242,7 @@ export class ShowTournamentPage extends Component {
 							</div>
 						</div>
 					))}
+					{/* {this.tournamentObject.generalSettings.type != 'bracket' ? (</table>) : (</em>)} */}
 				</div>
 				<div className="winner" id="winner"></div>
 				<div class="confetti" id="confetti">
@@ -153,26 +263,6 @@ export class ShowTournamentPage extends Component {
 				<div className="saveConfirm" id="saveConfirm">
 					The tournament is saved!!!
 				</div>
-				{this.tournamentObject.generalSettings.type == 'roundrobin' ? (
-					<div id="scoreBoard">
-						<table className="table">
-							{this.tournamentObject.teams
-								.sort(
-									(a, b) =>
-										b.score.reduce((sum, e) => sum + e, 0) -
-										a.score.reduce((sum, e) => sum + e, 0)
-								)
-								.map((member) => (
-									<tr className="table">
-										<td className="table">{member.name}</td>
-										<td className="table">{member.score.reduce((sum, e) => sum + e, 0)}</td>
-									</tr>
-								))}
-						</table>
-					</div>
-				) : (
-					<em></em>
-				)}
 			</div>
 		);
 	}
@@ -189,13 +279,13 @@ export class ShowTournamentPage extends Component {
 				let c = document.getElementById('canvas');
 				var ctx = c.getContext('2d');
 				ctx.beginPath();
-				ctx.moveTo(drawX, drawY + tileggY);
+				ctx.moveTo(drawX - 55, drawY + tileggY);
 				ctx.lineTo(drawX + 100, drawY + tileggY);
-				ctx.moveTo(drawX, drawY + 140 * 2 ** j + tileggY);
+				ctx.moveTo(drawX - 55, drawY + 140 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 100, drawY + 140 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 100, drawY + tileggY);
 				ctx.moveTo(drawX + 100, drawY + 70 * 2 ** j + tileggY);
-				ctx.lineTo(drawX + 170, drawY + 70 * 2 ** j + tileggY);
+				ctx.lineTo(drawX + 180, drawY + 70 * 2 ** j + tileggY);
 				ctx.strokeStyle = '#fdf913';
 				ctx.lineWidth = 5;
 				ctx.stroke();
@@ -337,6 +427,7 @@ export class ShowTournamentPage extends Component {
 			document.getElementById('winner').style.visibility = 'visible';
 			document.getElementById('winner').innerHTML =
 				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+			this.save();
 		}
 	}
 }
