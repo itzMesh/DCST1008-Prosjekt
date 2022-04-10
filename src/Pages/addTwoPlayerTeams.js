@@ -11,11 +11,11 @@ export let tournamentplayers = [null, new Date()];
 let deleteId;
 let deleteTeam;
 export class AddTwoPlayerTeams extends Component {
-	team = 'Best team';
-	name1 = 'Jo';
-	trophies1 = '2000';
-	name2 = 'Martin';
-	trophies2 = '69';
+	team = '';
+	name1 = '';
+	trophies1 = '';
+	name2 = '';
+	trophies2 = '';
 	teams = [];
 	form = null;
 	tournamentIDs = [];
