@@ -421,17 +421,19 @@ export class ShowTournamentPage extends Component {
 			console.log(message);
 		})();
 	}
+
 	mounted() {
-		pool.query('SELECT * FROM Tournament', (error, results) => {
-			if (error) return console.error(error);
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
 			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			console.log(this.tournamentIDs);
+			this.tournamentIDs.some((id) => id == this.tournamentObject.TorunamentId)
+				? console.log('Trenger ikke å lagre')
+				: this.save();
 		});
-
-		// console.log(this.tournamentIDs, this.tournamentIDs.length);
-		// this.tournamentIDs.some((id) => id.TournamentID == this.tournamentObject.TorunamentId)
-		// 	? this.save()
-		// 	: console.log('');
 
 		showtime.play();
 		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
