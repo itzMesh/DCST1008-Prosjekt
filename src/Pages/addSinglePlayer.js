@@ -6,9 +6,11 @@ import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
-export let tournamentplayer = [null, new Date()];
+
 let deleteId;
 let deleteTeam;
+
+export let tournamentplayer = [null, new Date()];
 export class AddSinglePlayer extends Component {
 	team = '';
 	name1 = '';
