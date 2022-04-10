@@ -175,6 +175,7 @@ export class AddSinglePlayer extends Component {
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
+			this.save();
 		} else if (
 			this.teams.length > 3 &&
 			settings.gamemode.substring(0, 4) == '2v2G' &&
@@ -206,6 +207,7 @@ export class AddSinglePlayer extends Component {
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
+			this.save();
 		} else {
 			event.preventDefault;
 		}
