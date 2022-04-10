@@ -60,7 +60,7 @@ export class EditTournamentPage extends Component {
 						this.tournamentObject.TorunamentId
 					}
 				>
-					Save
+					Update score
 				</NavLink>
 			</div>
 		);
