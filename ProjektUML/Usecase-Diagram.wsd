@@ -1,0 +1,32 @@
+@startuml Usecase
+left to right direction
+:user:
+rectangle Application{
+    usecase "Sign Up" as SU
+    usecase "Login" as LG
+    usecase "Manage Tournaments" as MT
+    usecase "Create New Tournament" as CTM
+    usecase "Add player" as AP
+    usecase "Remove player" as RM
+    usecase "Add Team" as AT
+    usecase "Sort Tournaments" as S
+    usecase "Tournament Overview" as TO
+    usecase "Add Score" as AS
+    usecase "Verification" as V
+}
+user --> SU
+user --> LG
+
+SU ..> LG: <<includes>>
+LG --> MT
+LG --> CTM
+AT ..> CTM: <<includes>>
+AP ..> AT: <<includes>>
+RM ..> AT: <<extends>>
+S ..> MT: <<extends>>
+MT --> TO
+CTM --> TO
+V ..> CTM: <<includes>>
+TO --> AS
+
+@enduml

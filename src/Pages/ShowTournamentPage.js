@@ -6,10 +6,14 @@ import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
 import { doc } from 'prettier';
+let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
+import { pool } from '../mysql-pool';
 
 let tournamentID = 0;
 let hoyde = [];
+let ok = false;
 export class ShowTournamentPage extends Component {
+	tournamentIDs = [];
 	loaded = false;
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
@@ -269,7 +273,7 @@ export class ShowTournamentPage extends Component {
 
 	tegn() {
 		let startX = 410;
-		let startY = 170;
+		let startY = 210;
 		console.log(this.tournamentObject.rounds);
 		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
 			let drawX = startX + j * 540;
@@ -417,7 +421,21 @@ export class ShowTournamentPage extends Component {
 			console.log(message);
 		})();
 	}
+
 	mounted() {
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			console.log(this.tournamentIDs);
+			this.tournamentIDs.some((id) => id == this.tournamentObject.TorunamentId)
+				? console.log('Trenger ikke å lagre')
+				: this.save();
+		});
+
+		showtime.play();
 		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
 			this.tegn();
 		}
