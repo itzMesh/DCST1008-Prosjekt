@@ -69,7 +69,11 @@ export class AddTwoPlayerTeams extends Component {
 						value={this.trophies1}
 						placeholder="Trophies"
 						size="10"
-						onChange={(event) => (this.trophies1 = event.currentTarget.value)}
+						min="0"
+						onChange={(event) => (
+							(this.trophies1 = event.currentTarget.value),
+							"validity.valid||(value='');"
+						)}
 						required
 					/>
 					<br />
@@ -89,7 +93,11 @@ export class AddTwoPlayerTeams extends Component {
 						value={this.trophies2}
 						placeholder="Trophies"
 						size="10"
-						onChange={(event) => (this.trophies2 = event.currentTarget.value)}
+						min="0"
+						onChange={(event) => (
+							(this.trophies2 = event.currentTarget.value),
+							"validity.valid||(value='');"
+						)}
 						required
 					/>
 					<br />
@@ -212,7 +220,7 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	buttonClicked() {
-		// if (!this.form.reportValidity()) return;
+		if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 		this.team = '';

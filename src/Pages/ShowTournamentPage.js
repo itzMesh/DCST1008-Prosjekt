@@ -435,7 +435,6 @@ export class ShowTournamentPage extends Component {
 				: this.save();
 		});
 
-		showtime.play();
 		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
 			this.tegn();
 		}

@@ -20,36 +20,37 @@ export class EditTournamentPage extends Component {
 		console.log(this.tournamentObject);
 
 		return (
-			<div>
-				<ul>
-					<form ref={(instance) => (this.form = instance)}>
-						<li className="text">
-							{this.match.teams[0].name} Score:{' '}
-							<input
-								className="input"
-								type="number"
-								min={0}
-								value={this.score1}
-								pattern={this.regex}
-								onInput={(event) => (this.score1 = event.currentTarget.value)}
-							/>
-						</li>
-						<li className="text">
-							{this.match.teams[1].name} Score:{' '}
-							<input
-								className="input"
-								type="number"
-								pattern={this.regex}
-								min={0}
-								value={this.score2}
-								onChange={(event) => {
-									this.score2 = event.currentTarget.value;
-								}}
-							/>
-						</li>
-					</form>
-				</ul>
-
+			<div style={{ paddingTop: '10%' }}>
+				<form ref={(instance) => (this.form = instance)}>
+					<em className="text">
+						<em>{this.match.teams[0].name} Score: </em>
+						<input
+							className="input"
+							type="number"
+							min={0}
+							value={this.score1}
+							pattern={this.regex}
+							onInput={(event) => (this.score1 = event.currentTarget.value)}
+							style={{ width: '40px' }}
+						/>
+					</em>
+					<br></br>
+					<em className="text">
+						<em>{this.match.teams[1].name} Score: </em>
+						<input
+							className="input"
+							type="number"
+							pattern={this.regex}
+							min={0}
+							value={this.score2}
+							onChange={(event) => {
+								this.score2 = event.currentTarget.value;
+							}}
+							style={{ width: '40px' }}
+						/>
+					</em>
+				</form>
+				<br></br>
 				<NavLink
 					className="login"
 					onClick={(event) => this.save(event)}
@@ -64,9 +65,6 @@ export class EditTournamentPage extends Component {
 				</NavLink>
 			</div>
 		);
-	}
-	checkInput1(event) {
-		this.score1 = event.currentTarget.value;
 	}
 
 	mounted() {
