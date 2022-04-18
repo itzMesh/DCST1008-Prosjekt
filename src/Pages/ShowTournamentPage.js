@@ -72,7 +72,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="save" onClick={this.save} type="button">
+					<em className="save" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -312,38 +312,6 @@ export class ShowTournamentPage extends Component {
 		}
 	}
 	save() {
-		function delTournament(inn) {
-			console.log(inn, '1');
-			console.log(tournamentID);
-			return new Promise((resolve) => {
-				updateDatabase.deleteTournament(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delGameMatch(inn) {
-			console.log(inn, '2');
-
-			return new Promise((resolve) => {
-				updateDatabase.deleteGameMatch(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delTeams(inn) {
-			console.log(inn, '3');
-
-			return new Promise((resolve) => {
-				updateDatabase.deleteTeams(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delTeamMember(inn) {
-			console.log(inn), '4';
-
-			return new Promise((resolve) => {
-				updateDatabase.deleteTeamMember(tournamentID, () => resolve(inn));
-			});
-		}
-
 		function addsTournament(inn) {
 			console.log(inn, '5');
 			return new Promise((resolve) => {
@@ -395,18 +363,10 @@ export class ShowTournamentPage extends Component {
 		async function kjør(inn) {
 			try {
 				console.log(inn[0]);
-				let a = await delTournament(inn);
-				let b = await delGameMatch(a);
-				let c = await delTeams(b);
-				let d = await delTeamMember(c);
-				let e = await addsTournament(d);
+				let e = await addsTournament(inn);
 				let f = await addsGameMatch(e);
 				let g = await addsTeam(f);
 				let h = await addsTeamMember(g);
-				document.getElementById('saveConfirm').style.visibility = 'visible';
-				setTimeout(() => {
-					document.getElementById('saveConfirm').style.visibility = 'hidden';
-				}, 2000);
 
 				return h;
 			} catch (error) {
@@ -420,6 +380,36 @@ export class ShowTournamentPage extends Component {
 			let message = await kjør([this.tournamentObject]);
 			console.log(message);
 		})();
+	}
+	updateScore() {
+		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
+			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
+				console.log(j);
+				pool.query(
+					'UPDATE GameMatch SET Team1=?, Team2=?, Team1Score=?, Team2Score=? WHERE RoundNumber=? && MatchNumber=? && TournamentID=?',
+					[
+						this.tournamentObject.rounds[i].matches[j].teams[0].id,
+						this.tournamentObject.rounds[i].matches[j].teams[1].id,
+						this.tournamentObject.rounds[i].matches[j].results.length != 2
+							? 0
+							: this.tournamentObject.rounds[i].matches[j].results[0],
+						this.tournamentObject.rounds[i].matches[j].results.length != 2
+							? 0
+							: this.tournamentObject.rounds[i].matches[j].results[1],
+						i,
+						j,
+						this.tournamentObject.TorunamentId,
+					],
+					(error, results) => {
+						if (error) return console.error(error);
+					}
+				);
+			}
+		}
+		document.getElementById('saveConfirm').style.visibility = 'visible';
+		setTimeout(() => {
+			document.getElementById('saveConfirm').style.visibility = 'hidden';
+		}, 2000);
 	}
 
 	mounted() {
