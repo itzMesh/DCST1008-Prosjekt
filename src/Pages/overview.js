@@ -72,7 +72,7 @@ export class Overview extends Component {
 		updateDatabase.deleteGameMatch(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeams(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeamMember(x.TournamentID, () => console.log());
-		setInterval(() => {
+		setTimeout(() => {
 			this.mounted();
 		}, 100);
 	}

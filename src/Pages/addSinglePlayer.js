@@ -6,6 +6,7 @@ import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
+import { body } from 'express-validator';
 
 let deleteId;
 let deleteTeam;
@@ -24,7 +25,9 @@ export class AddSinglePlayer extends Component {
 
 	render() {
 		if (this.tournamentIDs.length == 0) return null;
-
+		// if (settings.gamemode[3] == 'D') {
+		// 	body.style.backgroundColor = 'white';
+		// }
 		return (
 			<div>
 				<div className="overview">
