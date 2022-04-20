@@ -1,6 +1,18 @@
 import { pool } from '../mysql-pool';
 
 class UpdateDatabase {
+	deleteTournament(TournamentID, success) {
+		console.log(TournamentID);
+		pool.query(
+			'DELETE FROM Tournament WHERE TournamentID=?',
+			[TournamentID],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success();
+			}
+		);
+	}
 	addTournament(tournamentObject, success) {
 		console.log(
 			tournamentObject.name,
@@ -16,6 +28,17 @@ class UpdateDatabase {
 				tournamentObject.generalSettings.type,
 				tournamentObject.generalSettings.gamemode,
 			],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success();
+			}
+		);
+	}
+	deleteGameMatch(TournamentID, success) {
+		pool.query(
+			'DELETE FROM GameMatch WHERE TournamentID=?',
+			[TournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
 
@@ -42,11 +65,30 @@ class UpdateDatabase {
 			}
 		);
 	}
+	deleteTeams(TournamentID, success) {
+		pool.query('DELETE FROM Team WHERE TournamentID=?', [TournamentID], (error, results) => {
+			if (error) return console.error(error);
+
+			success();
+		});
+	}
 
 	addTeam(team, success) {
 		pool.query(
 			'INSERT INTO Team (TeamID, TeamName, IsShadow, TournamentID) VALUES (?, ?, ?, ?)',
 			[team.id, team.name, team.constructor.name != 'ShadowTeam' ? 0 : 1, team.tournamentID],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success();
+			}
+		);
+	}
+
+	deleteTeamMember(TournamentID, success) {
+		pool.query(
+			'DELETE FROM TeamMember WHERE TournamentID=?',
+			[TournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
 
