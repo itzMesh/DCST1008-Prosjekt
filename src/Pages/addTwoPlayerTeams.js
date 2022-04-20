@@ -11,11 +11,11 @@ export let tournamentplayers = [null, new Date()];
 let deleteId;
 let deleteTeam;
 export class AddTwoPlayerTeams extends Component {
-	team = 'Best team';
-	name1 = 'Jo';
-	trophies1 = '2000';
-	name2 = 'Martin';
-	trophies2 = '69';
+	team = '';
+	name1 = '';
+	trophies1 = '';
+	name2 = '';
+	trophies2 = '';
 	teams = [];
 	form = null;
 	tournamentIDs = [];
@@ -68,8 +68,12 @@ export class AddTwoPlayerTeams extends Component {
 						type="number"
 						value={this.trophies1}
 						placeholder="Trophies"
-						size="20"
-						onChange={(event) => (this.trophies1 = event.currentTarget.value)}
+						size="10"
+						min="0"
+						onChange={(event) => (
+							(this.trophies1 = event.currentTarget.value),
+							"validity.valid||(value='');"
+						)}
 						required
 					/>
 					<br />
@@ -88,8 +92,12 @@ export class AddTwoPlayerTeams extends Component {
 						type="number"
 						value={this.trophies2}
 						placeholder="Trophies"
-						size="20"
-						onChange={(event) => (this.trophies2 = event.currentTarget.value)}
+						size="10"
+						min="0"
+						onChange={(event) => (
+							(this.trophies2 = event.currentTarget.value),
+							"validity.valid||(value='');"
+						)}
 						required
 					/>
 					<br />
@@ -212,7 +220,7 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	buttonClicked() {
-		// if (!this.form.reportValidity()) return;
+		if (!this.form.reportValidity()) return;
 
 		this.teams.push([this.team, [this.name1, this.trophies1], [this.name2, this.trophies2]]);
 		this.team = '';

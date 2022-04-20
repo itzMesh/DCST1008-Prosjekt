@@ -79,7 +79,9 @@ export class Overview extends Component {
 		updateDatabase.deleteGameMatch(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeams(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeamMember(x.TournamentID, () => console.log());
-		this.mounted();
+		setInterval(() => {
+			this.mounted();
+		}, 100);
 	}
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
