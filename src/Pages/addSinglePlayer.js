@@ -6,6 +6,7 @@ import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
+import { body } from 'express-validator';
 
 let deleteId;
 let deleteTeam;
@@ -24,7 +25,9 @@ export class AddSinglePlayer extends Component {
 
 	render() {
 		if (this.tournamentIDs.length == 0) return null;
-
+		// if (settings.gamemode[3] == 'D') {
+		// 	body.style.backgroundColor = 'white';
+		// }
 		return (
 			<div>
 				<div className="overview">
@@ -181,39 +184,9 @@ export class AddSinglePlayer extends Component {
 				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
-		} else if (
-			this.teams.length > 3 &&
-			settings.gamemode.substring(0, 4) == '2v2G' &&
-			this.teams.length % 2 == 0
-		) {
-			this.teams.sort((a, b) => a[1][1] - b[1][1]);
-			let numb = this.teams.length / 2;
-			for (let i = 0; i < numb; i++) {
-				this.teams[i][0] = 'team ' + (i + 1);
-				console.log(this.teams[this.teams.length - 1][1]);
-				this.teams[i].push(this.teams[this.teams.length - 1][1]);
-				this.teams.pop();
-			}
-			console.log(this.teams);
-			this.teamObj = [];
-			this.teamID = parseInt(this.teamIDs[0]);
-			for (const i of this.teams) {
-				this.teamID++;
-				let aTeam = new Team(i[0], this.teamID, this.tournamentIDs[0] + 1);
-				aTeam.addMember(
-					new TeamMember(i[1][0], parseInt(i[1][1]), aTeam.id, this.tournamentIDs[0] + 1)
-				);
-				aTeam.addMember(
-					new TeamMember(i[2][0], parseInt(i[2][1]), aTeam.id, this.tournamentIDs[0] + 1)
-				);
-				this.teamObj.push(aTeam);
-			}
-			tournamentplayer = [
-				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
-				new Date(),
-			];
 		} else {
-			event.preventDefault;
+			console.log('fungerer dette');
+			event.preventDefault();
 		}
 	}
 }

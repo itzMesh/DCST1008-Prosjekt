@@ -30,8 +30,8 @@ export class ShowTournamentPage extends Component {
 						style={{
 							float: 'top',
 							position: 'absolute',
-							left: this.tournamentObject.rounds[0].teams.length * 200 + 'px',
-							top: '200px',
+							left: this.length * 300 + 100 + 'px',
+							top: '250px',
 						}}
 					>
 						<table className="table">

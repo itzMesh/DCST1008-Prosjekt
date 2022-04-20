@@ -215,7 +215,7 @@ export class AddTwoPlayerTeams extends Component {
 				new Date(),
 			];
 		} else {
-			event.preventDefault;
+			event.preventDefault();
 		}
 	}
 
