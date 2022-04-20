@@ -224,7 +224,7 @@ em {
 .scroll {
 	overflow: auto;
 	height: 200px;
-	width: 700px;
+	width: 550px;
 }
 
 .scroll::-webkit-scrollbar {
@@ -500,7 +500,7 @@ a:hover span:nth-child(2):after {
 
 .table td:hover {
 	background-color: #fff842;
-	color: #3fc296;
+	color: #2c3446;
 	font-weight: bold;
 	border-radius: 5%;
 

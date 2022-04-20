@@ -41,8 +41,6 @@ export class AddSinglePlayer extends Component {
 					</div>
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
-					<br />
-					<div className="title">{settings.name}</div>
 					<br /> <em className="text">Player</em>
 					<input
 						className="input"
@@ -89,6 +87,8 @@ export class AddSinglePlayer extends Component {
 						Create Torunament
 					</NavLink>
 				</div>
+				<br />
+				<div className="infon">{settings.name}</div>
 				<br />
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (

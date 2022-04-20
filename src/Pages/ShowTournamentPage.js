@@ -78,7 +78,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="save" onClick={this.updateScore} type="button">
+					<em className="login" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -297,7 +297,7 @@ export class ShowTournamentPage extends Component {
 				ctx.moveTo(drawX + 100, drawY + 70 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 180, drawY + 70 * 2 ** j + tileggY);
 				ctx.strokeStyle = '#fdf913';
-				ctx.lineWidth = 5;
+				ctx.lineWidth = 2;
 				ctx.stroke();
 				tileggY = tileggY + 280 * 2 ** j;
 			}
