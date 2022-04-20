@@ -163,7 +163,6 @@ export class AddTwoPlayerTeams extends Component {
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
-		console.log(deleteTeam[deleteId.target.id][0]);
 
 		document.getElementById('confirmT').style.visibility = 'visible';
 
@@ -184,7 +183,6 @@ export class AddTwoPlayerTeams extends Component {
 			this.tournamentIDs = results;
 			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
 			this.tournamentIDs.sort((a, b) => b - a);
-			console.log(this.tournamentIDs);
 		});
 		pool.query('SELECT TeamID FROM Team', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return

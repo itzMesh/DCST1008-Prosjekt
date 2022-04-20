@@ -4,7 +4,9 @@ class Match {
 	results = [0, 0];
 	matchNumber;
 	matchSeed;
+	matchSeed2;
 	winner;
+	looser;
 	matchFinished;
 
 	constructor(team0, team1, matchNumber, round, ind) {
@@ -30,6 +32,7 @@ class Match {
 		}
 		if (score0 - score1 != 0) {
 			this.winner = score0 > score1 ? this.teams[0] : this.teams[1];
+			this.looser = score0 > score1 ? this.teams[1] : this.teams[0];
 			this.winner.seed = this.matchSeed;
 			this.winner.score[this.round.roundNumber] = 3;
 			if (
@@ -53,9 +56,24 @@ class Match {
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
 			} else if (
 				this.round.roundNumber == this.round.numberOfRounds - 1 &&
-				this.round.tournament.generalSettings.type == 'bracket'
+				this.round.tournament.generalSettings.type == 'bracket' &&
+				this.ind == 0
 			) {
 				this.round.tournament.winner = this.winner;
+			}
+			if (
+				this.round.roundNumber == this.round.numberOfRounds - 2 &&
+				this.round.tournament.hasBronze
+			) {
+				if (this.round.matches[0].looser != undefined) {
+					this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[0] =
+						this.round.matches[0].looser;
+				}
+				if (this.round.matches[1].looser != undefined) {
+					this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[1] =
+						this.round.matches[1].looser;
+				}
+				console.log('DETTE ER EN TEST');
 			}
 		} else if (
 			score0 != 0 &&
