@@ -5,17 +5,14 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
-import { doc } from 'prettier';
-<<<<<<< HEAD
-import Round from '../Classes/round';
-=======
 let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
 import { pool } from '../mysql-pool';
->>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
+import Round from '../Classes/round';
 
 let tournamentID = 0;
 let hoyde = [];
 let ok = false;
+
 export class ShowTournamentPage extends Component {
 	tournamentIDs = [];
 	loaded = false;
@@ -23,8 +20,9 @@ export class ShowTournamentPage extends Component {
 	tournamentObject =
 		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
 	length = this.tournamentObject.rounds[0].matches.length;
+	roundsInTournament = [];
 	render() {
-		if (!this.tournamentObject) return null;
+		if (!this.tournamentObject || this.roundsInTournament.length == 0) return null;
 
 		return (
 			<div className="small">
@@ -89,7 +87,7 @@ export class ShowTournamentPage extends Component {
 					id="grid"
 				>
 					{' '}
-					{this.tournamentObject.rounds.map((round) => (
+					{this.roundsInTournament.map((round) => (
 						<div
 							style={{
 								border:
@@ -302,7 +300,6 @@ export class ShowTournamentPage extends Component {
 
 	tegn() {
 		let startX = 410;
-<<<<<<< HEAD
 		let startY = 170;
 		for (
 			let j = 0;
@@ -311,11 +308,6 @@ export class ShowTournamentPage extends Component {
 				(this.tournamentObject.rounds.length == 2 ? 1 : 2);
 			j++
 		) {
-=======
-		let startY = 210;
-		console.log(this.tournamentObject.rounds);
-		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
->>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 			let drawX = startX + j * 540;
 			let drawY = startY + hoyde[j];
 			let tileggY = 0;
@@ -337,6 +329,7 @@ export class ShowTournamentPage extends Component {
 			}
 		}
 	}
+
 	brackets(e) {
 		let out = 0;
 		hoyde = [0];
@@ -345,42 +338,14 @@ export class ShowTournamentPage extends Component {
 			hoyde.push(out);
 		}
 	}
+
 	containsShadow(event, match) {
 		if (match.teams.map((e) => e.constructor.name).includes('ShadowTeam')) {
 			event.preventDefault();
 		}
 	}
+
 	save() {
-<<<<<<< HEAD
-		function delTournament(inn) {
-			console.log(tournamentID);
-			return new Promise((resolve) => {
-				updateDatabase.deleteTournament(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delGameMatch(inn) {
-			return new Promise((resolve) => {
-				updateDatabase.deleteGameMatch(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delTeams(inn) {
-			console.log(inn, '3');
-
-			return new Promise((resolve) => {
-				updateDatabase.deleteTeams(tournamentID, () => resolve(inn));
-			});
-		}
-
-		function delTeamMember(inn) {
-			return new Promise((resolve) => {
-				updateDatabase.deleteTeamMember(tournamentID, () => resolve(inn));
-			});
-		}
-
-=======
->>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 		function addsTournament(inn) {
 			return new Promise((resolve) => {
 				updateDatabase.addTournament(inn[0], () => {
@@ -430,16 +395,8 @@ export class ShowTournamentPage extends Component {
 
 		async function kjør(inn) {
 			try {
-<<<<<<< HEAD
-				let a = await delTournament(inn);
-				let b = await delGameMatch(a);
-				let c = await delTeams(b);
-				let d = await delTeamMember(c);
-				let e = await addsTournament(d);
-=======
 				console.log(inn[0]);
 				let e = await addsTournament(inn);
->>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 				let f = await addsGameMatch(e);
 				let g = await addsTeam(f);
 				let h = await addsTeamMember(g);
@@ -487,14 +444,13 @@ export class ShowTournamentPage extends Component {
 	}
 
 	mounted() {
-<<<<<<< HEAD
 		console.log(this.tournamentObject.rounds.length);
 		if (
 			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==
-				2 &&
-			this.tournamentObject.rounds.length == this.tournamentObject.numberOfRounds
+			2
 		) {
-			this.tournamentObject.rounds = this.tournamentObject.rounds.concat([
+			console.log(this.tournamentObject.rounds[0].teams[1]);
+			this.roundsInTournament = this.tournamentObject.rounds.concat([
 				new Round(
 					this.tournamentObject.numberOfRounds,
 					this.tournamentObject.numberOfRounds,
@@ -507,23 +463,9 @@ export class ShowTournamentPage extends Component {
 					]
 				),
 			]);
-		} else if (
-			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==
-			2
-		) {
-			this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1] = new Round(
-				this.tournamentObject.numberOfRounds,
-				this.tournamentObject.numberOfRounds,
-				this.tournamentObject,
-				[
-					this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1]
-						.matches[1].teams[0],
-					this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1]
-						.matches[1].teams[1],
-				]
-			);
+		} else {
+			this.roundsInTournament = this.tournamentObject.rounds;
 		}
-=======
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
@@ -535,7 +477,6 @@ export class ShowTournamentPage extends Component {
 				? console.log('Trenger ikke å lagre')
 				: this.save();
 		});
->>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 
 		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
 			this.tegn();

@@ -64,6 +64,7 @@ class Match {
 				this.round.roundNumber == this.round.numberOfRounds - 2 &&
 				this.round.tournament.hasBronze
 			) {
+				console.log(this);
 				this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[0] =
 					this.round.matches[0].looser;
 				this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[1] =

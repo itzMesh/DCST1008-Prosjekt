@@ -30,11 +30,13 @@ class Round {
 				}
 				return 0;
 			});
+			console.log(teams);
 			this.setseeds();
 			this.teams = this.sortTeams(this.teams);
 		} else {
 			this.teams = this.shuffleTeams();
 		}
+		console.log(this.teams[1]);
 		//uses previous round to set first match number
 		this.firstMatchNumber =
 			roundNumber == 0
@@ -54,6 +56,7 @@ class Round {
 
 	//set seeds in a list sorted by trophies
 	setseeds() {
+		console.log(this.teams);
 		for (const i in this.teams) {
 			this.teams[i].seed = parseInt(i) + 1;
 		}
