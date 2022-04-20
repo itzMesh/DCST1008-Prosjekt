@@ -25,27 +25,39 @@ export class Overview extends Component {
 						</div>
 					</div>
 				</div>
-				<h1 className="title">Clasnering</h1>
+				{/* <h1 className="title">Clasnering</h1> */}
+				<h1 class="title">
+					<a>
+						<span data-attr="Clas">Clas</span>
+						<span data-attr="nering">Nering</span>
+					</a>
+				</h1>
+
 				<div className="centerview">
 					Overview of Tournaments <br />
 					<br />
-					<div className="scroll">
-						{this.tournaments.map((tournament) => (
-							<div>
-								<div key={tournament.TournamentID} className="tournament">
-									<button className="xx" onClick={() => this.confirm(tournament)}>
-										X
-									</button>
-									<NavLink
-										className="login"
-										to={'/tournamentpage/' + tournament.TournamentID}
-									>
-										{tournament.TournamentName}
-									</NavLink>
+					<div>
+						<div className="scroll">
+							{this.tournaments.map((tournament) => (
+								<div>
+									<div key={tournament.TournamentID} className="tournament">
+										<button
+											className="xx"
+											onClick={() => this.confirm(tournament)}
+										>
+											X
+										</button>
+										<NavLink
+											className="login"
+											to={'/tournamentpage/' + tournament.TournamentID}
+										>
+											{tournament.TournamentName}
+										</NavLink>
+									</div>
+									<br />
 								</div>
-								<br />
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 					<br />
 					<NavLink className="login" to="/new" onClick={() => newTour.play()}>
@@ -71,7 +83,7 @@ export class Overview extends Component {
 		updateDatabase.deleteGameMatch(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeams(x.TournamentID, () => console.log());
 		updateDatabase.deleteTeamMember(x.TournamentID, () => console.log());
-		setInterval(() => {
+		setTimeout(() => {
 			this.mounted();
 		}, 100);
 	}
