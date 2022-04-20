@@ -56,7 +56,8 @@ class Match {
 				this.round.tournament.rounds[this.round.roundNumber + 1].addMatches();
 			} else if (
 				this.round.roundNumber == this.round.numberOfRounds - 1 &&
-				this.round.tournament.generalSettings.type == 'bracket'
+				this.round.tournament.generalSettings.type == 'bracket' &&
+				this.ind == 0
 			) {
 				this.round.tournament.winner = this.winner;
 			}
@@ -64,11 +65,14 @@ class Match {
 				this.round.roundNumber == this.round.numberOfRounds - 2 &&
 				this.round.tournament.hasBronze
 			) {
-				console.log(this);
-				this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[0] =
-					this.round.matches[0].looser;
-				this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[1] =
-					this.round.matches[1].looser;
+				if (this.round.matches[0].looser != undefined) {
+					this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[0] =
+						this.round.matches[0].looser;
+				}
+				if (this.round.matches[1].looser != undefined) {
+					this.round.tournament.rounds[this.round.roundNumber + 1].matches[1].teams[1] =
+						this.round.matches[1].looser;
+				}
 				console.log('DETTE ER EN TEST');
 			}
 		} else if (
