@@ -108,6 +108,22 @@ class Round {
 				)
 			);
 		}
+		if (
+			this.roundNumber == this.numberOfRounds - 1 &&
+			this.tournament.teams.filter((e) => e.constructor.name == 'Team').length > 3
+		) {
+			this.tournament.hasBronze = true;
+			this.matches.push(
+				new Match(
+					new ShadowTeam(this.tournament.TorunamentId, 1),
+					new ShadowTeam(this.tournament.TorunamentId, 2),
+					'Bronze final',
+					this,
+					1,
+					false
+				)
+			);
+		}
 	}
 }
 

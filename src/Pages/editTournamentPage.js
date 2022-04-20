@@ -17,7 +17,6 @@ export class EditTournamentPage extends Component {
 
 	render() {
 		if (!(this.tournamentObject && this.match)) return null;
-		console.log(this.tournamentObject);
 
 		return (
 			<div>
@@ -73,7 +72,6 @@ export class EditTournamentPage extends Component {
 		if (!this.tournamentObject) return null;
 
 		this.match = this.tournamentObject.rounds[this.matchInds[0]].matches[this.matchInds[1]];
-		console.log(this.match);
 		this.score1 = this.match.results.length != 2 ? 0 : this.match.results[0];
 		this.score2 = this.match.results.length != 2 ? 0 : this.match.results[1];
 	}

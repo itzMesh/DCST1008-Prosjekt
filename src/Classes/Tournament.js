@@ -7,6 +7,7 @@ class Torunament {
 	winner = null;
 	teams = [];
 	rounds = [];
+	hasBronze = false;
 
 	constructor(name, TorunamentId, teams, generalSettings) {
 		this.name = name;

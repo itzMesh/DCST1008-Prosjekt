@@ -59,7 +59,6 @@ export class Overview extends Component {
 		document.getElementById('confirm').style.visibility = 'visible';
 
 		x = id;
-		console.log(id);
 		document.getElementById('tournamentName').innerText =
 			'Are you sure you want to delete "' + id.TournamentName + '"';
 	}

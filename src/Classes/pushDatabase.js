@@ -6,7 +6,6 @@ import { pool } from '../mysql-pool';
 
 class UpdateDatabase {
 	deleteTournament(TournamentID, success) {
-		console.log(TournamentID);
 		pool.query(
 			'DELETE FROM Tournament WHERE TournamentID=?',
 			[TournamentID],
@@ -18,12 +17,6 @@ class UpdateDatabase {
 		);
 	}
 	addTournament(tournamentObject, success) {
-		console.log(
-			tournamentObject.name,
-			tournamentObject.generalSettings.type,
-			tournamentObject.generalSettings.gamemode
-		);
-
 		pool.query(
 			'INSERT INTO Tournament (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
 			[
