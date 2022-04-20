@@ -49,7 +49,7 @@ export class AddTwoPlayerTeams extends Component {
 						type="text"
 						value={this.team}
 						placeholder="Team name"
-						size="25x"
+						size="20x"
 						onChange={(event) => (this.team = event.currentTarget.value)}
 						required
 					/>
@@ -59,7 +59,7 @@ export class AddTwoPlayerTeams extends Component {
 						type="text"
 						value={this.name1}
 						placeholder="Nickname"
-						size="10"
+						size="20"
 						onChange={(event) => (this.name1 = event.currentTarget.value)}
 						required
 					/>
@@ -83,7 +83,7 @@ export class AddTwoPlayerTeams extends Component {
 						type="text"
 						value={this.name2}
 						placeholder="Nickname"
-						size="10"
+						size="20"
 						onChange={(event) => (this.name2 = event.currentTarget.value)}
 						required
 					/>
@@ -213,7 +213,7 @@ export class AddTwoPlayerTeams extends Component {
 				new Date(),
 			];
 		} else {
-			event.preventDefault;
+			event.preventDefault();
 		}
 	}
 

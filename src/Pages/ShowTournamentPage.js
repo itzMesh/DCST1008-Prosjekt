@@ -34,11 +34,17 @@ export class ShowTournamentPage extends Component {
 						style={{
 							float: 'top',
 							position: 'absolute',
-							left: this.tournamentObject.rounds[0].teams.length * 200 + 'px',
-							top: '200px',
+							left: this.length * 300 + 100 + 'px',
+							top: '250px',
 						}}
 					>
 						<table className="table">
+							<thead>
+								<tr>
+									<th>Player</th>
+									<th>Score</th>
+								</tr>
+							</thead>
 							{this.tournamentObject.teams
 								.sort(
 									(a, b) =>
@@ -46,12 +52,12 @@ export class ShowTournamentPage extends Component {
 										a.score.reduce((sum, e) => sum + e, 0)
 								)
 								.map((member) => (
-									<tr className="tr">
-										<td className="td">{member.name}</td>
-										<td className="td">
-											{member.score.reduce((sum, e) => sum + e, 0)}
-										</td>
-									</tr>
+									<tbody>
+										<tr>
+											<td>{member.name}</td>
+											<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
+										</tr>
+									</tbody>
 								))}
 						</table>
 					</div>
@@ -76,7 +82,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="save" onClick={this.updateScore} type="button">
+					<em className="login" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -329,7 +335,7 @@ export class ShowTournamentPage extends Component {
 				ctx.moveTo(drawX + 100, drawY + 70 * 2 ** j + tileggY);
 				ctx.lineTo(drawX + 180, drawY + 70 * 2 ** j + tileggY);
 				ctx.strokeStyle = '#fdf913';
-				ctx.lineWidth = 5;
+				ctx.lineWidth = 2;
 				ctx.stroke();
 				tileggY = tileggY + 280 * 2 ** j;
 			}
