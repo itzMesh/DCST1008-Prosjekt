@@ -31,12 +31,6 @@ export class ShowTournamentPage extends Component {
 						}}
 					>
 						<table className="table">
-							<thead>
-								<tr>
-									<th>Player</th>
-									<th>Score</th>
-								</tr>
-							</thead>
 							{this.tournamentObject.teams
 								.sort(
 									(a, b) =>
@@ -44,12 +38,12 @@ export class ShowTournamentPage extends Component {
 										a.score.reduce((sum, e) => sum + e, 0)
 								)
 								.map((member) => (
-									<tbody>
-										<tr>
-											<td>{member.name}</td>
-											<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
-										</tr>
-									</tbody>
+									<tr className="tr">
+										<td className="td">{member.name}</td>
+										<td className="td">
+											{member.score.reduce((sum, e) => sum + e, 0)}
+										</td>
+									</tr>
 								))}
 						</table>
 					</div>
@@ -74,7 +68,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="login" onClick={this.save} type="button">
+					<em className="save" onClick={this.save} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
