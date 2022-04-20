@@ -6,11 +6,18 @@ import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
 import { doc } from 'prettier';
+<<<<<<< HEAD
 import Round from '../Classes/round';
+=======
+let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
+import { pool } from '../mysql-pool';
+>>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 
 let tournamentID = 0;
 let hoyde = [];
+let ok = false;
 export class ShowTournamentPage extends Component {
+	tournamentIDs = [];
 	loaded = false;
 	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
 	tournamentObject =
@@ -69,7 +76,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="save" onClick={this.save} type="button">
+					<em className="save" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -295,6 +302,7 @@ export class ShowTournamentPage extends Component {
 
 	tegn() {
 		let startX = 410;
+<<<<<<< HEAD
 		let startY = 170;
 		for (
 			let j = 0;
@@ -303,6 +311,11 @@ export class ShowTournamentPage extends Component {
 				(this.tournamentObject.rounds.length == 2 ? 1 : 2);
 			j++
 		) {
+=======
+		let startY = 210;
+		console.log(this.tournamentObject.rounds);
+		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
+>>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 			let drawX = startX + j * 540;
 			let drawY = startY + hoyde[j];
 			let tileggY = 0;
@@ -338,6 +351,7 @@ export class ShowTournamentPage extends Component {
 		}
 	}
 	save() {
+<<<<<<< HEAD
 		function delTournament(inn) {
 			console.log(tournamentID);
 			return new Promise((resolve) => {
@@ -365,6 +379,8 @@ export class ShowTournamentPage extends Component {
 			});
 		}
 
+=======
+>>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 		function addsTournament(inn) {
 			return new Promise((resolve) => {
 				updateDatabase.addTournament(inn[0], () => {
@@ -414,18 +430,19 @@ export class ShowTournamentPage extends Component {
 
 		async function kjør(inn) {
 			try {
+<<<<<<< HEAD
 				let a = await delTournament(inn);
 				let b = await delGameMatch(a);
 				let c = await delTeams(b);
 				let d = await delTeamMember(c);
 				let e = await addsTournament(d);
+=======
+				console.log(inn[0]);
+				let e = await addsTournament(inn);
+>>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 				let f = await addsGameMatch(e);
 				let g = await addsTeam(f);
 				let h = await addsTeamMember(g);
-				document.getElementById('saveConfirm').style.visibility = 'visible';
-				setTimeout(() => {
-					document.getElementById('saveConfirm').style.visibility = 'hidden';
-				}, 2000);
 
 				return h;
 			} catch (error) {
@@ -438,7 +455,39 @@ export class ShowTournamentPage extends Component {
 			let message = await kjør([this.tournamentObject]);
 		})();
 	}
+	updateScore() {
+		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
+			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
+				console.log(j);
+				pool.query(
+					'UPDATE GameMatch SET Team1=?, Team2=?, Team1Score=?, Team2Score=? WHERE RoundNumber=? && MatchNumber=? && TournamentID=?',
+					[
+						this.tournamentObject.rounds[i].matches[j].teams[0].id,
+						this.tournamentObject.rounds[i].matches[j].teams[1].id,
+						this.tournamentObject.rounds[i].matches[j].results.length != 2
+							? 0
+							: this.tournamentObject.rounds[i].matches[j].results[0],
+						this.tournamentObject.rounds[i].matches[j].results.length != 2
+							? 0
+							: this.tournamentObject.rounds[i].matches[j].results[1],
+						i,
+						j,
+						this.tournamentObject.TorunamentId,
+					],
+					(error, results) => {
+						if (error) return console.error(error);
+					}
+				);
+			}
+		}
+		document.getElementById('saveConfirm').style.visibility = 'visible';
+		setTimeout(() => {
+			document.getElementById('saveConfirm').style.visibility = 'hidden';
+		}, 2000);
+	}
+
 	mounted() {
+<<<<<<< HEAD
 		console.log(this.tournamentObject.rounds.length);
 		if (
 			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==
@@ -474,6 +523,19 @@ export class ShowTournamentPage extends Component {
 				]
 			);
 		}
+=======
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			console.log(this.tournamentIDs);
+			this.tournamentIDs.some((id) => id == this.tournamentObject.TorunamentId)
+				? console.log('Trenger ikke å lagre')
+				: this.save();
+		});
+>>>>>>> 62639b8ac696d2759c51298c55b468783eabb0c2
 
 		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
 			this.tegn();

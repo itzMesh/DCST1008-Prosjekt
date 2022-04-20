@@ -1,6 +1,5 @@
 import ShadowTeam from './shadowTeam';
 import Match from './match';
-import Torunament from './tournament';
 
 class Round {
 	tournament;

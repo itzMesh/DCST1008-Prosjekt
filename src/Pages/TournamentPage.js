@@ -6,7 +6,6 @@ import { pool } from '../mysql-pool';
 import Torunament from '../Classes/tournament';
 import TeamMember from '../Classes/teamMember';
 import Team from '../Classes/team';
-import Match from '../Classes/match';
 import ShadowTeam from '../Classes/shadowTeam';
 
 export let tournamentPageObj = [null, new Date()];
@@ -33,9 +32,6 @@ export class TournamentPage extends Component {
 				<div>{this.loded}</div>
 				{this.canlink.map(() => (
 					<Redirect to={this.link}></Redirect>
-					// <NavLink className="login" to={this.link}>
-					// 	{'When loaded click here'}
-					// </NavLink>
 				))}
 			</div>
 		);
