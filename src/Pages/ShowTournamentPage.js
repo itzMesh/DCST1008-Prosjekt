@@ -418,7 +418,7 @@ export class ShowTournamentPage extends Component {
 		}
 
 		(async () => {
-			tournamentID = this.tournamentObject.TorunamentId;
+			tournamentID = this.tournamentObject.tournamentID;
 			let message = await kjør([this.tournamentObject]);
 		})();
 	}
@@ -438,7 +438,7 @@ export class ShowTournamentPage extends Component {
 							: this.tournamentObject.rounds[i].matches[j].results[1],
 						i,
 						j,
-						this.tournamentObject.TorunamentId,
+						this.tournamentObject.tournamentID,
 					],
 					(error, results) => {
 						if (error) return console.error(error);
@@ -495,7 +495,7 @@ export class ShowTournamentPage extends Component {
 			this.tournamentIDs = results;
 			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
 			this.tournamentIDs.sort((a, b) => b - a);
-			this.tournamentIDs.some((id) => id == this.tournamentObject.TorunamentId)
+			this.tournamentIDs.some((id) => id == this.tournamentObject.tournamentID)
 				? console.log('Trenger ikke å lagre')
 				: this.save();
 		});

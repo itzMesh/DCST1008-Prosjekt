@@ -2,16 +2,17 @@ import Round from './round';
 
 class Torunament {
 	name;
-	TorunamentId;
+	tournamentID;
+	numberOfRounds;
 	generalSettings = null;
 	winner = null;
 	teams = [];
 	rounds = [];
 	hasBronze = false;
 
-	constructor(name, TorunamentId, teams, generalSettings) {
+	constructor(name, tournamentID, teams, generalSettings) {
 		this.name = name;
-		this.TorunamentId = TorunamentId;
+		this.tournamentID = tournamentID;
 		this.generalSettings = generalSettings;
 		console.log(this);
 		if (teams != false) {

@@ -183,6 +183,9 @@ export class AddTwoPlayerTeams extends Component {
 			this.tournamentIDs = results;
 			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
 			this.tournamentIDs.sort((a, b) => b - a);
+			if (this.tournamentIDs.length == 0) {
+				this.tournamentIDs.push(1);
+			}
 		});
 		pool.query('SELECT TeamID FROM Team', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
@@ -190,6 +193,9 @@ export class AddTwoPlayerTeams extends Component {
 			this.teamIDs = results;
 			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
 			this.teamIDs.sort((a, b) => b - a);
+			if (this.teamIDs.length == 0) {
+				this.teamIDs.push(1);
+			}
 		});
 	}
 
