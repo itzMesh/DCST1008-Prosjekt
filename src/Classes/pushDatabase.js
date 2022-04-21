@@ -1,10 +1,10 @@
 import { pool } from '../mysql-pool';
 
 class UpdateDatabase {
-	deleteTournament(TournamentID, success) {
+	deleteTournament(tournamentID, success) {
 		pool.query(
 			'DELETE FROM Tournament WHERE TournamentID=?',
-			[TournamentID],
+			[tournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
 
@@ -16,7 +16,7 @@ class UpdateDatabase {
 		pool.query(
 			'INSERT INTO Tournament (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
 			[
-				tournamentObject.TorunamentId,
+				tournamentObject.tournamentID,
 				tournamentObject.name,
 				tournamentObject.generalSettings.type,
 				tournamentObject.generalSettings.gamemode,
@@ -28,10 +28,10 @@ class UpdateDatabase {
 			}
 		);
 	}
-	deleteGameMatch(TournamentID, success) {
+	deleteGameMatch(tournamentID, success) {
 		pool.query(
 			'DELETE FROM GameMatch WHERE TournamentID=?',
-			[TournamentID],
+			[tournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
 
@@ -43,7 +43,7 @@ class UpdateDatabase {
 		pool.query(
 			'INSERT INTO GameMatch (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?)',
 			[
-				match.round.tournament.TorunamentId,
+				match.round.tournament.tournamentID,
 				match.ind,
 				match.round.roundNumber,
 				match.teams[0].id,
@@ -58,8 +58,8 @@ class UpdateDatabase {
 			}
 		);
 	}
-	deleteTeams(TournamentID, success) {
-		pool.query('DELETE FROM Team WHERE TournamentID=?', [TournamentID], (error, results) => {
+	deleteTeams(tournamentID, success) {
+		pool.query('DELETE FROM Team WHERE TournamentID=?', [tournamentID], (error, results) => {
 			if (error) return console.error(error);
 
 			success();
@@ -78,10 +78,10 @@ class UpdateDatabase {
 		);
 	}
 
-	deleteTeamMember(TournamentID, success) {
+	deleteTeamMember(tournamentID, success) {
 		pool.query(
 			'DELETE FROM TeamMember WHERE TournamentID=?',
-			[TournamentID],
+			[tournamentID],
 			(error, results) => {
 				if (error) return console.error(error);
 

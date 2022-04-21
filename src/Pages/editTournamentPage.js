@@ -55,9 +55,9 @@ export class EditTournamentPage extends Component {
 					onClick={(event) => this.save(event)}
 					to={
 						'/tournamentPage/' +
-						this.tournamentObject.TorunamentId +
+						this.tournamentObject.tournamentID +
 						'/' +
-						this.tournamentObject.TorunamentId
+						this.tournamentObject.tournamentID
 					}
 				>
 					Update score
