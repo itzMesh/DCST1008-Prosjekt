@@ -81,9 +81,9 @@ export class AddSinglePlayer extends Component {
 						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +
-							(this.tournamentIDs[0] + 1) +
+							(this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1) +
 							'/' +
-							(this.tournamentIDs[0] + 1)
+							(this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1)
 						}
 						type="button"
 					>
@@ -169,12 +169,22 @@ export class AddSinglePlayer extends Component {
 				this.teamID++;
 				let aTeam = new Team(i[1][0], this.teamID, this.tournamentIDs[0] + 1);
 				aTeam.addMember(
-					new TeamMember(i[1][0], parseInt(i[1][1]), aTeam.id, this.tournamentIDs[0] + 1)
+					new TeamMember(
+						i[1][0],
+						parseInt(i[1][1]),
+						aTeam.id,
+						this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1
+					)
 				);
 				this.teamObj.push(aTeam);
 			}
 			tournamentplayer = [
-				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
+				new Torunament(
+					settings.name,
+					this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1,
+					this.teamObj,
+					settings
+				),
 				new Date(),
 			];
 		} else {
