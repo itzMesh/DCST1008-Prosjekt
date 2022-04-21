@@ -294,20 +294,19 @@ export class ShowTournamentPage extends Component {
 					{/* {this.tournamentObject.generalSettings.type != 'bracket' ? (</table>) : (</em>)} */}
 				</div>
 				<div className="winner" id="winner"></div>
-				<div class="confetti" id="confetti">
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
-					<div class="confetti-piece"></div>
+				<div className="confetti" id="confetti">
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
+					<div className="confetti-piece"></div>
 				</div>
 				<div className="saveConfirm" id="saveConfirm">
 					The tournament is saved!!!

@@ -12,7 +12,7 @@ export class Menu extends Component {
 						Overview{' '}
 					</NavLink>
 				</em>
-				<div class="center">
+				<div className="center">
 					{/* <a>
 						<span data-attr="Clash">Clash</span>
 						<span data-attr="Royale">Royale</span>
