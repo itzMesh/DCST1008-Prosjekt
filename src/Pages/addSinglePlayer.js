@@ -81,9 +81,9 @@ export class AddSinglePlayer extends Component {
 						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +
-							(this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1) +
+							(this.tournamentIDs[0] + 1) +
 							'/' +
-							(this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1)
+							(this.tournamentIDs[0] + 1)
 						}
 						type="button"
 					>
@@ -142,6 +142,9 @@ export class AddSinglePlayer extends Component {
 			this.tournamentIDs = results;
 			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
 			this.tournamentIDs.sort((a, b) => b - a);
+			if (this.tournamentIDs.length == 0) {
+				this.tournamentIDs.push(1);
+			}
 		});
 		pool.query('SELECT TeamID FROM Team', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
@@ -149,6 +152,9 @@ export class AddSinglePlayer extends Component {
 			this.teamIDs = results;
 			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
 			this.teamIDs.sort((a, b) => b - a);
+			if (this.teamIDs.length == 0) {
+				this.teamIDs.push(1);
+			}
 		});
 	}
 
@@ -169,22 +175,12 @@ export class AddSinglePlayer extends Component {
 				this.teamID++;
 				let aTeam = new Team(i[1][0], this.teamID, this.tournamentIDs[0] + 1);
 				aTeam.addMember(
-					new TeamMember(
-						i[1][0],
-						parseInt(i[1][1]),
-						aTeam.id,
-						this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1
-					)
+					new TeamMember(i[1][0], parseInt(i[1][1]), aTeam.id, this.tournamentIDs[0] + 1)
 				);
 				this.teamObj.push(aTeam);
 			}
 			tournamentplayer = [
-				new Torunament(
-					settings.name,
-					this.tournamentIDs.length == 0 ? 1 : this.tournamentIDs[0] + 1,
-					this.teamObj,
-					settings
-				),
+				new Torunament(settings.name, this.tournamentIDs[0] + 1, this.teamObj, settings),
 				new Date(),
 			];
 		} else {
