@@ -108,7 +108,6 @@ export class TournamentPage extends Component {
 				let promTournamentChoser = table[3];
 
 				for (const i of promTeam) {
-					console.log(i.IsShadow);
 					if (!i.IsShadow) {
 						teamObj.push(new Team(i.TeamName, i.TeamID, i.TournamentID));
 					} else {
@@ -141,14 +140,11 @@ export class TournamentPage extends Component {
 						gamemode: promTournamentChoser[0].TournamentGamemode,
 					}
 				);
-
-				console.log(tournamentObj);
 				promMatches.sort((a, b) =>
 					a.RoundNumber != b.RoundNumber
 						? a.RoundNumber - b.RoundNumber
 						: a.MatchNumber - b.MatchNumber
 				);
-				console.log(promMatches);
 				for (const i of promMatches) {
 					tournamentObj.rounds[i.RoundNumber].matches[i.MatchNumber].updateScore(
 						i.Team1Score,

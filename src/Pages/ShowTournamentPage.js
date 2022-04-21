@@ -5,13 +5,14 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Classes/pushDatabase';
-import { doc } from 'prettier';
 let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
 import { pool } from '../mysql-pool';
+import Round from '../Classes/round';
 
 let tournamentID = 0;
 let hoyde = [];
 let ok = false;
+
 export class ShowTournamentPage extends Component {
 	tournamentIDs = [];
 	loaded = false;
@@ -19,8 +20,11 @@ export class ShowTournamentPage extends Component {
 	tournamentObject =
 		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
 	length = this.tournamentObject.rounds[0].matches.length;
+	roundsInTournament = [];
+	allredyLoaded = false;
+	showedConfetti = false;
 	render() {
-		if (!this.tournamentObject) return null;
+		if (!this.tournamentObject || this.roundsInTournament.length == 0) return null;
 
 		return (
 			<div className="small">
@@ -90,8 +94,8 @@ export class ShowTournamentPage extends Component {
 					}
 					id="grid"
 				>
-					{/* {this.tournamentObject.generalSettings.type != 'bracket' ? (<table> ) : (<em>) } */}
-					{this.tournamentObject.rounds.map((round) => (
+					{' '}
+					{this.roundsInTournament.map((round) => (
 						<div
 							style={{
 								border:
@@ -113,7 +117,10 @@ export class ShowTournamentPage extends Component {
 										: 'roundGrid-cell'
 								}
 							>
-								Round {round.roundNumber + 1}:
+								{round.roundNumber == this.tournamentObject.numberOfRounds
+									? 'Bronze final'
+									: 'Round ' + (round.roundNumber + 1)}
+								:
 								<div
 									style={{
 										height:
@@ -128,126 +135,158 @@ export class ShowTournamentPage extends Component {
 									) : (
 										<div
 											style={{
-												height: hoyde[round.roundNumber] + 'px',
+												height:
+													hoyde[
+														round.roundNumber ==
+														this.tournamentObject.numberOfRounds
+															? round.roundNumber - 1
+															: round.roundNumber
+													] + 'px',
 											}}
 										></div>
 									)}
-									{round.matches.map((match) => (
-										<div
-											style={{
-												height:
-													this.tournamentObject.generalSettings.type ==
-													'bracket'
-														? 140 * 2 ** round.roundNumber + 'px'
-														: '140px',
-												width:
-													this.tournamentObject.generalSettings.type ==
-													'bracket'
-														? '400px'
-														: '300px',
-												float:
-													this.tournamentObject.generalSettings.type ==
-													'bracket'
-														? 'none'
-														: 'left',
-											}}
-										>
+									{round.matches
+										.filter(
+											(match) =>
+												round.roundNumber != round.numberOfRounds - 1 ||
+												match.ind == 0
+										)
+										.map((match) => (
 											<div
-												key={match.matchNumber}
 												style={{
 													height:
 														this.tournamentObject.generalSettings
 															.type == 'bracket'
-															? '100px'
-															: '',
+															? 140 * 2 ** round.roundNumber + 'px'
+															: '140px',
 													width:
 														this.tournamentObject.generalSettings
 															.type == 'bracket'
-															? '300px'
-															: '',
-													border:
+															? '400px'
+															: '300px',
+													float:
 														this.tournamentObject.generalSettings
 															.type == 'bracket'
-															? '#fdf913 3px inset'
-															: '',
-													marginLeft:
-														this.tournamentObject.generalSettings
-															.type == 'bracket'
-															? '50px'
-															: '',
+															? 'none'
+															: 'left',
 												}}
 											>
-												<div key={0} style={{ fontSize: '25px' }}>
-													<NavLink
-														onClick={(e) =>
-															this.containsShadow(e, match)
-														}
-														className="login"
-														to={
-															'/matches/edit/' +
-															round.roundNumber +
-															',' +
-															match.ind
-														}
-													>
-														Match {match.matchNumber}
-													</NavLink>
-												</div>
-												{match.teams
-													.filter(
-														(team) =>
-															team.constructor.name != 'ShadowTeam'
-													)
-													.map((team, i) => (
-														<div key={team.id}>
-															<em key={0}>
-																<b
-																	style={{
-																		color: 'white',
-																	}}
-																>
-																	{match.results[i]}{' '}
-																</b>
-																<em
-																	style={{
-																		color:
-																			match.winner != null &&
-																			match.winner.id !=
-																				team.id
-																				? 'red'
-																				: '#fdf913',
-																	}}
-																>
-																	<b>{team.name}</b>
-																	{team.teamMembers.length ==
-																	1 ? (
-																		<em></em>
-																	) : (
-																		<em>
-																			<b>:</b>
-																			{team.teamMembers.map(
-																				(member) => (
-																					<em
-																						key={
-																							member.name
-																						}
-																					>
-																						{'"' +
-																							member.name +
-																							'" '}
-																					</em>
-																				)
-																			)}
-																		</em>
-																	)}
+												<div
+													key={match.matchNumber}
+													style={{
+														height:
+															this.tournamentObject.generalSettings
+																.type == 'bracket'
+																? '100px'
+																: '',
+														width:
+															this.tournamentObject.generalSettings
+																.type == 'bracket'
+																? '300px'
+																: '',
+														border:
+															this.tournamentObject.generalSettings
+																.type == 'bracket'
+																? '#fdf913 3px inset'
+																: '',
+														marginLeft:
+															this.tournamentObject.generalSettings
+																.type == 'bracket'
+																? '50px'
+																: '',
+													}}
+												>
+													<div key={0} style={{ fontSize: '25px' }}>
+														<NavLink
+															onClick={(e) =>
+																this.containsShadow(e, match)
+															}
+															className="login"
+															to={
+																round.roundNumber ==
+																this.tournamentObject.numberOfRounds
+																	? '/matches/edit/' +
+																	  (parseInt(
+																			this.tournamentObject
+																				.numberOfRounds
+																	  ) -
+																			1) +
+																	  ',' +
+																	  1
+																	: '/matches/edit/' +
+																	  round.roundNumber +
+																	  ',' +
+																	  match.ind
+															}
+														>
+															{round.roundNumber ==
+															this.tournamentObject.numberOfRounds
+																? 'Bronze final'
+																: round.roundNumber ==
+																  this.tournamentObject
+																		.numberOfRounds -
+																		1
+																? 'Final'
+																: 'Match ' + match.matchNumber}
+														</NavLink>
+													</div>
+													{match.teams
+														.filter(
+															(team) =>
+																team.constructor.name !=
+																'ShadowTeam'
+														)
+														.map((team, i) => (
+															<div key={team.id}>
+																<em key={0}>
+																	<b
+																		style={{
+																			color: 'white',
+																		}}
+																	>
+																		{match.results[i]}{' '}
+																	</b>
+																	<em
+																		style={{
+																			color:
+																				match.winner !=
+																					null &&
+																				match.winner.id !=
+																					team.id
+																					? 'red'
+																					: '#fdf913',
+																		}}
+																	>
+																		<b>{team.name}</b>
+																		{team.teamMembers.length ==
+																		1 ? (
+																			<em></em>
+																		) : (
+																			<em>
+																				<b>:</b>
+																				{team.teamMembers.map(
+																					(member) => (
+																						<em
+																							key={
+																								member.name
+																							}
+																						>
+																							{'"' +
+																								member.name +
+																								'" '}
+																						</em>
+																					)
+																				)}
+																			</em>
+																		)}
+																	</em>
 																</em>
-															</em>
-														</div>
-													))}
-											</div>{' '}
-											<br />
-										</div>
-									))}
+															</div>
+														))}
+												</div>{' '}
+												<br />
+											</div>
+										))}
 								</div>
 							</div>
 						</div>
@@ -280,7 +319,6 @@ export class ShowTournamentPage extends Component {
 	tegn() {
 		let startX = 410;
 		let startY = 210;
-		console.log(this.tournamentObject.rounds);
 		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
 			let drawX = startX + j * 540;
 			let drawY = startY + hoyde[j];
@@ -303,6 +341,7 @@ export class ShowTournamentPage extends Component {
 			}
 		}
 	}
+
 	brackets(e) {
 		let out = 0;
 		hoyde = [0];
@@ -310,16 +349,16 @@ export class ShowTournamentPage extends Component {
 			out += 70 * Math.pow(2, i);
 			hoyde.push(out);
 		}
-		console.log(hoyde);
 	}
+
 	containsShadow(event, match) {
 		if (match.teams.map((e) => e.constructor.name).includes('ShadowTeam')) {
 			event.preventDefault();
 		}
 	}
+
 	save() {
 		function addsTournament(inn) {
-			console.log(inn, '5');
 			return new Promise((resolve) => {
 				updateDatabase.addTournament(inn[0], () => {
 					resolve(inn);
@@ -368,7 +407,6 @@ export class ShowTournamentPage extends Component {
 
 		async function kjør(inn) {
 			try {
-				console.log(inn[0]);
 				let e = await addsTournament(inn);
 				let f = await addsGameMatch(e);
 				let g = await addsTeam(f);
@@ -382,15 +420,12 @@ export class ShowTournamentPage extends Component {
 
 		(async () => {
 			tournamentID = this.tournamentObject.TorunamentId;
-			console.log(this.tournamentObject.TorunamentId, 'se her');
 			let message = await kjør([this.tournamentObject]);
-			console.log(message);
 		})();
 	}
 	updateScore() {
 		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
 			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
-				console.log(j);
 				pool.query(
 					'UPDATE GameMatch SET Team1=?, Team2=?, Team1Score=?, Team2Score=? WHERE RoundNumber=? && MatchNumber=? && TournamentID=?',
 					[
@@ -419,21 +454,63 @@ export class ShowTournamentPage extends Component {
 	}
 
 	mounted() {
+		console.log(this.tournamentObject.rounds.length);
+		if (
+			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==
+			2
+		) {
+			this.roundsInTournament = this.tournamentObject.rounds.concat([
+				new Round(
+					this.tournamentObject.numberOfRounds,
+					this.tournamentObject.numberOfRounds,
+					this.tournamentObject,
+					[
+						this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1]
+							.matches[1].teams[0],
+						this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1]
+							.matches[1].teams[1],
+					]
+				),
+			]);
+		} else {
+			this.roundsInTournament = this.tournamentObject.rounds;
+		}
+		if (
+			this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches.length ==
+			2
+		) {
+			this.roundsInTournament[this.roundsInTournament.length - 1].matches[0].results =
+				this.tournamentObject.rounds[
+					this.tournamentObject.rounds.length - 1
+				].matches[1].results;
+
+			this.roundsInTournament[this.roundsInTournament.length - 1].matches[0].teams =
+				this.tournamentObject.rounds[
+					this.tournamentObject.rounds.length - 1
+				].matches[1].teams;
+			console.log(this.roundsInTournament);
+		}
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
 			this.tournamentIDs = results;
 			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
 			this.tournamentIDs.sort((a, b) => b - a);
-			console.log(this.tournamentIDs);
 			this.tournamentIDs.some((id) => id == this.tournamentObject.TorunamentId)
 				? console.log('Trenger ikke å lagre')
 				: this.save();
 		});
 
-		if (this.loaded && this.tournamentObject.generalSettings.type == 'bracket') {
-			this.tegn();
-		}
+		setInterval(() => {
+			if (
+				this.loaded &&
+				this.tournamentObject.generalSettings.type == 'bracket' &&
+				!this.allredyLoaded
+			) {
+				this.tegn();
+				this.allredyLoaded = true;
+			}
+		}, 20);
 
 		if (this.tournamentObject.winner != null) {
 			document.getElementById('confetti').style.visibility = 'visible';
@@ -442,5 +519,26 @@ export class ShowTournamentPage extends Component {
 				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
 			this.updateScore();
 		}
+
+		setInterval(() => {
+			if (
+				this.tournamentObject.winner != null &&
+				(this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches
+					.length == 1 ||
+					this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches[1]
+						.winner != undefined) &&
+				document.getElementById('confetti') != null &&
+				!this.showedConfetti
+			) {
+				document.getElementById('confetti').style.visibility = 'visible';
+				document.getElementById('winner').style.visibility = 'visible';
+				document.getElementById('winner').innerHTML =
+					'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+				this.updateScore();
+				this.showedConfetti = true;
+			}
+		}, 20);
+
+		console.log(this.tournamentObject);
 	}
 }

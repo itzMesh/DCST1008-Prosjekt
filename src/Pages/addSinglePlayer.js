@@ -123,9 +123,6 @@ export class AddSinglePlayer extends Component {
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
-		console.log(deleteTeam);
-		console.log(deleteTeam[deleteId.target.id][1][0]);
-
 		document.getElementById('confirmT').style.visibility = 'visible';
 
 		document.getElementById('teamName').innerText =
@@ -139,7 +136,6 @@ export class AddSinglePlayer extends Component {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 	mounted() {
-		console.log(settings);
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
@@ -163,15 +159,12 @@ export class AddSinglePlayer extends Component {
 
 		this.name1 = '';
 		this.trophies1 = '';
-		console.log(this.teams);
 	}
 
 	createObjects(event) {
-		console.log(this.tournamentIDs[0] + 1, 'test1');
 		if (this.teams.length > 1 && settings.gamemode.substring(0, 3) == '1v1') {
 			this.teamObj = [];
 			this.teamID = parseInt(this.teamIDs[0]);
-			console.log(this.teamIDs);
 			for (const i of this.teams) {
 				this.teamID++;
 				let aTeam = new Team(i[1][0], this.teamID, this.tournamentIDs[0] + 1);
