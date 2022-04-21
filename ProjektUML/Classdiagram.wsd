@@ -48,17 +48,17 @@ Package Pages <<frame>>{
 
 Class Tournament{
     GeneralSettings generalSettings
-    Team[] team
+    Team[] teams
     Rounds[] rounds
+    String name
+    
 }
 
 
 Class GeneralSettings{
-    String tournamenttype
+    String type
     String gamemode
-    String bestOfX
-    Tournament tournament
-    void createTournament()
+    String name
 }
 
 
@@ -72,17 +72,6 @@ class TeamMember{
     String name
     int trophy
     String clanName
-}
-
-Class FirstToOne{
-    int[] result
-    void setScore(int score)
-}
-
-Class FirstToTwo{
-    int[][] result
-    void setScore(int score,int gameNr)
-
 }
 
 Class Match{
@@ -105,18 +94,12 @@ Class ShadowTeam {
 
 
 
-GeneralSettings "1..1" -- "1..1" Tournament
+GeneralSettings "1..1" <-- Tournament
 Tournament--> "1..*" Round
-Round-->"1..*" FirstToOne
-Round-->"1..*" FirstToTwo
-FirstToOne-->"0..2"Team
-FirstToOne-->"0..2"ShadowTeam
-FirstToTwo-->"0..2"Team
-FirstToTwo-->"0..2"ShadowTeam
+Round-->"1..*" Match
+Match-->"0..2"Team
+Match-->"0..2"ShadowTeam
 Team-->"1..2"TeamMember
-
-FirstToOne --|>Match
-FirstToTwo --|>Match
 
 
 Team-r-|>ShadowTeam
