@@ -47,7 +47,7 @@ class Round {
 	fillOutTeams(teams) {
 		//adds shadow teams to  make shure there's enoughp teams to make a bracket
 		while (teams.length < Math.pow(2, this.numberOfRounds - this.roundNumber)) {
-			teams.push(new ShadowTeam(this.tournament.TorunamentId));
+			teams.push(new ShadowTeam(this.tournament.TournamentID));
 		}
 		return teams;
 	}
@@ -114,8 +114,8 @@ class Round {
 			this.tournament.hasBronze = true;
 			this.matches.push(
 				new Match(
-					new ShadowTeam(this.tournament.TorunamentId, 1),
-					new ShadowTeam(this.tournament.TorunamentId, 2),
+					new ShadowTeam(this.tournament.TournamentID, 1),
+					new ShadowTeam(this.tournament.TournamentID, 2),
 					'Bronze final',
 					this,
 					1,
