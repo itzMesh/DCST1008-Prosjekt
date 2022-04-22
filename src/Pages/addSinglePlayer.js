@@ -47,7 +47,9 @@ export class AddSinglePlayer extends Component {
 					</div>
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
-					<br /> <em className="text">Player</em>
+					<br />
+					<br />
+					<em className="text">Player</em>
 					<input
 						className="input"
 						type="text"
@@ -73,7 +75,7 @@ export class AddSinglePlayer extends Component {
 					<br />
 					<br />
 				</form>
-
+				<br />
 				<div>
 					<em className="login" onClick={this.buttonClicked}>
 						Add Player
