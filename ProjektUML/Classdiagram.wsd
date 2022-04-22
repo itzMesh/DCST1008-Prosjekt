@@ -2,107 +2,296 @@
 
 'left to right direction
 
-package Database <<Database>>{
-    class Config{
-        String username  
-        String password
-    }
-    class MatchSetUp{
-        
-    }
-}
 
-Package Pages <<frame>>{
+
+Package React-pages <<frame>>{
     
 
     Class Overview{
-        TournamentPage[] previousTournaments
-        void newTorunament()
+        Object[] tournaments
+
+        JSX.Element render()
+        void confirm(Object id)
+        void delete()
+        void nodelete()
+        void mounted()
     }
 
     Class NewTournament{
+        String tourname 
+        String type
+        String gamemode 
+
+        void setSettings(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
+    }
+
+    together {
+
+        Class AddSinglerPlayer{
+            String team
+            String name1 
+            String trophies1
+            Array<String | Array<String>> teams
+            Team[] teamObj
+            HTMLFormElement form
+            String link
+            int[] TournamentIDs 
+            int[] teamIDs
+            int teamID 
+
+            JSX.Element render()
+            void confirm(React.MouseEvent<HTMLButtonElemen, MouseEvent> i, Array<Sting | Array<string>> teams)
+            void nodelete()
+            void delete()
+            void createObject(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
+            void buttonClicked()
+            void mounted()       
+        }
+
+        Class AddTwoPlayerTeams{
+            String team
+            String name1 
+            String trophies1
+            String name2
+            String trophies2
+            Array<String | Array<String>> teams
+            Team[] teamObj
+            HTMLFormElement form
+            String link
+            int[] TournamentIDs 
+            int[] teamIDs
+            int teamID 
+
+            JSX.Element render()
+            void confirm(React.MouseEvent<HTMLButtonElement, MouseEvent> i, Array<Sting | Array<string>> teams)
+            void nodelete()
+            void delete()
+            void createObject(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
+            void buttonClicked()
+            void mounted()
+        }
+
+        Class TournamentPage{
+            String link
+            String loaded
+            String[] canlink
+            Tournament tournamentObject
+            Team[] teamObject
+            TeamMember[] teamMemberObjects
+            Match[] matchObjects
+
+            JSX.Element render()
+            void mounted()
+        }
 
     }
-    Class AddSinglerPlayer{
-
-    }
-    Class AddTwoPlayerTeams{
-
-    }
+    
     Class Menu{
-        
+        JSX.Element render()
     }
-    Class TournamentPage{
-        
-    }
+    
     Class ShowTournamentPage{
-        
+        int[] TournamentIDs
+        Boolean loaded
+        int length
+        Round[] roundsInTournament
+        Boolean allredyLoaded
+        Boolean showedConfetti
+
+        JSX.Element render()
+        void tegn()
+        brackets(int e)
+        void containsShadow(React.MouseEvent<HTMLAnchorElement, MouseEvent> event, Match match)
+        void save()
+        void updateScore()
+        Tournament getTournament()
+        void mounted()
+
     }
+
     Class EditTournamentPage{
-        
+        Tournament tournamentObject
+        int matchind
+        Match match 
+        int score1
+        int score2
+        String regex
+
+        JSX.Element render()
+        void save(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
+        Tournament getTournament()
+        void mounted()
     }
 }
 
+package variables <<frame>>{
+    Class tournamentplayer <<tournamentplayer>>{
+        Array<Tournament | Date> tournamentplayer
+    }
 
+    Class tournamentplayers <<tournamentplayers>>{
+        Array<Tournament | Date> tournamentplayers
+    }
 
-
-Class Tournament{
-    GeneralSettings generalSettings
-    Team[] teams
-    Rounds[] rounds
-    String name
+    Class tournamentPageObj <<tournamentPageObj>>{
+        Array<Tournament | Date> tournamentPageObj
+    }
+    
     
 }
 
+package logical-classes <<frame>>{
 
-Class GeneralSettings{
-    String type
-    String gamemode
-    String name
+    Class GeneralSettings{
+        String type
+        String gamemode
+        String name
+    }
+
+    Class Tournament{
+        String name
+        int TournamentID
+        GeneralSettings generalSettings
+        Team winner
+        Team[] teams
+        Rounds[] rounds
+        Boolean hasBronze
+
+        void startTournamemt()
+        void createBrackets()
+        int setBracketRounds(Team[] teams)
+        void playWalkover()
+        void createRoundRobin()
+        int setRoundRobinRounds(Team[] teams)
+        void findRoundRobinWiner()
+    }
+
+    Class Round{
+        Tournament tournament
+        int firstMatchNumber
+        int roundNumber
+        int numberOfRounds
+        Match[] matches
+        Array<Team|ShadowTeam> teams
+
+        Array<Team|ShadowTeam> fillOutTeams(Team[])
+        void setseeds()
+        Array<Team|ShadowTeam> sortTeams(Array<Team|ShadowTeam> teams)
+        Array<Team|ShadowTeam> shuffleTeams()
+        void addMatches()
+
+
+    }
+
+    Class Match{
+        Round round 
+        int ind 
+        Team[] teams
+        int[] results
+        int matchnumber
+        Int matchSeed
+        Team winner
+        Team looser
+
+        updateScore(int score0, int score1)
+    }
+
+    Class Team{
+        TeamMember[] members
+        String name
+        int id
+        int[] score 
+        int[] pointDifference
+        float avrageTrophies
+
+        void addMember(TeamMember member)
+    }
+
+    Class ShadowTeam {
+        float tournamentID
+        float seed
+    }
+
+    class TeamMember{
+        String name
+        int trophies
+        int teamID
+        int tournamentID
+    }
+
 }
 
-
-Class Team{
-    TeamMember[] members
-    String teamName
-
-}
-
-class TeamMember{
-    String name
-    int trophy
-    String clanName
-}
-
-Class Match{
-    Team[] teams
-    Team Winner
-    Int MatchSeed
-}
-
-Class Round{
-    int roundNumber
-    int roundsToFinal
-    Match[] matches
-}
-
-Class ShadowTeam {
-    float avrageTrophies
-    float seed
-}
-
-
-
-
-GeneralSettings "1..1" <-- Tournament
-Tournament--> "1..*" Round
-Round-->"1..*" Match
+Tournament "1" -right-> GeneralSettings   
+Tournament "1" -- "*" Round
+Tournament --> "*" Team
+Round"1" --"*" Match
 Match-->"0..2"Team
 Match-->"0..2"ShadowTeam
 Team-->"1..2"TeamMember
+Round-->"*"Team
+Round -->"*"ShadowTeam
+
+EditTournamentPage--> "1" Match
+EditTournamentPage--> "1" Tournament
+
+ShowTournamentPage--> "*" Round
+ShowTournamentPage--> "1" Tournament
+
+NewTournament-up[#Orange]-> "1" GeneralSettings
+AddSinglerPlayer-[#Orange]-> "1" GeneralSettings
+AddTwoPlayerTeams-[#Orange]down-> "1" GeneralSettings
+
+AddSinglerPlayer -down->"1" tournamentplayer
+AddTwoPlayerTeams -[#blue]->"1" tournamentplayers
+TournamentPage -[#green]->"1" tournamentPageObj
+
+tournamentplayer -left->"1" Tournament
+tournamentplayers -[#blue]left->"1" Tournament
+tournamentPageObj -[#green]left->"1" Tournament
+
+TournamentPage -down->"1" Tournament
+
+
 
 
 Team-r-|>ShadowTeam
+
+
+
+
+hide <<tournamentplayer>> circle
+hide <<tournamentplayer>> methods
+hide <<tournamentplayer>> stereotype
+
+hide <<tournamentplayers>> circle
+hide <<tournamentplayers>> methods
+hide <<tournamentplayers>> stereotype
+
+hide <<tournamentPageObj>> circle
+hide <<tournamentPageObj>> methods
+hide <<tournamentPageObj>> stereotype
+
+AddTwoPlayerTeams -down[hidden]-> EditTournamentPage
+"React-pages"-down[hidden]>"logical-classes"
+"React-pages"-down[hidden]>"variables"
+
+variables-up[hidden]->"logical-classes"
+variables-up[hidden]->"logical-classes"
+variables-up[hidden]->"logical-classes"
+variables-up[hidden]->"logical-classes"
+
+AddSinglerPlayer-down[hidden]->ShowTournamentPage
+
+EditTournamentPage-right[hidden]->NewTournament
+
+AddSinglerPlayer-down[hidden]->TournamentPage
+
+AddSinglerPlayer-left[hidden]->ShowTournamentPage
+AddSinglerPlayer-down[hidden]->EditTournamentPage
+AddSinglerPlayer-down[hidden]->NewTournament
+
+
+
 
 
 

@@ -85,7 +85,7 @@ class Torunament {
 		return numberOfRounds;
 	}
 
-	findRoundRobinWiner() {
+	findRoundRobinWinner() {
 		if (
 			!this.rounds
 				.map(

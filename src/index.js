@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Routes, Route } from 'react-router-dom';
-import tester from './Classes/testClasses';
 
 import { Menu } from './Pages/menu';
 import { AddSinglePlayer } from './Pages/addSinglePlayer';

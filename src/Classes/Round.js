@@ -8,7 +8,6 @@ class Round {
 	numberOfRounds;
 	matches = [];
 	teams = [];
-	type = '';
 
 	//tournament is the Object the round is a part of
 	constructor(numberOfRounds, roundNumber, tournament, teams) {
@@ -107,6 +106,7 @@ class Round {
 				)
 			);
 		}
+
 		if (
 			this.roundNumber == this.numberOfRounds - 1 &&
 			this.tournament.teams.filter((e) => e.constructor.name == 'Team').length > 3
