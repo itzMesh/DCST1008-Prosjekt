@@ -12,6 +12,7 @@ import Round from '../Classes/round';
 let hoyde = [];
 
 export class ShowTournamentPage extends Component {
+	updateDatabase = updateDatabase;
 	tournamentIDs = [];
 	loaded = false;
 	tournamentObject = this.getTournament();
