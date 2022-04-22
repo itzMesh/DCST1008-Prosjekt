@@ -314,7 +314,7 @@ export class ShowTournamentPage extends Component {
 
 	tegn() {
 		let startX = 410;
-		let startY = 210;
+		let startY = 200;
 		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
 			let drawX = startX + j * 540;
 			let drawY = startY + hoyde[j];
