@@ -6,7 +6,7 @@ export class Menu extends Component {
 	render() {
 		return (
 			<div>
-				<em className="login">
+				<em>
 					<NavLink className="login" to="/overview">
 						{' '}
 						Overview{' '}
