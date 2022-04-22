@@ -55,7 +55,9 @@ export class AddTwoPlayerTeams extends Component {
 						onChange={(event) => (this.team = event.currentTarget.value)}
 						required
 					/>
-					<br /> <em className="text">Player 1</em>
+					<br />
+					<br />
+					<em className="player">Player 1</em>
 					<input
 						className="input"
 						type="text"

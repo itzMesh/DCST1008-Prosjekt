@@ -35,7 +35,7 @@ export class Overview extends Component {
 				<div className="centerview">
 					Overview of Tournaments <br />
 					<br />
-					<div>
+					<div className="border">
 						<div className="scroll">
 							{this.tournaments.map((tournament, i) => (
 								<div key={i}>
@@ -47,7 +47,7 @@ export class Overview extends Component {
 											X
 										</button>
 										<NavLink
-											className="login"
+											className="list"
 											to={'/tournamentpage/' + tournament.TournamentID}
 										>
 											{tournament.TournamentName}

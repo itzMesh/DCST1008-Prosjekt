@@ -37,7 +37,7 @@ em {
 	font-family: clash;
 	line-height: 28px;
 	font-size: 27px;
-	background: rgba(245, 244, 189, 0.315);
+	background: rgba(199, 199, 199, 0.215);
 	border-radius: 5px;
 	color: #ffd700;
 	text-decoration: none;
@@ -84,6 +84,33 @@ em {
 	cursor: pointer;
 }
 
+.list {
+	font-family: clash;
+	line-height: 28px;
+	font-size: 27px;
+	border-radius: 5px;
+	color: #ffd700;
+	text-decoration: none;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-right: 20px;
+	text-transform: capitalize;
+	user-select: none;
+}
+
+.list:hover {
+	font-family: clash;
+	line-height: 27px;
+	margin-right: 12px;
+	font-size: 28px;
+	color: #fdf913;
+	text-decoration: none;
+	padding-left: 5px;
+	user-select: none;
+	cursor: pointer;
+	text-transform: capitalize;
+}
+
 .x {
 	font-family: clash;
 	font-size: 10px;
@@ -97,7 +124,7 @@ em {
 .x:hover {
 	font-family: clash;
 	font-size: 10px;
-	color: red;
+	color: rgb(214, 49, 49);
 	text-decoration: none;
 	padding-left: 5px;
 	margin-right: 5px;
@@ -119,7 +146,7 @@ em {
 .xx:hover {
 	font-family: clash;
 	font-size: 15px;
-	color: red;
+	color: rgb(214, 49, 49);
 	text-decoration: none;
 	margin-right: 5px;
 	padding-left: 5px;
@@ -166,6 +193,18 @@ em {
 	margin-right: 1rem;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+.player {
+	font-family: clash;
+	font-size: 25px;
+	color: #ffbb00;
+	text-decoration: none;
+	padding-left: 5px;
+	padding-right: 7px;
+	margin-right: 1rem;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 .small {
 	font-family: clash;
 	font-size: 15px;
@@ -179,16 +218,28 @@ em {
 	text-align: center;
 	font-size: 60px;
 	color: #ffd700;
+	top: 50%;
+	left: 50%;
+	/* transform: translate(-50%, -50%); */
 }
 
 .centerview {
 	font-family: clash;
 	text-align: center;
 	position: absolute;
-	top: 50%;
+	top: 60%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 29px;
+}
+
+.border {
+	background: rgba(199, 199, 199, 0.215);
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
 }
 
 .input {
@@ -281,6 +332,7 @@ em {
 .confirm {
 	width: 800px;
 	height: 170px;
+	top: 95px;
 	visibility: hidden;
 	position: absolute;
 	font-size: 25px;
