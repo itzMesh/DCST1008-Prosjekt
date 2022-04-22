@@ -45,7 +45,9 @@ export class AddTwoPlayerTeams extends Component {
 					</div>
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
-					<br /> <em className="text">Team</em>
+					<br />
+					<br />
+					<em className="text">Team</em>
 					<input
 						className="input"
 						type="text"
@@ -55,7 +57,8 @@ export class AddTwoPlayerTeams extends Component {
 						onChange={(event) => (this.team = event.currentTarget.value)}
 						required
 					/>
-					<br /> <em className="text">Player 1</em>
+					<br />
+					<em className="player">Player 1</em>
 					<input
 						className="input"
 						type="text"
@@ -103,8 +106,8 @@ export class AddTwoPlayerTeams extends Component {
 						required
 					/>
 					<br />
-					<br />
 				</form>
+				<br />
 				<em className="login" type="button" onClick={this.buttonClicked}>
 					Add team
 				</em>
@@ -124,7 +127,8 @@ export class AddTwoPlayerTeams extends Component {
 				</NavLink>
 
 				<br />
-				<div className="infon">{settings.name}</div>
+				<br />
+				<div className="name">{settings.name}</div>
 
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
