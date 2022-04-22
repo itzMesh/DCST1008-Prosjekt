@@ -6,9 +6,7 @@ import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 
 export class EditTournamentPage extends Component {
-	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
-	tournamentObject =
-		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
+	tournamentObject = this.getTournament();
 	matchInds = [this.props.match.params.Match][0].split(',');
 	match = null;
 	score1 = 0;
@@ -66,19 +64,27 @@ export class EditTournamentPage extends Component {
 		);
 	}
 
-	mounted() {
-		if (!this.tournamentObject) return null;
-
-		this.match = this.tournamentObject.rounds[this.matchInds[0]].matches[this.matchInds[1]];
-		this.score1 = this.match.results.length != 2 ? 0 : this.match.results[0];
-		this.score2 = this.match.results.length != 2 ? 0 : this.match.results[1];
-	}
-
 	save(event) {
 		if (!this.form.reportValidity(event)) {
 			event.preventDefault();
 			return;
 		}
 		this.match.updateScore(this.score1, this.score2);
+	}
+
+	getTournament() {
+		let tournamentp =
+			tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
+		let tournamentObject =
+			tournamentp[1] > tournamentPageObj[1] ? tournamentp[0] : tournamentPageObj[0];
+		return tournamentObject;
+	}
+
+	mounted() {
+		if (!this.tournamentObject) return null;
+
+		this.match = this.tournamentObject.rounds[this.matchInds[0]].matches[this.matchInds[1]];
+		this.score1 = this.match.results.length != 2 ? 0 : this.match.results[0];
+		this.score2 = this.match.results.length != 2 ? 0 : this.match.results[1];
 	}
 }

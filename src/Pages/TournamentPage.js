@@ -2,27 +2,25 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route, withRouter, Redirect } from 'react-router-dom';
-import { pool } from '../mysql-pool';
+import { pool } from '../Database/mysql-pool';
 import Torunament from '../Classes/tournament';
 import TeamMember from '../Classes/teamMember';
 import Team from '../Classes/team';
 import ShadowTeam from '../Classes/shadowTeam';
+import GeneralSettings from '../Classes/GeneralSettings';
 
 export let tournamentPageObj = [null, new Date()];
 
 export class TournamentPage extends Component {
-	matches = [];
-	teamMember = [];
-	team = [];
-	tournamentChoser = null;
 	tournamentObject = null;
+	tournamentPageObj = tournamentPageObj;
 	teamObjects = [];
 	teamMemberObjects = [];
 	matchObjects = [];
-
 	link = '';
 	loded = 'Loading from database';
 	canlink = [];
+
 	render() {
 		//if (!this.tournamentObject) return null;
 
@@ -30,8 +28,8 @@ export class TournamentPage extends Component {
 			<div className="text">
 				<br />
 				<div>{this.loded}</div>
-				{this.canlink.map(() => (
-					<Redirect to={this.link}></Redirect>
+				{this.canlink.map((e, i) => (
+					<Redirect key={i} to={this.link}></Redirect>
 				))}
 			</div>
 		);
@@ -135,10 +133,11 @@ export class TournamentPage extends Component {
 					promTournamentChoser[0].TournamentName,
 					promTournamentChoser[0].TournamentID,
 					teamObj,
-					{
-						type: promTournamentChoser[0].TournamentType,
-						gamemode: promTournamentChoser[0].TournamentGamemode,
-					}
+					new GeneralSettings(
+						promTournamentChoser[0].TournamentType,
+						promTournamentChoser[0].TournamentName,
+						promTournamentChoser[0].TournamentGamemode
+					)
 				);
 				promMatches.sort((a, b) =>
 					a.RoundNumber != b.RoundNumber
@@ -203,6 +202,4 @@ export class TournamentPage extends Component {
 			this.canlink[0] = 'a';
 		})();
 	}
-
-	makeTournament(table) {}
 }

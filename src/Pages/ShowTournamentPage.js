@@ -4,21 +4,17 @@ import { NavLink } from 'react-router-dom';
 import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
-import { updateDatabase } from '../Classes/pushDatabase';
+import { updateDatabase } from '../Database/pushDatabase';
 let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
-import { pool } from '../mysql-pool';
+import { pool } from '../Database/mysql-pool';
 import Round from '../Classes/round';
 
-let tournamentID = 0;
 let hoyde = [];
-let ok = false;
-
+let tournamentID = 0;
 export class ShowTournamentPage extends Component {
 	tournamentIDs = [];
 	loaded = false;
-	tournamentp = tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
-	tournamentObject =
-		this.tournamentp[1] > tournamentPageObj[1] ? this.tournamentp[0] : tournamentPageObj[0];
+	tournamentObject = this.getTournament();
 	length = this.tournamentObject.rounds[0].matches.length;
 	roundsInTournament = [];
 	allredyLoaded = false;
@@ -51,8 +47,8 @@ export class ShowTournamentPage extends Component {
 										b.score.reduce((sum, e) => sum + e, 0) -
 										a.score.reduce((sum, e) => sum + e, 0)
 								)
-								.map((member) => (
-									<tbody>
+								.map((member, i) => (
+									<tbody key={i}>
 										<tr>
 											<td>{member.name}</td>
 											<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
@@ -95,8 +91,9 @@ export class ShowTournamentPage extends Component {
 					id="grid"
 				>
 					{' '}
-					{this.roundsInTournament.map((round) => (
+					{this.roundsInTournament.map((round, i) => (
 						<div
+							key={i}
 							style={{
 								border:
 									this.tournamentObject.generalSettings.type != 'bracket'
@@ -151,8 +148,9 @@ export class ShowTournamentPage extends Component {
 												round.roundNumber != round.numberOfRounds - 1 ||
 												match.ind == 0
 										)
-										.map((match) => (
+										.map((match, i) => (
 											<div
+												key={i}
 												style={{
 													height:
 														this.tournamentObject.generalSettings
@@ -223,9 +221,12 @@ export class ShowTournamentPage extends Component {
 															this.tournamentObject.numberOfRounds
 																? 'Bronze final'
 																: round.roundNumber ==
+																		this.tournamentObject
+																			.numberOfRounds -
+																			1 &&
 																  this.tournamentObject
-																		.numberOfRounds -
-																		1
+																		.generalSettings.type ==
+																		'bracket'
 																? 'Final'
 																: 'Match ' + match.matchNumber}
 														</NavLink>
@@ -237,7 +238,7 @@ export class ShowTournamentPage extends Component {
 																'ShadowTeam'
 														)
 														.map((team, i) => (
-															<div key={team.id}>
+															<div key={i}>
 																<em key={0}>
 																	<b
 																		style={{
@@ -265,12 +266,8 @@ export class ShowTournamentPage extends Component {
 																			<em>
 																				<b>:</b>
 																				{team.teamMembers.map(
-																					(member) => (
-																						<em
-																							key={
-																								member.name
-																							}
-																						>
+																					(member, i) => (
+																						<em key={i}>
 																							{'"' +
 																								member.name +
 																								'" '}
@@ -317,7 +314,7 @@ export class ShowTournamentPage extends Component {
 
 	tegn() {
 		let startX = 410;
-		let startY = 210;
+		let startY = 200;
 		for (let j = 0; j < this.tournamentObject.rounds.length - 1; j++) {
 			let drawX = startX + j * 540;
 			let drawY = startY + hoyde[j];
@@ -422,6 +419,7 @@ export class ShowTournamentPage extends Component {
 			let message = await kjør([this.tournamentObject]);
 		})();
 	}
+
 	updateScore() {
 		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
 			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
@@ -450,6 +448,14 @@ export class ShowTournamentPage extends Component {
 		setTimeout(() => {
 			document.getElementById('saveConfirm').style.visibility = 'hidden';
 		}, 2000);
+	}
+
+	getTournament() {
+		let tournamentp =
+			tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
+		let tournamentObject =
+			tournamentp[1] > tournamentPageObj[1] ? tournamentp[0] : tournamentPageObj[0];
+		return tournamentObject;
 	}
 
 	mounted() {
@@ -510,6 +516,14 @@ export class ShowTournamentPage extends Component {
 				this.allredyLoaded = true;
 			}
 		}, 20);
+
+		if (this.tournamentObject.winner != null) {
+			document.getElementById('confetti').style.visibility = 'visible';
+			document.getElementById('winner').style.visibility = 'visible';
+			document.getElementById('winner').innerHTML =
+				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+			this.updateScore();
+		}
 
 		setInterval(() => {
 			if (
