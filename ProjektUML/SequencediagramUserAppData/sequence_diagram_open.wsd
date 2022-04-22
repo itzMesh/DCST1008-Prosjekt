@@ -1,0 +1,23 @@
+@startuml SequenceOpen 
+
+actor User as U
+participant Aplication as A
+database Database as D
+
+activate U
+activate A
+
+U->A: Open aplication
+A-->U:Display overview page
+activate D
+A->D: Sends Querry to Tournament
+D-->A: Recives data from database
+deactivate D
+A-->U: Displays the previous tournaments
+
+
+
+
+
+
+@endumel
