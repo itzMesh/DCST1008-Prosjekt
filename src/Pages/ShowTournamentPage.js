@@ -12,6 +12,7 @@ import Round from '../Classes/round';
 let hoyde = [];
 let tournamentID = 0;
 export class ShowTournamentPage extends Component {
+	updateDatabase = updateDatabase;
 	tournamentIDs = [];
 	loaded = false;
 	tournamentObject = this.getTournament();
@@ -516,14 +517,6 @@ export class ShowTournamentPage extends Component {
 				this.allredyLoaded = true;
 			}
 		}, 20);
-
-		if (this.tournamentObject.winner != null) {
-			document.getElementById('confetti').style.visibility = 'visible';
-			document.getElementById('winner').style.visibility = 'visible';
-			document.getElementById('winner').innerHTML =
-				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
-			this.updateScore();
-		}
 
 		setInterval(() => {
 			if (
