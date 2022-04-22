@@ -301,7 +301,6 @@ export class ShowTournamentPage extends Component {
 					<div className="confetti-piece"></div>
 					<div className="confetti-piece"></div>
 					<div className="confetti-piece"></div>
-					<div className="confetti-piece"></div>
 				</div>
 				<div className="saveConfirm" id="saveConfirm">
 					The tournament is saved!!!

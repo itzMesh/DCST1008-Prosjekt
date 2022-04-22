@@ -25,7 +25,6 @@ export class Overview extends Component {
 						</div>
 					</div>
 				</div>
-				{/* <h1 className="title">Clasnering</h1> */}
 				<h1 className="title">
 					<a>
 						<span data-attr="Clas">Clas</span>
