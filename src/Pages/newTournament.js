@@ -17,7 +17,7 @@ export class NewTournament extends Component {
 				<form ref={(instance) => (this.form = instance)}>
 					<br />
 					<br />
-					<div className="border">
+					<div>
 						<em className="text">Tournament name</em>
 						<input
 							className="input"

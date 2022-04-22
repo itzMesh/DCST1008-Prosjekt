@@ -184,6 +184,14 @@ em {
 	text-align: center;
 }
 
+.name {
+	font-family: clash;
+	font-size: 35px;
+	color: #ffc400;
+	text-decoration: none;
+	text-align: center;
+}
+
 .text {
 	font-family: clash;
 	font-size: 25px;
@@ -251,8 +259,14 @@ em {
 
 .scrollPlayer {
 	overflow: auto;
-	height: 430px;
+	height: 400px;
 	width: 380px;
+	background: rgba(199, 199, 199, 0.215);
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
 }
 
 .scrollPlayer::-webkit-scrollbar {
