@@ -5,25 +5,6 @@
 
 
 Package React-pages <<frame>>{
-    
-    Class Overview{
-        <color:darkGreen>Object[] <color:royalBlue>tournaments
-        <color:darkGreen>PushDatabase <color:royalBlue>pushDatabase
-
-        <color:darkGreen>JSX.Element</color> render()
-        <color:darkGreen>void</color> confirm(<color:darkGreen>Object <color:royalBlue>id)
-        <color:darkGreen>void</color> delete()
-        <color:darkGreen>void</color> nodelete()
-        <color:darkGreen>void</color> mounted()
-    }
-
-    Class NewTournament{
-        <color:darkGreen>String <color:royalBlue>tourname 
-        <color:darkGreen>String <color:royalBlue>type
-        <color:darkGreen>String <color:royalBlue>gamemode 
-
-        <color:darkGreen>void</color> setSettings(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
-    }
 
     together {
 
@@ -86,9 +67,7 @@ Package React-pages <<frame>>{
 
     }
     
-    Class Menu{
-        <color:darkGreen>JSX.Element</color> render()
-    }
+
     
     Class ShowTournamentPage{
         <color:darkGreen>PushDatabase <color:royalBlue>pushDatabase
@@ -110,44 +89,9 @@ Package React-pages <<frame>>{
 
     }
 
-    Class EditTournamentPage{
-        <color:darkGreen>Tournament <color:royalBlue>tournamentObject
-        <color:darkGreen>int <color:royalBlue>matchind
-        <color:darkGreen>Match <color:royalBlue>match 
-        <color:darkGreen>int <color:royalBlue>score1
-        <color:darkGreen>int <color:royalBlue>score2
-        <color:darkGreen>String <color:royalBlue>regex
-
-        <color:darkGreen>JSX.Element</color> render()
-        <color:darkGreen>void</color> save(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
-        <color:darkGreen>Tournament</color> getTournament()
-        <color:darkGreen>void</color> mounted()
-    }
-}
-
-package variables <<frame>>{
-    Class tournamentplayer <<tournamentplayer>>{
-        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentplayer
-    }
-
-    Class tournamentplayers <<tournamentplayers>>{
-        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentplayers
-    }
-
-    Class tournamentPageObj <<tournamentPageObj>>{
-        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentPageObj
-    }
-    
-    
 }
 
 package logical-classes <<frame>>{
-
-    Class GeneralSettings{
-        <color:darkGreen>String <color:royalBlue>type
-        <color:darkGreen>String <color:royalBlue>gamemode
-        <color:darkGreen>String <color:royalBlue>name
-    }
 
     Class Tournament{
         <color:darkGreen>String <color:royalBlue>name
@@ -222,20 +166,8 @@ package logical-classes <<frame>>{
 
 }
 
-package Database <<frame>>{
-    class PushDatabase{
-        <color:darkGreen>void</color> deleteTournament(<color:darkGreen>int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> addTournament(<color:darkGreen>Tournament <color:royalBlue>tournamentObject</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void </color>deleteGameMatch(<color:darkGreen>int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> addGameMatch(<color:darkGreen>Match <color:royalBlue>match</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> deleteTeams(<color:darkGreen>int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> addTeam(<color:darkGreen>Team <color:royalBlue>team</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> deleteTeamMember(<color:darkGreen>int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-        <color:darkGreen>void</color> addTeamMember(<color:darkGreen>TeamMember <color:royalBlue>teamMemberInfo</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
-    }
-}
 
-Tournament  -right-> "1" GeneralSettings : <color:A80035>Uses
+
 Tournament "1" -- "*" Round : <color:A80035>Rounds is in tournament
 Tournament --> "*" Team : <color:A80035>contains these teams 
 Round"1" --"*" Match : <color:A80035>Matches are played in
@@ -245,28 +177,15 @@ Team-->"1..2"TeamMember : <color:A80035>Teams has members
 Round-->"*"Team : <color:A80035>Has teams playing in
 Round -->"*"ShadowTeam : <color:A80035>Has shadowteams playing in
 
-EditTournamentPage--> "1" Match : <color:A80035>Edits match
-EditTournamentPage--> "1" Tournament : <color:A80035>Edits tournament
-
 ShowTournamentPage--> "*" Round : <color:A80035>Contains Rounds
-ShowTournamentPage--> "1" Tournament : <color:A80035>Contains Torunament
+ShowTournamentPage--> "1" Tournament : <color:A80035>Shows Torunament
 
-NewTournament-up[#c78100]-> "1" GeneralSettings : <color:c78100>Uses to create tournament
-AddSinglePlayer-[#c78100]-> "1" GeneralSettings : <color:c78100>Uses to create tournament
-AddTwoPlayerTeams-[#c78100]down-> "1" GeneralSettings : <color:c78100>Uses to create tournament
 
-AddSinglePlayer -[#purple]down->"1" tournamentplayer : <color:purple>Fills out tournamentplayer
-AddTwoPlayerTeams -[#blue]->"1" tournamentplayers : <color:blue>Fills out tournamentplayers
-TournamentPage -[#green]->"1" tournamentPageObj : <color:green>Fills out tournamentPageObj
 
-tournamentplayer -[#purple]left->"1" Tournament : <color:purple>Stores a tournament
-tournamentplayers -[#blue]left->"1" Tournament : <color:blue>Stores a tournament
-tournamentPageObj -[#green]left->"1" Tournament : <color:green>Stores a tournament
+AddSinglePlayer -[#purple]left->"1" Tournament : <color:purple>creates a tournament
+AddTwoPlayerTeams -[#blue]left->"1" Tournament : <color:blue>creates a tournament
 
 TournamentPage -down->"1" Tournament : <color:A80035>Creates a tournament
-
-Overview -[#Black]-> "1" PushDatabase : Delegates database tasks to
-ShowTournamentPage -[#Black]-> "1" PushDatabase : Delegates database tasks to
 
 
 Team-r-|>ShadowTeam
@@ -274,37 +193,13 @@ Team-r-|>ShadowTeam
 
 
 
-hide <<tournamentplayer>> circle
-hide <<tournamentplayer>> methods
-hide <<tournamentplayer>> stereotype
-
-hide <<tournamentplayers>> circle
-hide <<tournamentplayers>> methods
-hide <<tournamentplayers>> stereotype
-
-hide <<tournamentPageObj>> circle
-hide <<tournamentPageObj>> methods
-hide <<tournamentPageObj>> stereotype
-
-AddTwoPlayerTeams -down[hidden]-> EditTournamentPage
 "React-pages"-down[hidden]>"logical-classes"
-"React-pages"-down[hidden]>"variables"
-
-variables-up[hidden]->"logical-classes"
-variables-up[hidden]->"logical-classes"
-variables-up[hidden]->"logical-classes"
-variables-up[hidden]->"logical-classes"
 
 AddSinglePlayer-down[hidden]->ShowTournamentPage
-
-EditTournamentPage-right[hidden]->NewTournament
 
 AddSinglePlayer-down[hidden]->TournamentPage
 
 AddSinglePlayer-left[hidden]->ShowTournamentPage
-AddSinglePlayer-down[hidden]->EditTournamentPage
-AddSinglePlayer-down[hidden]->NewTournament
-
 
 
 
