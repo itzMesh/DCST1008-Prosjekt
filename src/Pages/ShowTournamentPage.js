@@ -518,14 +518,6 @@ export class ShowTournamentPage extends Component {
 			}
 		}, 20);
 
-		if (this.tournamentObject.winner != null) {
-			document.getElementById('confetti').style.visibility = 'visible';
-			document.getElementById('winner').style.visibility = 'visible';
-			document.getElementById('winner').innerHTML =
-				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
-			this.updateScore();
-		}
-
 		setInterval(() => {
 			if (
 				this.tournamentObject.winner != null &&
