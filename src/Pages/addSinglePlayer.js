@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from '../mysql-pool';
+import { pool } from '../Database/mysql-pool';
 import { NavLink } from 'react-router-dom';
 import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
@@ -13,10 +13,13 @@ let deleteTeam;
 
 export let tournamentplayer = [null, new Date()];
 export class AddSinglePlayer extends Component {
+	tournamentplayer = tournamentplayer;
+	settings = settings;
 	team = '';
 	name1 = '';
 	trophies1 = '';
 	teams = [];
+	teamObj = [];
 	form = null;
 	link = '';
 	tournamentIDs = [];
@@ -120,6 +123,7 @@ export class AddSinglePlayer extends Component {
 			</div>
 		);
 	}
+
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
@@ -128,34 +132,14 @@ export class AddSinglePlayer extends Component {
 		document.getElementById('teamName').innerText =
 			'Are you sure you want to delete "' + deleteTeam[deleteId.target.id][1][0] + '"';
 	}
+
 	nodelete() {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
+
 	delete() {
 		deleteTeam.splice(deleteId.target.id, 1);
 		document.getElementById('confirmT').style.visibility = 'hidden';
-	}
-	mounted() {
-		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-			this.tournamentIDs = results;
-			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
-			this.tournamentIDs.sort((a, b) => b - a);
-			if (this.tournamentIDs.length == 0) {
-				this.tournamentIDs.push(1);
-			}
-		});
-		pool.query('SELECT TeamID FROM Team', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-			this.teamIDs = results;
-			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
-			this.teamIDs.sort((a, b) => b - a);
-			if (this.teamIDs.length == 0) {
-				this.teamIDs.push(1);
-			}
-		});
 	}
 
 	buttonClicked() {
@@ -187,5 +171,28 @@ export class AddSinglePlayer extends Component {
 			console.log('fungerer dette');
 			event.preventDefault();
 		}
+	}
+
+	mounted() {
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			if (this.tournamentIDs.length == 0) {
+				this.tournamentIDs.push(1);
+			}
+		});
+		pool.query('SELECT TeamID FROM Team', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.teamIDs = results;
+			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
+			this.teamIDs.sort((a, b) => b - a);
+			if (this.teamIDs.length == 0) {
+				this.teamIDs.push(1);
+			}
+		});
 	}
 }

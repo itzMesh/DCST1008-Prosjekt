@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from '../mysql-pool';
+import { pool } from '../Database/mysql-pool';
 import { NavLink } from 'react-router-dom';
 import { settings } from './newTournament';
 import Team from '../Classes/team';
@@ -11,16 +11,18 @@ export let tournamentplayers = [null, new Date()];
 let deleteId;
 let deleteTeam;
 export class AddTwoPlayerTeams extends Component {
+	tournamentplayers = tournamentplayers;
+	settings = settings;
 	team = '';
 	name1 = '';
 	trophies1 = '';
 	name2 = '';
 	trophies2 = '';
 	teams = [];
-	form = null;
-	tournamentIDs = [];
 	teamObj = [];
+	form = null;
 	link = '';
+	tournamentIDs = [];
 	teamIDs = [];
 	teamID = 0;
 
@@ -160,6 +162,7 @@ export class AddTwoPlayerTeams extends Component {
 			</div>
 		);
 	}
+
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
@@ -169,34 +172,14 @@ export class AddTwoPlayerTeams extends Component {
 		document.getElementById('teamName').innerText =
 			'Are you sure you want to delete "' + deleteTeam[deleteId.target.id][0] + '"';
 	}
+
 	nodelete() {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
+
 	delete() {
 		deleteTeam.splice(deleteId.target.id, 1);
 		document.getElementById('confirmT').style.visibility = 'hidden';
-	}
-	mounted() {
-		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-			this.tournamentIDs = results;
-			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
-			this.tournamentIDs.sort((a, b) => b - a);
-			if (this.tournamentIDs.length == 0) {
-				this.tournamentIDs.push(1);
-			}
-		});
-		pool.query('SELECT TeamID FROM Team', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-			this.teamIDs = results;
-			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
-			this.teamIDs.sort((a, b) => b - a);
-			if (this.teamIDs.length == 0) {
-				this.teamIDs.push(1);
-			}
-		});
 	}
 
 	createObjects(event) {
@@ -232,5 +215,28 @@ export class AddTwoPlayerTeams extends Component {
 		this.trophies1 = '';
 		this.name2 = '';
 		this.trophies2 = '';
+	}
+
+	mounted() {
+		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.tournamentIDs = results;
+			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
+			this.tournamentIDs.sort((a, b) => b - a);
+			if (this.tournamentIDs.length == 0) {
+				this.tournamentIDs.push(1);
+			}
+		});
+		pool.query('SELECT TeamID FROM Team', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			this.teamIDs = results;
+			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
+			this.teamIDs.sort((a, b) => b - a);
+			if (this.teamIDs.length == 0) {
+				this.teamIDs.push(1);
+			}
+		});
 	}
 }

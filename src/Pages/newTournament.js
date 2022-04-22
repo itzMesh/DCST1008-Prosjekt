@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
+import GeneralSettings from '../Classes/GeneralSettings';
 
-export let settings = { name: '', type: '', gamemode: '' };
+export let settings = new GeneralSettings('', '', '');
 
 export class NewTournament extends Component {
+	settings = settings;
 	tourname = '';
 	type = 'bracket';
 	gamemode = '1v1,0';

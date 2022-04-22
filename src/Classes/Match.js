@@ -1,13 +1,12 @@
 class Match {
 	round;
+	ind;
 	teams = [];
 	results = [0, 0];
 	matchNumber;
 	matchSeed;
-	matchSeed2;
 	winner;
 	looser;
-	matchFinished;
 
 	constructor(team0, team1, matchNumber, round, ind) {
 		this.round = round;
@@ -26,10 +25,12 @@ class Match {
 			this.teams[0].score[this.round.roundNumber] = 0;
 			this.teams[0].pointDifference[this.round.roundNumber] = score0 - score1;
 		}
+
 		if (this.teams[1].constructor.name != 'ShadowTeam') {
 			this.teams[1].score[this.round.roundNumber] = 0;
 			this.teams[1].pointDifference[this.round.roundNumber] = score1 - score0;
 		}
+
 		if (score0 - score1 != 0) {
 			this.winner = score0 > score1 ? this.teams[0] : this.teams[1];
 			this.looser = score0 > score1 ? this.teams[1] : this.teams[0];
@@ -61,6 +62,7 @@ class Match {
 			) {
 				this.round.tournament.winner = this.winner;
 			}
+
 			if (
 				this.round.roundNumber == this.round.numberOfRounds - 2 &&
 				this.round.tournament.hasBronze
@@ -83,8 +85,9 @@ class Match {
 			this.teams[0].score[this.round.roundNumber] = 1;
 			this.teams[1].score[this.round.roundNumber] = 1;
 		}
+
 		if (this.round.tournament.generalSettings.type != 'bracket') {
-			this.round.tournament.findRoundRobinWiner();
+			this.round.tournament.findRoundRobinWinner();
 		}
 	}
 }

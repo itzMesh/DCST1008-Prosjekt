@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
-import { pool } from '../mysql-pool';
-import { updateDatabase } from '../Classes/pushDatabase';
+import { pool } from '../Database/mysql-pool';
+import { updateDatabase } from '../Database/pushDatabase';
 let x;
 let intro = new Audio('./sound/scroll_loading_01.ogg');
 let newTour = new Audio('./sound/supercell_jingle.ogg');
@@ -37,8 +37,8 @@ export class Overview extends Component {
 					<br />
 					<div>
 						<div className="scroll">
-							{this.tournaments.map((tournament) => (
-								<div>
+							{this.tournaments.map((tournament, i) => (
+								<div key={i}>
 									<div key={tournament.TournamentID} className="tournament">
 										<button
 											className="xx"
@@ -66,6 +66,7 @@ export class Overview extends Component {
 			</div>
 		);
 	}
+
 	confirm(id) {
 		document.getElementById('confirm').style.visibility = 'visible';
 
@@ -73,9 +74,11 @@ export class Overview extends Component {
 		document.getElementById('tournamentName').innerText =
 			'Are you sure you want to delete "' + id.TournamentName + '"';
 	}
+
 	nodelete() {
 		document.getElementById('confirm').style.visibility = 'hidden';
 	}
+
 	delete() {
 		document.getElementById('confirm').style.visibility = 'hidden';
 		updateDatabase.deleteTournament(x.TournamentID, () => console.log());
@@ -86,6 +89,7 @@ export class Overview extends Component {
 			this.mounted();
 		}, 100);
 	}
+
 	mounted() {
 		pool.query('SELECT * FROM Tournament', (error, results) => {
 			if (error) return console.error(error);
