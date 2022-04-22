@@ -9,18 +9,6 @@ activate U
 activate A
 activate D
 
-alt Sign up
-    U->A: Sign up 
-    A->D: Adding user
-    D-->A: User approved / not approved if user already exists
-    A-->U: User created
-    
-else Login
-    U->A: Login
-    A->D: Request user
-    D-->A: Accepts / Denies
-    A-->U: Logged in / Not logged in
-end
 
 
 alt Choose already created

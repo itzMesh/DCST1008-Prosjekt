@@ -1,0 +1,15 @@
+@startuml createTournament
+
+actor User as U
+participant Aplication as A
+
+activate U
+activate A
+
+U->A: Clicks the "Create Tournament" button
+A->A: Creates a Tournament
+A-->U: Takes you to the page for the tournament
+
+
+
+@enduml
