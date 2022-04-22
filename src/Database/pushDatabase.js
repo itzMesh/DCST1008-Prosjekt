@@ -1,4 +1,4 @@
-import { pool } from '../mysql-pool';
+import { pool } from './mysql-pool';
 
 class UpdateDatabase {
 	deleteTournament(tournamentID, success) {
@@ -12,6 +12,7 @@ class UpdateDatabase {
 			}
 		);
 	}
+
 	addTournament(tournamentObject, success) {
 		pool.query(
 			'INSERT INTO Tournament (TournamentID, TournamentName, TournamentType, TournamentGamemode) VALUES (?, ?, ?, ?)',
@@ -28,6 +29,7 @@ class UpdateDatabase {
 			}
 		);
 	}
+
 	deleteGameMatch(tournamentID, success) {
 		pool.query(
 			'DELETE FROM GameMatch WHERE TournamentID=?',
@@ -39,6 +41,7 @@ class UpdateDatabase {
 			}
 		);
 	}
+
 	addGameMatch(match, success) {
 		pool.query(
 			'INSERT INTO GameMatch (TournamentID, MatchNumber, RoundNumber, Team1, Team2, Team1Score, Team2Score) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -58,6 +61,7 @@ class UpdateDatabase {
 			}
 		);
 	}
+
 	deleteTeams(tournamentID, success) {
 		pool.query('DELETE FROM Team WHERE TournamentID=?', [tournamentID], (error, results) => {
 			if (error) return console.error(error);
