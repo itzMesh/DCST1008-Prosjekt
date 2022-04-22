@@ -10,7 +10,7 @@ import { pool } from '../Database/mysql-pool';
 import Round from '../Classes/round';
 
 let hoyde = [];
-
+let tournamentID = 0;
 export class ShowTournamentPage extends Component {
 	tournamentIDs = [];
 	loaded = false;
@@ -221,9 +221,12 @@ export class ShowTournamentPage extends Component {
 															this.tournamentObject.numberOfRounds
 																? 'Bronze final'
 																: round.roundNumber ==
+																		this.tournamentObject
+																			.numberOfRounds -
+																			1 &&
 																  this.tournamentObject
-																		.numberOfRounds -
-																		1
+																		.generalSettings.type ==
+																		'bracket'
 																? 'Final'
 																: 'Match ' + match.matchNumber}
 														</NavLink>
@@ -513,6 +516,14 @@ export class ShowTournamentPage extends Component {
 				this.allredyLoaded = true;
 			}
 		}, 20);
+
+		if (this.tournamentObject.winner != null) {
+			document.getElementById('confetti').style.visibility = 'visible';
+			document.getElementById('winner').style.visibility = 'visible';
+			document.getElementById('winner').innerHTML =
+				'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+			this.updateScore();
+		}
 
 		setInterval(() => {
 			if (
