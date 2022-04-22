@@ -9,6 +9,7 @@ let newTour = new Audio('./sound/supercell_jingle.ogg');
 
 export class Overview extends Component {
 	tournaments = [];
+	updateDatabase = updateDatabase;
 	render() {
 		return (
 			<div className="overview">

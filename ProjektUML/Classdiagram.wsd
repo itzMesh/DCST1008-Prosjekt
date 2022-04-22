@@ -7,133 +7,135 @@
 Package React-pages <<frame>>{
     
     Class Overview{
-        Object[] tournaments
+        <color:darkGreen>Object[] <color:royalBlue>tournaments
+        <color:darkGreen>PushDatabase <color:royalBlue>pushDatabase
 
-        JSX.Element render()
-        void confirm(Object id)
-        void delete()
-        void nodelete()
-        void mounted()
+        <color:darkGreen>JSX.Element</color> render()
+        <color:darkGreen>void</color> confirm(<color:darkGreen>Object <color:royalBlue>id)
+        <color:darkGreen>void</color> delete()
+        <color:darkGreen>void</color> nodelete()
+        <color:darkGreen>void</color> mounted()
     }
 
     Class NewTournament{
-        String tourname 
-        String type
-        String gamemode 
+        <color:darkGreen>String <color:royalBlue>tourname 
+        <color:darkGreen>String <color:royalBlue>type
+        <color:darkGreen>String <color:royalBlue>gamemode 
 
-        void setSettings(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
+        <color:darkGreen>void</color> setSettings(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
     }
 
     together {
 
         Class AddSinglerPlayer{
-            String team
-            String name1 
-            String trophies1
-            Array<String | Array<String>> teams
-            Team[] teamObj
-            HTMLFormElement form
-            String link
-            int[] TournamentIDs 
-            int[] teamIDs
-            int teamID 
+            <color:darkGreen>String <color:royalBlue>team
+            <color:darkGreen>String <color:royalBlue>name1 
+            <color:darkGreen>String <color:royalBlue>trophies1
+            <color:darkGreen>Array<String | Array<String>> <color:royalBlue>teams
+            <color:darkGreen>Team[] <color:royalBlue>teamObj
+            <color:darkGreen>HTMLFormElement <color:royalBlue>form
+            <color:darkGreen>String <color:royalBlue>link
+            <color:darkGreen>int[] <color:royalBlue>TournamentIDs 
+            <color:darkGreen>int[] <color:royalBlue>teamIDs
+            <color:darkGreen>int <color:royalBlue>teamID 
 
-            JSX.Element render()
-            void confirm(React.MouseEvent<HTMLButtonElemen, MouseEvent> i, Array<Sting | Array<string>> teams)
-            void nodelete()
-            void delete()
-            void createObject(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
-            void buttonClicked()
-            void mounted()       
+            <color:darkGreen>JSX.Element</color> render()
+            <color:darkGreen>void</color> confirm(<color:darkGreen>React.MouseEvent<HTMLButtonElemen, MouseEvent> <color:royalBlue>i</color>, Array<Sting | Array<string>> <color:royalBlue>teams</color>)
+            <color:darkGreen>void</color> nodelete()
+            <color:darkGreen>void</color> delete()
+            <color:darkGreen>void</color> createObject(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
+            <color:darkGreen>void</color> buttonClicked()
+            <color:darkGreen>void</color> mounted()       
         }
 
         Class AddTwoPlayerTeams{
-            String team
-            String name1 
-            String trophies1
-            String name2
-            String trophies2
-            Array<String | Array<String>> teams
-            Team[] teamObj
-            HTMLFormElement form
-            String link
-            int[] TournamentIDs 
-            int[] teamIDs
-            int teamID 
+            <color:darkGreen>String <color:royalBlue>team
+            <color:darkGreen>String <color:royalBlue>name1 
+            <color:darkGreen>String <color:royalBlue>trophies1
+            <color:darkGreen>String <color:royalBlue>name2
+            <color:darkGreen>String <color:royalBlue>trophies2
+            <color:darkGreen>Array<String | Array<String>> <color:royalBlue>teams
+            <color:darkGreen>Team[] <color:royalBlue>teamObj
+            <color:darkGreen>HTMLFormElement <color:royalBlue>form
+            <color:darkGreen>String <color:royalBlue>link
+            <color:darkGreen>int[] <color:royalBlue>TournamentIDs 
+            <color:darkGreen>int[] <color:royalBlue>teamIDs
+            <color:darkGreen>int <color:royalBlue>teamID 
 
-            JSX.Element render()
-            void confirm(React.MouseEvent<HTMLButtonElement, MouseEvent> i, Array<Sting | Array<string>> teams)
-            void nodelete()
-            void delete()
-            void createObject(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
-            void buttonClicked()
-            void mounted()
+            <color:darkGreen>JSX.Element</color> render()
+            <color:darkGreen>void</color> confirm(<color:darkGreen>React.MouseEvent<HTMLButtonElement, MouseEvent> <color:royalBlue>i</color>, Array<Sting | Array<string>> <color:royalBlue>teams</color>)
+            <color:darkGreen>void</color> nodelete()
+            <color:darkGreen>void</color> delete()
+            <color:darkGreen>void</color> createObject(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
+            <color:darkGreen>void</color> buttonClicked()
+            <color:darkGreen>void</color> mounted()
         }
 
         Class TournamentPage{
-            String link
-            String loaded
-            String[] canlink
-            Tournament tournamentObject
-            Team[] teamObject
-            TeamMember[] teamMemberObjects
-            Match[] matchObjects
+            <color:darkGreen>String <color:royalBlue>link
+            <color:darkGreen>String <color:royalBlue>loaded
+            <color:darkGreen>String[] <color:royalBlue>canlink
+            <color:darkGreen>Tournament <color:royalBlue>tournamentObject
+            <color:darkGreen>Team[] <color:royalBlue>teamObject
+            <color:darkGreen>TeamMember[] <color:royalBlue>teamMemberObjects
+            <color:darkGreen>Match[] <color:royalBlue>matchObjects
 
-            JSX.Element render()
-            void mounted()
+            <color:darkGreen>JSX.Element</color> render()
+            <color:darkGreen>void</color> mounted()
         }
 
     }
     
     Class Menu{
-        JSX.Element render()
+        <color:darkGreen>JSX.Element</color> render()
     }
     
     Class ShowTournamentPage{
-        int[] TournamentIDs
-        Boolean loaded
-        int length
-        Round[] roundsInTournament
-        Boolean allredyLoaded
-        Boolean showedConfetti
+        <color:darkGreen>PushDatabase <color:royalBlue>pushDatabase
+        <color:darkGreen>int[] <color:royalBlue>TournamentIDs
+        <color:darkGreen>Boolean <color:royalBlue>loaded
+        <color:darkGreen>int <color:royalBlue>length
+        <color:darkGreen>Round[] <color:royalBlue>roundsInTournament
+        <color:darkGreen>Boolean <color:royalBlue>allredyLoaded
+        <color:darkGreen>Boolean <color:royalBlue>showedConfetti
 
-        JSX.Element render()
-        void tegn()
-        brackets(int e)
-        void containsShadow(React.MouseEvent<HTMLAnchorElement, MouseEvent> event, Match match)
-        void save()
-        void updateScore()
-        Tournament getTournament()
-        void mounted()
+        <color:darkGreen>JSX.Element</color> render()
+        <color:darkGreen>void</color> tegn()
+        <color:darkGreen>void</color> brackets(<color:darkGreen>int <color:royalBlue>e</color>)
+        <color:darkGreen>void containsShadow(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>, Match <color:royalBlue>match</color>)
+        <color:darkGreen>void</color> save()
+        <color:darkGreen>void</color> updateScore()
+        <color:darkGreen>Tournament</color> getTournament()
+        <color:darkGreen>void</color> mounted()
 
     }
 
     Class EditTournamentPage{
-        Tournament tournamentObject
-        int matchind
-        Match match 
-        int score1
-        int score2
-        String regex
+        <color:darkGreen>Tournament <color:royalBlue>tournamentObject
+        <color:darkGreen>int <color:royalBlue>matchind
+        <color:darkGreen>Match <color:royalBlue>match 
+        <color:darkGreen>int <color:royalBlue>score1
+        <color:darkGreen>int <color:royalBlue>score2
+        <color:darkGreen>String <color:royalBlue>regex
 
-        JSX.Element render()
-        void save(React.MouseEvent<HTMLAnchorElement, MouseEvent> event)
-        Tournament getTournament()
-        void mounted()
+        <color:darkGreen>JSX.Element</color> render()
+        <color:darkGreen>void</color> save(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
+        <color:darkGreen>Tournament</color> getTournament()
+        <color:darkGreen>void</color> mounted()
     }
 }
 
 package variables <<frame>>{
     Class tournamentplayer <<tournamentplayer>>{
-        Array<Tournament | Date> tournamentplayer
+        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentplayer
     }
 
     Class tournamentplayers <<tournamentplayers>>{
-        Array<Tournament | Date> tournamentplayers
+        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentplayers
     }
 
     Class tournamentPageObj <<tournamentPageObj>>{
-        Array<Tournament | Date> tournamentPageObj
+        <color:darkGreen>Array<Tournament | Date> <color:royalBlue>tournamentPageObj
     }
     
     
@@ -142,115 +144,129 @@ package variables <<frame>>{
 package logical-classes <<frame>>{
 
     Class GeneralSettings{
-        String type
-        String gamemode
-        String name
+        <color:darkGreen>String <color:royalBlue>type
+        <color:darkGreen>String <color:royalBlue>gamemode
+        <color:darkGreen>String <color:royalBlue>name
     }
 
     Class Tournament{
-        String name
-        int TournamentID
-        GeneralSettings generalSettings
-        Team winner
-        Team[] teams
-        Rounds[] rounds
-        Boolean hasBronze
+        <color:darkGreen>String <color:royalBlue>name
+        <color:darkGreen>int <color:royalBlue>TournamentID
+        <color:darkGreen>GeneralSettings <color:royalBlue>generalSettings
+        <color:darkGreen>Team <color:royalBlue>winner
+        <color:darkGreen>Team[] <color:royalBlue>teams
+        <color:darkGreen>Rounds[] <color:royalBlue>rounds
+        <color:darkGreen>Boolean <color:royalBlue>hasBronze
 
-        void startTournamemt()
-        void createBrackets()
-        int setBracketRounds(Team[] teams)
-        void playWalkover()
-        void createRoundRobin()
-        int setRoundRobinRounds(Team[] teams)
-        void findRoundRobinWiner()
+        <color:darkGreen>void</color> startTournamemt()
+        <color:darkGreen>void</color> createBrackets()
+        <color:darkGreen>int setBracketRounds(Team[] <color:royalBlue>teams</color>)
+        <color:darkGreen>void</color> playWalkover()
+        <color:darkGreen>void</color> createRoundRobin()
+        <color:darkGreen>int</color> setRoundRobinRounds(Team[] <color:royalBlue>teams</color>)
+        <color:darkGreen>void</color> findRoundRobinWiner()
     }
 
     Class Round{
-        Tournament tournament
-        int firstMatchNumber
-        int roundNumber
-        int numberOfRounds
-        Match[] matches
-        Array<Team|ShadowTeam> teams
+        <color:darkGreen>Tournament <color:royalBlue>tournament
+        <color:darkGreen>int <color:royalBlue>firstMatchNumber
+        <color:darkGreen>int <color:royalBlue>roundNumber
+        <color:darkGreen>int <color:royalBlue>numberOfRounds
+        <color:darkGreen>Match[] <color:royalBlue>matches
+        <color:darkGreen>Array<Team|ShadowTeam> <color:royalBlue>teams
 
-        Array<Team|ShadowTeam> fillOutTeams(Team[])
-        void setseeds()
-        Array<Team|ShadowTeam> sortTeams(Array<Team|ShadowTeam> teams)
-        Array<Team|ShadowTeam> shuffleTeams()
-        void addMatches()
+        <color:darkGreen>Array<Team|ShadowTeam></color> fillOutTeams(<color:darkGreen>Team[] <color:royalBlue>teams</color>)
+        <color:darkGreen>void</color> setseeds()
+        <color:darkGreen>Array<Team|ShadowTeam></color> sortTeams(<color:darkGreen>Array<Team|ShadowTeam> <color:royalBlue>teams</color>)
+        <color:darkGreen>Array<Team|ShadowTeam></color> shuffleTeams()
+        <color:darkGreen>void</color> addMatches()
 
 
     }
 
     Class Match{
-        Round round 
-        int ind 
-        Team[] teams
-        int[] results
-        int matchnumber
-        Int matchSeed
-        Team winner
-        Team looser
+        <color:darkGreen>Round <color:royalBlue>round 
+        <color:darkGreen>int <color:royalBlue>ind 
+        <color:darkGreen>Team[] <color:royalBlue>teams
+        <color:darkGreen>int[] <color:royalBlue>results
+        <color:darkGreen>int <color:royalBlue>matchnumber
+        <color:darkGreen>Int <color:royalBlue>matchSeed
+        <color:darkGreen>Team <color:royalBlue>winner
+        <color:darkGreen>Team <color:royalBlue>looser
 
-        updateScore(int score0, int score1)
+        <color:darkGreen>void</color> updateScore(<color:darkGreen>int <color:royalBlue>score0</color>, int <color:royalBlue>score1</color>)
     }
 
     Class Team{
-        TeamMember[] members
-        String name
-        int id
-        int[] score 
-        int[] pointDifference
-        float avrageTrophies
+        <color:darkGreen>TeamMember[] <color:royalBlue>members
+        <color:darkGreen>String <color:royalBlue>name
+        <color:darkGreen>int <color:royalBlue>id
+        <color:darkGreen>int[] <color:royalBlue>score 
+        <color:darkGreen>int[] <color:royalBlue>pointDifference
+        <color:darkGreen>float <color:royalBlue>avrageTrophies
 
-        void addMember(TeamMember member)
+        <color:darkGreen>void</color> addMember(<color:darkGreen>TeamMember <color:royalBlue>member)
     }
 
     Class ShadowTeam {
-        float tournamentID
-        float seed
+        <color:darkGreen>float <color:royalBlue>tournamentID
+        <color:darkGreen>float <color:royalBlue>seed
     }
 
     class TeamMember{
-        String name
-        int trophies
-        int teamID
-        int tournamentID
+        <color:darkGreen>String <color:royalBlue>name
+        <color:darkGreen>int <color:royalBlue>trophies
+        <color:darkGreen>int <color:royalBlue>teamID
+        <color:darkGreen>int <color:royalBlue>tournamentID
     }
 
 }
 
-Tournament "1" -right-> GeneralSettings   
-Tournament "1" -- "*" Round
-Tournament --> "*" Team
-Round"1" --"*" Match
-Match-->"0..2"Team
-Match-->"0..2"ShadowTeam
-Team-->"1..2"TeamMember
-Round-->"*"Team
-Round -->"*"ShadowTeam
+package Database <<frame>>{
+    class PushDatabase{
+        <color:darkGreen>void</color> deleteTournament(int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> addTournament(Tournament <color:royalBlue>tournamentObject</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void </color>deleteGameMatch(int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> addGameMatch(Match <color:royalBlue>match</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> deleteTeams(int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> addTeam(Team <color:royalBlue>team</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> deleteTeamMember(int <color:royalBlue>tournamentID</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+        <color:darkGreen>void</color> addTeamMember(TeamMember <color:royalBlue>teamMemberInfo</color>, <color:darkGreen>()=>void <color:royalBlue>success</color>)
+    }
+}
 
-EditTournamentPage--> "1" Match
-EditTournamentPage--> "1" Tournament
+Tournament  -right-> "1" GeneralSettings : <color:A80035>Uses
+Tournament "1" -- "*" Round : <color:A80035>Rounds is in tournament
+Tournament --> "*" Team : <color:A80035>contains these teams 
+Round"1" --"*" Match : <color:A80035>Matches are played in
+Match-->"0..2"Team : <color:A80035>Teams is playing in 
+Match-->"0..2"ShadowTeam : <color:A80035>ShadowTeams is playing in 
+Team-->"1..2"TeamMember : <color:A80035>Teams has members
+Round-->"*"Team : <color:A80035>Has teams playing in
+Round -->"*"ShadowTeam : <color:A80035>Has shadowteams playing in
 
-ShowTournamentPage--> "*" Round
-ShowTournamentPage--> "1" Tournament
+EditTournamentPage--> "1" Match : <color:A80035>Edits match
+EditTournamentPage--> "1" Tournament : <color:A80035>Edits tournament
 
-NewTournament-up[#Orange]-> "1" GeneralSettings
-AddSinglerPlayer-[#Orange]-> "1" GeneralSettings
-AddTwoPlayerTeams-[#Orange]down-> "1" GeneralSettings
+ShowTournamentPage--> "*" Round : <color:A80035>Contains Rounds
+ShowTournamentPage--> "1" Tournament : <color:A80035>Contains Torunament
 
-AddSinglerPlayer -down->"1" tournamentplayer
-AddTwoPlayerTeams -[#blue]->"1" tournamentplayers
-TournamentPage -[#green]->"1" tournamentPageObj
+NewTournament-up[#c78100]-> "1" GeneralSettings : <color:c78100>Uses to create tournament
+AddSinglerPlayer-[#c78100]-> "1" GeneralSettings : <color:c78100>Uses to create tournament
+AddTwoPlayerTeams-[#c78100]down-> "1" GeneralSettings : <color:c78100>Uses to create tournament
 
-tournamentplayer -left->"1" Tournament
-tournamentplayers -[#blue]left->"1" Tournament
-tournamentPageObj -[#green]left->"1" Tournament
+AddSinglerPlayer -[#purple]down->"1" tournamentplayer : <color:purple>Fills out tournamentplayer
+AddTwoPlayerTeams -[#blue]->"1" tournamentplayers : <color:blue>Fills out tournamentplayers
+TournamentPage -[#green]->"1" tournamentPageObj : <color:green>Fills out tournamentPageObj
 
-TournamentPage -down->"1" Tournament
+tournamentplayer -[#purple]left->"1" Tournament : <color:purple>Stores a tournament
+tournamentplayers -[#blue]left->"1" Tournament : <color:blue>Stores a tournament
+tournamentPageObj -[#green]left->"1" Tournament : <color:green>Stores a tournament
 
+TournamentPage -down->"1" Tournament : <color:A80035>Creates a tournament
 
+Overview -[#Black]-> "1" PushDatabase : Delegates database tasks to
+ShowTournamentPage -[#Black]-> "1" PushDatabase : Delegates database tasks to
 
 
 Team-r-|>ShadowTeam
