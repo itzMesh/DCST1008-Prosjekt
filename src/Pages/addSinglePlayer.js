@@ -92,7 +92,7 @@ export class AddSinglePlayer extends Component {
 						}
 						type="button"
 					>
-						Create Torunament
+						Create Tournament
 					</NavLink>
 				</div>
 				<br />

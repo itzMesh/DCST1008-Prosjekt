@@ -123,7 +123,7 @@ export class AddTwoPlayerTeams extends Component {
 					onClick={() => this.createObjects()}
 					type="button"
 				>
-					Create Torunament
+					Create Tournament
 				</NavLink>
 
 				<br />
