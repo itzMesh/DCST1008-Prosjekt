@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from '../Database/mysql-pool';
 import { NavLink } from 'react-router-dom';
 import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
 import { body } from 'express-validator';
+import { updateDatabase } from '../Database/pushDatabase';
 
 let deleteId;
 let deleteTeam;
@@ -157,7 +157,11 @@ export class AddSinglePlayer extends Component {
 	}
 
 	createObjects(event) {
-		if (this.teams.length > 1 && settings.gamemode.substring(0, 3) == '1v1') {
+		console.log(settings.gamemode.substring(0, 3));
+		if (
+			(this.teams.length > 1 && settings.gamemode.substring(0, 3) == '1v1') ||
+			(this.teams.length > 3 && settings.gamemode.substring(0, 3) == '2v2')
+		) {
 			this.teamObj = [];
 			this.teamID = parseInt(this.teamIDs[0]);
 			for (const i of this.teams) {
@@ -181,25 +185,72 @@ export class AddSinglePlayer extends Component {
 	mounted() {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 
-		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+		function database() {
+			return new Promise((resolve) => {
+				updateDatabase.selectAllTournaments((results) => {
+					resolve(results);
+				});
+			});
+		}
 
-			this.tournamentIDs = results;
-			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
-			this.tournamentIDs.sort((a, b) => b - a);
-			if (this.tournamentIDs.length == 0) {
-				this.tournamentIDs.push(1);
-			}
-		});
-		pool.query('SELECT TeamID FROM Team', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+		function workWithDatabase(tournamentIDs) {
+			return new Promise((resolve) => {
+				tournamentIDs = tournamentIDs.map((Tournament) => Tournament.TournamentID);
+				tournamentIDs.sort((a, b) => b - a);
+				if (tournamentIDs.length == 0) {
+					tournamentIDs.push(1);
+				}
+				resolve(tournamentIDs);
+			});
+		}
 
-			this.teamIDs = results;
-			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
-			this.teamIDs.sort((a, b) => b - a);
-			if (this.teamIDs.length == 0) {
-				this.teamIDs.push(1);
+		async function Kjør() {
+			try {
+				let tournamentIDs = await database();
+				let tournamentIDs2 = await workWithDatabase(tournamentIDs);
+				console.log('test');
+
+				return tournamentIDs2;
+			} catch (error) {
+				console.error(error);
 			}
-		});
+		}
+		(async () => {
+			this.tournamentIDs = await Kjør();
+		})();
+
+		function database2() {
+			return new Promise((resolve) => {
+				updateDatabase.selectAllTeams((results) => {
+					resolve(results);
+				});
+			});
+		}
+
+		function workWithDatabase2(teamIDs) {
+			return new Promise((resolve) => {
+				teamIDs = teamIDs.map((Team) => Team.TeamID);
+				teamIDs.sort((a, b) => b - a);
+				if (teamIDs.length == 0) {
+					teamIDs.push(1);
+				}
+				resolve(teamIDs);
+			});
+		}
+
+		async function Kjør2() {
+			try {
+				let teamIDs = await database2();
+				let teamIDs2 = await workWithDatabase2(teamIDs);
+
+				return teamIDs2;
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		(async () => {
+			this.teamIDs = await Kjør2();
+		})();
 	}
 }

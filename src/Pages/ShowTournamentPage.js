@@ -6,7 +6,6 @@ import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Database/pushDatabase';
 let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
-import { pool } from '../Database/mysql-pool';
 import Round from '../Classes/round';
 
 let hoyde = [];
@@ -495,22 +494,23 @@ export class ShowTournamentPage extends Component {
 				});
 			});
 		}
-		function workWithDatabase(tournamentIDs, tournamentObject) {
+
+		function workWithDatabase(tournamentIDs, tournamentObject, site) {
 			return new Promise((resolve) => {
 				console.log('test2');
 				tournamentIDs = tournamentIDs.map((Tournament) => Tournament.TournamentID);
 				tournamentIDs.sort((a, b) => b - a);
 				tournamentIDs.some((id) => id == tournamentObject.tournamentID)
 					? console.log('Do not need to save')
-					: this.save();
+					: site.save();
 				resolve(tournamentIDs);
 			});
 		}
 
-		async function Kjør(tournamentObject) {
+		async function Kjør(tournamentObject, site) {
 			try {
 				let tournamentIDs = await database();
-				let tournamentIDs2 = await workWithDatabase(tournamentIDs, tournamentObject);
+				let tournamentIDs2 = await workWithDatabase(tournamentIDs, tournamentObject, site);
 
 				return tournamentIDs2;
 			} catch (error) {
@@ -518,7 +518,7 @@ export class ShowTournamentPage extends Component {
 			}
 		}
 		(async () => {
-			this.tournamentIDs = await Kjør(this.tournamentObject);
+			this.tournamentIDs = await Kjør(this.tournamentObject, this);
 		})();
 
 		setInterval(() => {
