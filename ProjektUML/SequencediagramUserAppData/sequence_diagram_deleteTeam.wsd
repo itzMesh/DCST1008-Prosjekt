@@ -1,0 +1,23 @@
+@startuml createTournament
+
+actor User as U
+participant Aplication as A
+
+activate U
+activate A
+
+U->A: Clicks on the x next to a team/player
+A-->U: opens the confirmation box
+alt confirms
+    U->A: Presses yes
+    A-->U: Closes confirmation box
+    A-->U: Deletes Player/team from page
+else Denies
+    U->A: Presses no
+    A-->U: Closes Confirmation box
+
+end
+
+
+
+@enduml
