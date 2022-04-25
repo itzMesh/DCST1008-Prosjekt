@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
-import { updateDatabase } from '../Database/pushDatabase';
+import { updateDatabase } from '../Database/services';
 let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
 import Round from '../Classes/round';
 

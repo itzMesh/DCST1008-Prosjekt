@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { pool } from '../Database/mysql-pool';
-import { updateDatabase } from '../Database/pushDatabase';
+import { updateDatabase } from '../Database/services';
 let x;
 let intro = new Audio('./sound/scroll_loading_01.ogg');
 let newTour = new Audio('./sound/supercell_jingle.ogg');
@@ -93,11 +93,8 @@ export class Overview extends Component {
 	mounted() {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 
-		pool.query('SELECT * FROM Tournament', (error, results) => {
-			if (error) return console.error(error);
+		updateDatabase.selectAllTournaments((results) => (this.tournaments = results));
 
-			this.tournaments = results;
-		});
 		intro.play();
 	}
 }

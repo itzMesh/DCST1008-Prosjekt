@@ -6,7 +6,7 @@ import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
 import { body } from 'express-validator';
-import { updateDatabase } from '../Database/pushDatabase';
+import { updateDatabase } from '../Database/services';
 
 let deleteId;
 let deleteTeam;
