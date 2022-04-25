@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route, withRouter, Redirect } from 'react-router-dom';
-import { pool } from '../Database/mysql-pool';
 import Torunament from '../Classes/tournament';
 import TeamMember from '../Classes/teamMember';
 import Team from '../Classes/team';
 import ShadowTeam from '../Classes/shadowTeam';
 import GeneralSettings from '../Classes/GeneralSettings';
+import { updateDatabase } from '../Database/pushDatabase';
 
 export let tournamentPageObj = [null, new Date()];
 
@@ -40,61 +40,34 @@ export class TournamentPage extends Component {
 
 		function firstDatabase() {
 			return new Promise((resolve) => {
-				pool.query(
-					'SELECT TeamID, PlayerName, PlayerTrophies FROM TeamMember WHERE TournamentID= ?',
-					[tournamentID],
-					(error, results) => {
-						if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-						resolve([results]);
-					}
-				);
+				updateDatabase.selectTeamMember(tournamentID, (results) => resolve([results]));
 			});
 		}
 		function secondDatabase(inn) {
 			return new Promise((resolve) => {
-				pool.query(
-					'SELECT MatchID, RoundNumber, TournamentID, MatchNumber, Team1, Team2, Team1Score, Team2Score FROM GameMatch WHERE TournamentID= ?',
-					[tournamentID],
-					(error, results) => {
-						if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-						let out = inn;
-						out.push(results);
-						resolve(out);
-					}
-				);
+				updateDatabase.selectGameMatch(tournamentID, (results) => {
+					let out = inn;
+					out.push(results);
+					resolve(out);
+				});
 			});
 		}
 		function thirdDatabase(inn) {
 			return new Promise((resolve) => {
-				pool.query(
-					'SELECT TeamID, TournamentID, IsShadow, TeamName FROM Team WHERE TournamentID= ?',
-					[tournamentID],
-					(error, results) => {
-						if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-						let out = inn;
-						out.push(results);
-						resolve(out);
-					}
-				);
+				updateDatabase.selectTeam(tournamentID, (results) => {
+					let out = inn;
+					out.push(results);
+					resolve(out);
+				});
 			});
 		}
 		function fourthDatabase(inn) {
 			return new Promise((resolve) => {
-				pool.query(
-					'SELECT TournamentID, TournamentName, TournamentType, TournamentGamemode FROM Tournament WHERE TournamentID= ?',
-					[tournamentID],
-
-					(error, results) => {
-						if (error) return console.error(error); // If error, show error in console (in red text) and return
-
-						let out = inn;
-						out.push(results);
-						resolve(out);
-					}
-				);
+				updateDatabase.selectTournament(tournamentID, (results) => {
+					let out = inn;
+					out.push(results);
+					resolve(out);
+				});
 			});
 		}
 

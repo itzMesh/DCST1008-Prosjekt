@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { pool } from '../Database/mysql-pool';
 import { NavLink } from 'react-router-dom';
 import { settings } from './newTournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import Torunament from '../Classes/tournament';
+import { updateDatabase } from '../Database/pushDatabase';
 
 export let tournamentplayers = [null, new Date()];
 let deleteId;
@@ -222,25 +222,52 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	mounted() {
-		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+		async function Kjør() {
+			try {
+				let tournamentIDs = await database();
+				let tournamentIDs2 = await workWithDatabase(tournamentIDs);
+				console.log('test');
 
-			this.tournamentIDs = results;
-			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
-			this.tournamentIDs.sort((a, b) => b - a);
-			if (this.tournamentIDs.length == 0) {
-				this.tournamentIDs.push(1);
+				return tournamentIDs2;
+			} catch (error) {
+				console.error(error);
 			}
-		});
-		pool.query('SELECT TeamID FROM Team', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
+		}
+		(async () => {
+			this.tournamentIDs = await Kjør();
+		})();
 
-			this.teamIDs = results;
-			this.teamIDs = this.teamIDs.map((Team) => Team.TeamID);
-			this.teamIDs.sort((a, b) => b - a);
-			if (this.teamIDs.length == 0) {
-				this.teamIDs.push(1);
+		function database2() {
+			return new Promise((resolve) => {
+				updateDatabase.selectAllTeams((results) => {
+					resolve(results);
+				});
+			});
+		}
+
+		function workWithDatabase2(teamIDs) {
+			return new Promise((resolve) => {
+				teamIDs = teamIDs.map((Team) => Team.TeamID);
+				teamIDs.sort((a, b) => b - a);
+				if (teamIDs.length == 0) {
+					teamIDs.push(1);
+				}
+				resolve(teamIDs);
+			});
+		}
+
+		async function Kjør2() {
+			try {
+				let teamIDs = await database2();
+				let teamIDs2 = await workWithDatabase2(teamIDs);
+
+				return teamIDs2;
+			} catch (error) {
+				console.error(error);
 			}
-		});
+		}
+		(async () => {
+			this.teamIDs = await Kjør2();
+		})();
 	}
 }

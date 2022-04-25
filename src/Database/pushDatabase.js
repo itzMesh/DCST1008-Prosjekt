@@ -142,5 +142,57 @@ class UpdateDatabase {
 			success(results);
 		});
 	}
+
+	selectAllTeams(success) {
+		pool.query('SELECT * FROM Team', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			success(results);
+		});
+	}
+
+	selectTeamMember(tournamentID, success) {
+		pool.query(
+			'SELECT * FROM TeamMember WHERE TournamentID= ?',
+			[tournamentID],
+			(error, results) => {
+				if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+				success(results);
+			}
+		);
+	}
+
+	selectTeam(tournamentID, success) {
+		pool.query('SELECT * FROM Team WHERE TournamentID= ?', [tournamentID], (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			success(results);
+		});
+	}
+
+	selectGameMatch(tournamentID, success) {
+		pool.query(
+			'SELECT * FROM GameMatch WHERE TournamentID= ?',
+			[tournamentID],
+			(error, results) => {
+				if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+				success(results);
+			}
+		);
+	}
+
+	selectTournament(tournamentID, success) {
+		pool.query(
+			'SELECT * FROM Tournament WHERE TournamentID= ?',
+			[tournamentID],
+			(error, results) => {
+				if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+				success(results);
+			}
+		);
+	}
 }
 export let updateDatabase = new UpdateDatabase();
