@@ -166,6 +166,9 @@ export class AddTwoPlayerTeams extends Component {
 						</div>
 					))}
 				</div>
+				<div className="confirm" id="warning">
+					<div className="overview">{this.warning}</div>
+				</div>
 			</div>
 		);
 	}
@@ -209,6 +212,14 @@ export class AddTwoPlayerTeams extends Component {
 				new Date(),
 			];
 		} else {
+			this.warning =
+				settings.gamemode.length == 0
+					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
+					: 'NOT ENOUGH PLAYERS';
+			document.getElementById('warning').style.visibility = 'visible';
+			setTimeout(() => {
+				document.getElementById('warning').style.visibility = 'hidden';
+			}, 1500);
 			event.preventDefault();
 		}
 	}
