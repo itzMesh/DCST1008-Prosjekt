@@ -1,0 +1,28 @@
+@startuml createTournament
+
+actor User as U
+participant Aplication as A
+Database database as D
+
+activate U
+activate A
+
+U->A: Clicks on the x next to a tournament name
+A-->U: opens the confirmation box
+alt confirms
+    U->A: Presses yes
+    A-->U: Closes confirmation box
+    activate D
+    A->D: Deletes tournament from database
+    D-->A: Confirms Deletion
+    deactivate D
+    A-->U: Deletes Tournament from overview page
+else Denies
+    U->A: Presses no
+    A-->U: Closes Confirmation box
+
+end
+
+
+
+@enduml

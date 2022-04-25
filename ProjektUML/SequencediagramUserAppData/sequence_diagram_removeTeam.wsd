@@ -7,7 +7,6 @@ activate U
 activate A
 
 U->A: Clicks the x next to a team
-A->A: Deletes the team
 A-->U: Removes the team from GUI
 
 @enduml

@@ -1,0 +1,20 @@
+@startuml createTournament
+
+actor User as U
+participant Aplication as A
+Database database as D
+
+activate U
+activate A
+
+U->A: Clicks on a tournament name
+A-->U: Takes you to the loading page
+activate D
+A->D: Requests all information about the tournament
+D-->A: Sends requested data to aplication
+deactivate D
+A-->U: Takes you to the page for the tournament
+
+
+
+@enduml
