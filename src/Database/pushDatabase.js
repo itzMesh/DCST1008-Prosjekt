@@ -110,5 +110,37 @@ class UpdateDatabase {
 			}
 		);
 	}
+
+	updateGameMatch(tournament, i, j, success) {
+		pool.query(
+			'UPDATE GameMatch SET Team1=?, Team2=?, Team1Score=?, Team2Score=? WHERE RoundNumber=? && MatchNumber=? && TournamentID=?',
+			[
+				tournament.rounds[i].matches[j].teams[0].id,
+				tournament.rounds[i].matches[j].teams[1].id,
+				tournament.rounds[i].matches[j].results.length != 2
+					? 0
+					: tournament.rounds[i].matches[j].results[0],
+				tournament.rounds[i].matches[j].results.length != 2
+					? 0
+					: tournament.rounds[i].matches[j].results[1],
+				i,
+				j,
+				tournament.tournamentID,
+			],
+			(error, results) => {
+				if (error) return console.error(error);
+
+				success();
+			}
+		);
+	}
+
+	selectAllTournaments(success) {
+		pool.query('SELECT * FROM Tournament', (error, results) => {
+			if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+			success(results);
+		});
+	}
 }
 export let updateDatabase = new UpdateDatabase();

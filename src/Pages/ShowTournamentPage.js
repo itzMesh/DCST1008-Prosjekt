@@ -370,7 +370,7 @@ export class ShowTournamentPage extends Component {
 				for (const round of inn[0].rounds) {
 					for (const matchInfo of round.matches) {
 						updateDatabase.addGameMatch(matchInfo, () => {
-							console.log('lagt til good gamematch');
+							console.log('added gamematch');
 						});
 					}
 				}
@@ -382,7 +382,7 @@ export class ShowTournamentPage extends Component {
 			return new Promise((resolve) => {
 				for (const team of inn[0].teams) {
 					updateDatabase.addTeam(team, () => {
-						console.log('lagt til team');
+						console.log('added team');
 					});
 				}
 				resolve(inn);
@@ -396,7 +396,7 @@ export class ShowTournamentPage extends Component {
 				)) {
 					for (const teamMemberInfo of teamMembers.teamMembers) {
 						updateDatabase.addTeamMember(teamMemberInfo, () => {
-							console.log('lagt til teamMembers');
+							console.log('added teamMembers');
 						});
 					}
 				}
@@ -426,25 +426,9 @@ export class ShowTournamentPage extends Component {
 	updateScore() {
 		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
 			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
-				pool.query(
-					'UPDATE GameMatch SET Team1=?, Team2=?, Team1Score=?, Team2Score=? WHERE RoundNumber=? && MatchNumber=? && TournamentID=?',
-					[
-						this.tournamentObject.rounds[i].matches[j].teams[0].id,
-						this.tournamentObject.rounds[i].matches[j].teams[1].id,
-						this.tournamentObject.rounds[i].matches[j].results.length != 2
-							? 0
-							: this.tournamentObject.rounds[i].matches[j].results[0],
-						this.tournamentObject.rounds[i].matches[j].results.length != 2
-							? 0
-							: this.tournamentObject.rounds[i].matches[j].results[1],
-						i,
-						j,
-						this.tournamentObject.tournamentID,
-					],
-					(error, results) => {
-						if (error) return console.error(error);
-					}
-				);
+				updateDatabase.updateGameMatch(this.tournamentObject, i, j, () => {
+					console.log('uppdated gamematch');
+				});
 			}
 		}
 		document.getElementById('saveConfirm').style.visibility = 'visible';
@@ -498,16 +482,40 @@ export class ShowTournamentPage extends Component {
 				].matches[1].teams;
 			console.log(this.roundsInTournament);
 		}
-		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
-			if (error) return console.error(error); // If error, show error in console (in red text) and return
 
-			this.tournamentIDs = results;
-			this.tournamentIDs = this.tournamentIDs.map((Tournament) => Tournament.TournamentID);
-			this.tournamentIDs.sort((a, b) => b - a);
-			this.tournamentIDs.some((id) => id == this.tournamentObject.tournamentID)
-				? console.log('Trenger ikke å lagre')
-				: this.save();
-		});
+		function database() {
+			return new Promise((resolve) => {
+				updateDatabase.selectAllTournaments((results) => {
+					console.log(results);
+					resolve(results);
+				});
+			});
+		}
+		function workWithDatabase(tournamentIDs, tournamentObject) {
+			return new Promise((resolve) => {
+				console.log('test2');
+				tournamentIDs = tournamentIDs.map((Tournament) => Tournament.TournamentID);
+				tournamentIDs.sort((a, b) => b - a);
+				tournamentIDs.some((id) => id == tournamentObject.tournamentID)
+					? console.log('Do not need to save')
+					: this.save();
+				resolve(tournamentIDs);
+			});
+		}
+
+		async function Kjør(tournamentObject) {
+			try {
+				let tournamentIDs = await database();
+				let tournamentIDs2 = await workWithDatabase(tournamentIDs, tournamentObject);
+
+				return tournamentIDs2;
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		(async () => {
+			this.tournamentIDs = await Kjør(this.tournamentObject);
+		})();
 
 		setInterval(() => {
 			if (
