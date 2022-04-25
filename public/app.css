@@ -1,22 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Teko&effect=shadow-multiple');
-
 @font-face {
 	src: url(fonts/Clash.ttf);
 	font-family: clash;
 }
 
-@font-face {
-	src: url(fonts/Ancoa.otf);
-	font-family: anc;
-}
-
 body {
 	background-image: url(images/blur.png);
 	background-size: cover;
-	/* background-repeat: no-repeat; */
-	/* background-size: 300% 300%; */
-	/* url(images/logo.png), url(images/king.png), */
-	/* background-position: center; */
 	text-shadow: -1px 0 rgb(41, 41, 41), 0 1px rgb(41, 41, 41), 1px 0 rgb(41, 41, 41),
 		0 -1px rgb(41, 41, 41);
 }
@@ -37,7 +26,7 @@ em {
 	font-family: clash;
 	line-height: 28px;
 	font-size: 27px;
-	background: rgba(199, 199, 199, 0.215);
+	background: rgba(199, 199, 199, 0.12);
 	border-radius: 5px;
 	color: #ffd700;
 	text-decoration: none;
@@ -66,10 +55,8 @@ em {
 	font-size: 20px;
 	color: #ffd700;
 	text-decoration: none;
-	/* text-shadow: 1px 1px 1px rgb(231, 199, 16); */
 	padding-left: 5px;
 	margin-right: 1rem;
-	/* border-radius: 50%; */
 	user-select: none;
 }
 
@@ -228,7 +215,6 @@ em {
 	color: #ffd700;
 	top: 50%;
 	left: 50%;
-	/* transform: translate(-50%, -50%); */
 }
 
 .centerview {
@@ -242,7 +228,7 @@ em {
 }
 
 .border {
-	background: rgba(199, 199, 199, 0.215);
+	background: rgba(199, 199, 199, 0.155);
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 10px;
@@ -254,14 +240,16 @@ em {
 	font-family: clash;
 	font-size: 20px;
 	color: #424242;
-	/* margin-left: 1rem; */
 }
 
 .scrollPlayer {
 	overflow: auto;
-	height: 400px;
+	height: auto;
+	min-height: 50px;
+	max-height: 400px;
+	height: auto !important; /* for IE as it does not support min-height */
 	width: 380px;
-	background: rgba(199, 199, 199, 0.215);
+	background: rgba(199, 199, 199, 0.155);
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 10px;
@@ -317,32 +305,6 @@ em {
 	min-height: 32px;
 }
 
-.blurred-box {
-	width: 800px;
-	height: 170px;
-	visibility: hidden;
-	background: inherit;
-	left: 20%;
-	right: 20%;
-	top: 25%;
-	border-radius: 2px;
-	background-color: rgb(218, 218, 218);
-	overflow: hidden;
-}
-
-.blurred-box:after {
-	content: '';
-	width: 800px;
-	height: 170px;
-	background: inherit;
-	position: absolute;
-	left: 20%;
-	right: 20%;
-	top: 25%;
-	box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
-	filter: blur(10px);
-}
-
 .confirm {
 	width: 800px;
 	height: 170px;
@@ -356,7 +318,7 @@ em {
 	vertical-align: middle;
 	text-align: center;
 	border-radius: 10px;
-	background-color: rgb(38, 157, 255);
+	background-color: rgb(25, 120, 194);
 	z-index: 1;
 }
 
@@ -364,11 +326,11 @@ em {
 	width: 800px;
 	height: 170px;
 	visibility: hidden;
-	/* z-index: 1; */
 	position: absolute;
 	font-size: 40px;
-	left: 20%;
-	right: 20%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
 	text-align: center;
@@ -383,14 +345,14 @@ em {
 	z-index: 1;
 	position: absolute;
 	font-size: 20px;
-	left: 5%;
-	top: 5%;
+	left: 0%;
+	top: 0%;
 	display: flex;
 	align-items: center;
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 0px 0px 25px rgba(48, 179, 255, 0.884);
-	background-color: rgb(38, 157, 255);
+	background-color: rgb(30, 136, 218);
 }
 .yesno {
 	left: 20%;
@@ -435,10 +397,6 @@ em {
 	padding-right: 140px;
 	vertical-align: middle;
 }
-/* .scroll::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 5px rgb(207, 207, 207);
-	border-radius: 10px;
-} */
 
 .center {
 	font-family: clash;
@@ -447,6 +405,7 @@ em {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
 a {
 	text-decoration: none;
 	text-transform: uppercase;
@@ -522,23 +481,15 @@ a:hover span:nth-child(2):after {
 	transform: rotateX(90deg) translateY(-50%);
 }
 
-/* .table {
-	font-weight: normal;
-	border: 1px solid;
-	white-space: nowrap;
-	background-color: rgb(62, 130, 185);
-	border-color: rgb(50, 140, 192);
-	border-radius: 1px;
-} */
-
 .table {
 	text-align: left;
 	overflow: hidden;
 	table-layout: fixed;
-	width: 250px;
+	width: 400px;
 	margin: 0 auto;
 	display: table;
 	padding: 0 0 0 0;
+	font-size: 20px;
 }
 
 .table th {
@@ -582,6 +533,8 @@ a:hover span:nth-child(2):after {
 	transition-duration: 0.4s;
 	transition-property: all;
 	transition-timing-function: line;
+	text-shadow: -1px 0 rgb(255, 234, 49), 0 1px rgb(255, 234, 49), 1px 0 rgb(255, 234, 49),
+		0 -1px rgb(255, 234, 49);
 	/* transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); */
 }
 
@@ -594,7 +547,7 @@ a:hover span:nth-child(2):after {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 80px;
+	top: 20%;
 	visibility: hidden;
 	z-index: 2;
 	width: 100%;

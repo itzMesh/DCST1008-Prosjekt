@@ -32,7 +32,6 @@ export class Overview extends Component {
 						<span data-attr="nering">Nering</span>
 					</a>
 				</h1>
-
 				<div className="centerview">
 					Overview of Tournaments <br />
 					<br />

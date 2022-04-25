@@ -12,12 +12,6 @@ export class Menu extends Component {
 						Overview{' '}
 					</NavLink>
 				</em>
-				<div className="center">
-					{/* <a>
-						<span data-attr="Clash">Clash</span>
-						<span data-attr="Royale">Royale</span>
-					</a> */}
-				</div>
 			</div>
 		);
 	}
