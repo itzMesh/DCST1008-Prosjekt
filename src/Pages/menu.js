@@ -7,7 +7,7 @@ export class Menu extends Component {
 		return (
 			<div>
 				<em>
-					<NavLink className="login" to="/overview">
+					<NavLink className="navigate" to="/overview">
 						{' '}
 						Overview{' '}
 					</NavLink>

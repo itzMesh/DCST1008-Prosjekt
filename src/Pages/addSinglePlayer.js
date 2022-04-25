@@ -80,12 +80,12 @@ export class AddSinglePlayer extends Component {
 				</form>
 				<br />
 				<div>
-					<em className="login" onClick={this.buttonClicked}>
+					<em className="navigate" onClick={this.buttonClicked}>
 						Add Player
 					</em>
 
 					<NavLink
-						className="login"
+						className="navigate"
 						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +

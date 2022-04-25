@@ -22,7 +22,7 @@ em {
 	font-style: normal;
 }
 
-.login {
+.navigate {
 	font-family: clash;
 	line-height: 28px;
 	font-size: 27px;
@@ -37,7 +37,7 @@ em {
 	user-select: none;
 }
 
-.login:hover {
+.navigate:hover {
 	font-family: clash;
 	line-height: 27px;
 	margin-right: 12px;
@@ -50,7 +50,7 @@ em {
 	text-transform: capitalize;
 }
 
-.loginsmall {
+.navigatesmall {
 	font-family: clash;
 	font-size: 20px;
 	color: #ffd700;
@@ -60,7 +60,7 @@ em {
 	user-select: none;
 }
 
-.loginsmall:hover {
+.navigatesmall:hover {
 	font-family: clash;
 	font-size: 21px;
 	color: #fdf913;

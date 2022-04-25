@@ -83,7 +83,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="login" onClick={this.updateScore} type="button">
+					<em className="navigate" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>

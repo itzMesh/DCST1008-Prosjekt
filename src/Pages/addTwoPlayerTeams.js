@@ -111,12 +111,12 @@ export class AddTwoPlayerTeams extends Component {
 					<br />
 				</form>
 				<br />
-				<em className="login" type="button" onClick={this.buttonClicked}>
+				<em className="navigate" type="button" onClick={this.buttonClicked}>
 					Add team
 				</em>
 
 				<NavLink
-					className="login"
+					className="navigate"
 					to={
 						'/tournamentpage/' +
 						(this.tournamentIDs[0] + 1) +
