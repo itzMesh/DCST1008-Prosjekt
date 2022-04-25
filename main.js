@@ -23,7 +23,8 @@ app.on('ready', () => {
 	});
 
 	// Open Development Tools
-	//mainWindow.openDevTools();
+	//mainWindow.openDevTools();'
+	mainWindow.maximize();
 
 	mainWindow.loadFile('public/index.html');
 });
