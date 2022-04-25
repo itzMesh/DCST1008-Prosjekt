@@ -20,6 +20,9 @@ export class ShowTournamentPage extends Component {
 	allredyLoaded = false;
 	showedConfetti = false;
 	render() {
+		if (this.tournamentObject.generalSettings.gamemode[3] == 'D') {
+			document.body.style.backgroundImage = 'url(images/purple.png)';
+		}
 		if (!this.tournamentObject || this.roundsInTournament.length == 0) return null;
 
 		return (
@@ -31,12 +34,13 @@ export class ShowTournamentPage extends Component {
 							float: 'top',
 							position: 'absolute',
 							left: this.length * 300 + 100 + 'px',
-							top: '250px',
+							top: '190px',
 						}}
 					>
 						<table className="table">
 							<thead>
 								<tr>
+									<th>Place</th>
 									<th>Player</th>
 									<th>Score</th>
 								</tr>
@@ -50,6 +54,7 @@ export class ShowTournamentPage extends Component {
 								.map((member, i) => (
 									<tbody key={i}>
 										<tr>
+											<td>{i + 1 + '.'}</td>
 											<td>{member.name}</td>
 											<td>{member.score.reduce((sum, e) => sum + e, 0)}</td>
 										</tr>
@@ -199,7 +204,7 @@ export class ShowTournamentPage extends Component {
 															onClick={(e) =>
 																this.containsShadow(e, match)
 															}
-															className="login"
+															className="list"
 															to={
 																round.roundNumber ==
 																this.tournamentObject.numberOfRounds
@@ -443,6 +448,7 @@ export class ShowTournamentPage extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
 		console.log(this.tournamentObject.rounds.length);
 		if (
 			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==

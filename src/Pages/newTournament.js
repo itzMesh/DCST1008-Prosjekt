@@ -81,4 +81,7 @@ export class NewTournament extends Component {
 		settings.gamemode = this.gamemode.split(',')[0];
 		settings.type = this.type;
 	}
+	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+	}
 }

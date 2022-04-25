@@ -27,6 +27,9 @@ export class AddTwoPlayerTeams extends Component {
 	teamID = 0;
 
 	render() {
+		if (settings.gamemode[3] == 'D') {
+			document.body.style.backgroundImage = 'url(images/purple.png)';
+		}
 		if (this.tournamentIDs.length == 0) return null;
 
 		return (
@@ -123,7 +126,7 @@ export class AddTwoPlayerTeams extends Component {
 					onClick={() => this.createObjects()}
 					type="button"
 				>
-					Create Torunament
+					Create Tournament
 				</NavLink>
 
 				<br />
@@ -222,6 +225,27 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+
+		function database() {
+			return new Promise((resolve) => {
+				updateDatabase.selectAllTournaments((results) => {
+					resolve(results);
+				});
+			});
+		}
+
+		function workWithDatabase(tournamentIDs) {
+			return new Promise((resolve) => {
+				tournamentIDs = tournamentIDs.map((Tournament) => Tournament.TournamentID);
+				tournamentIDs.sort((a, b) => b - a);
+				if (tournamentIDs.length == 0) {
+					tournamentIDs.push(1);
+				}
+				resolve(tournamentIDs);
+			});
+		}
+
 		async function Kjør() {
 			try {
 				let tournamentIDs = await database();

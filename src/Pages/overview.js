@@ -32,7 +32,6 @@ export class Overview extends Component {
 						<span data-attr="nering">Nering</span>
 					</a>
 				</h1>
-
 				<div className="centerview">
 					Overview of Tournaments <br />
 					<br />
@@ -92,6 +91,8 @@ export class Overview extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+
 		pool.query('SELECT * FROM Tournament', (error, results) => {
 			if (error) return console.error(error);
 
