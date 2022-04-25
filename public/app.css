@@ -244,10 +244,11 @@ em {
 
 .scrollPlayer {
 	overflow: auto;
-	height: auto;
+	height: 400px;
+	/* max-height: 400px;
 	min-height: 50px;
-	max-height: 400px;
-	height: auto !important; /* for IE as it does not support min-height */
+	height: auto;
+	height: auto !important;  */
 	width: 380px;
 	background: rgba(199, 199, 199, 0.155);
 	padding-left: 10px;
