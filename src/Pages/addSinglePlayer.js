@@ -96,7 +96,7 @@ export class AddSinglePlayer extends Component {
 					</NavLink>
 				</div>
 				<br />
-				<div className="infon">{settings.name}</div>
+				<div className="name">{settings.name}</div>
 				<br />
 				<div className="scrollPlayer">
 					{this.teams.map((team, i) => (
