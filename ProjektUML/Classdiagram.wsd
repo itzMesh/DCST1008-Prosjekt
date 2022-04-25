@@ -63,7 +63,7 @@ Package React-pages <<frame>>{
             <color:darkGreen>int <color:royalBlue>teamID 
 
             <color:darkGreen>JSX.Element</color> render()
-            <color:darkGreen>void</color> confirm(<color:darkGreen>React.MouseEvent<HTMLButtonElement, MouseEvent> <color:royalBlue>i</color>, Array<Sting | Array<string>> <color:royalBlue>teams</color>)
+            <color:darkGreen>void</color> confirm(<color:darkGreen>React.MouseEvent<HTMLButtonElement, MouseEvent> <color:royalBlue>i</color>,<color:darkGreen> Array<Sting | Array<string>> <color:royalBlue>teams</color>)
             <color:darkGreen>void</color> nodelete()
             <color:darkGreen>void</color> delete()
             <color:darkGreen>void</color> createObject(<color:darkGreen>React.MouseEvent<HTMLAnchorElement, MouseEvent> <color:royalBlue>event</color>)
