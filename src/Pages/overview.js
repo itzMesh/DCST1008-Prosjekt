@@ -91,6 +91,8 @@ export class Overview extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+
 		pool.query('SELECT * FROM Tournament', (error, results) => {
 			if (error) return console.error(error);
 

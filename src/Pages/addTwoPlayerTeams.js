@@ -27,6 +27,9 @@ export class AddTwoPlayerTeams extends Component {
 	teamID = 0;
 
 	render() {
+		if (settings.gamemode[3] == 'D') {
+			document.body.style.backgroundImage = 'url(images/purple.png)';
+		}
 		if (this.tournamentIDs.length == 0) return null;
 
 		return (
@@ -222,6 +225,8 @@ export class AddTwoPlayerTeams extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+
 		pool.query('SELECT TournamentID FROM Tournament', (error, results) => {
 			if (error) return console.error(error); // If error, show error in console (in red text) and return
 

@@ -14,6 +14,9 @@ export class EditTournamentPage extends Component {
 	regex = '[1-9][0-9]*';
 
 	render() {
+		if (this.tournamentObject.generalSettings.gamemode[3] == 'D') {
+			document.body.style.backgroundImage = 'url(images/purple.png)';
+		}
 		if (!(this.tournamentObject && this.match)) return null;
 
 		return (
@@ -81,6 +84,8 @@ export class EditTournamentPage extends Component {
 	}
 
 	mounted() {
+		document.body.style.backgroundImage = 'url(images/blur.png)';
+
 		if (!this.tournamentObject) return null;
 
 		this.match = this.tournamentObject.rounds[this.matchInds[0]].matches[this.matchInds[1]];
