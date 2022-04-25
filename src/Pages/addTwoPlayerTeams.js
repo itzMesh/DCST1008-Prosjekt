@@ -5,7 +5,7 @@ import { settings } from './newTournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import Torunament from '../Classes/tournament';
-import { updateDatabase } from '../Database/pushDatabase';
+import { updateDatabase } from '../Database/services';
 
 export let tournamentplayers = [null, new Date()];
 let deleteId;

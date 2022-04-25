@@ -7,7 +7,7 @@ import TeamMember from '../Classes/teamMember';
 import Team from '../Classes/team';
 import ShadowTeam from '../Classes/shadowTeam';
 import GeneralSettings from '../Classes/GeneralSettings';
-import { updateDatabase } from '../Database/pushDatabase';
+import { updateDatabase } from '../Database/services';
 
 export let tournamentPageObj = [null, new Date()];
 
