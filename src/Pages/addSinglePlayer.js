@@ -5,7 +5,6 @@ import Torunament from '../Classes/tournament';
 import Team from '../Classes/team';
 import TeamMember from '../Classes/teamMember';
 import { settings } from './newTournament';
-import { body } from 'express-validator';
 import { updateDatabase } from '../Database/services';
 
 let deleteId;
@@ -28,13 +27,11 @@ export class AddSinglePlayer extends Component {
 	teamID = 0;
 
 	render() {
-		if (settings.gamemode[3] == 'D') {
+		if (settings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
 		if (this.tournamentIDs.length == 0) return null;
-		// if (settings.gamemode[3] == 'D') {
-		// 	body.style.backgroundColor = 'white';
-		// }
+
 		return (
 			<div>
 				<div className="overview">
@@ -50,6 +47,8 @@ export class AddSinglePlayer extends Component {
 						</div>
 					</div>
 				</div>
+				{/* Delete promt me made that will accur when deleting a player */}
+
 				<form ref={(instance) => (this.form = instance)}>
 					<br />
 					<br />
@@ -103,8 +102,12 @@ export class AddSinglePlayer extends Component {
 				<div className="name">{settings.name}</div>
 				<br />
 				<div className="scrollPlayer">
+					{/* Creates a list of all the players signed up for the tournament */}
+
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
+							{/*Gives each player a delete button with a unique ID*/}
+
 							<button
 								className="x"
 								type="button"
@@ -142,15 +145,18 @@ export class AddSinglePlayer extends Component {
 			'Are you sure you want to delete "' + deleteTeam[deleteId.target.id][1][0] + '"';
 	}
 
+	//if '"no" is pressed when the delete alert is prompted the method under is runned and hides the deleteprompt
 	nodelete() {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 
+	//if "yes" is pressed when the delete alert is prompted the method under is runned and the player is deleted, it also hides the deleteprompt
 	delete() {
 		deleteTeam.splice(deleteId.target.id, 1);
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 
+	//checks if form is filled out correctly, if it is it pushes the player into an array
 	buttonClicked() {
 		if (!this.form.reportValidity()) return;
 
@@ -162,6 +168,7 @@ export class AddSinglePlayer extends Component {
 
 	createObjects(event) {
 		console.log(settings.gamemode.substring(0, 3));
+		//checks if a tournament is wallid, enough players and what gamemode is chosen earlier
 		if (this.teams.length > 1 && settings.gamemode.substring(0, 3) == '1v1') {
 			this.teamObj = [];
 			this.teamID = parseInt(this.teamIDs[0]);
