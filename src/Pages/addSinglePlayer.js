@@ -188,7 +188,7 @@ export class AddSinglePlayer extends Component {
 		else if (
 			this.teams.length > 3 &&
 			(settings.gamemode == '2v2 Generated teams' ||
-				settings.gamemode == 'Double elixir Generated teams') &&
+				settings.gamemode == 'Double Elixir Generated teams') &&
 			this.teams.length % 2 == 0
 		) {
 			this.teams.sort((a, b) => a[1][1] - b[1][1]);
@@ -222,9 +222,10 @@ export class AddSinglePlayer extends Component {
 				settings.gamemode.length == 0
 					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
 					: 'NOT ENOUGH PLAYERS';
-			document.getElementById('warning').style.visibility = 'visible';
+			let warning = document.getElementById('warning');
+			warning.style.visibility = 'visible';
 			setTimeout(() => {
-				document.getElementById('warning').style.visibility = 'hidden';
+				warning.style.visibility = 'hidden';
 			}, 1500);
 			event.preventDefault();
 		}
