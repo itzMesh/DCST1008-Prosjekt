@@ -20,7 +20,7 @@ export class ShowTournamentPage extends Component {
 	allredyLoaded = false;
 	showedConfetti = false;
 	render() {
-		if (this.tournamentObject.generalSettings.gamemode[3] == 'D') {
+		if (this.tournamentObject.generalSettings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
 		if (!this.tournamentObject || this.roundsInTournament.length == 0) return null;
@@ -96,6 +96,7 @@ export class ShowTournamentPage extends Component {
 					id="grid"
 				>
 					{' '}
+					{/*Loops throw each round in the tournament */}
 					{this.roundsInTournament.map((round, i) => (
 						<div
 							key={i}
@@ -147,6 +148,8 @@ export class ShowTournamentPage extends Component {
 											}}
 										></div>
 									)}
+									{/* Here we use the information from our method Brackets and give div the height needed for a clean looking tournament*/}
+									{/* Loops throw each match in the round  */}
 									{round.matches
 										.filter(
 											(match) =>
@@ -236,6 +239,7 @@ export class ShowTournamentPage extends Component {
 																: 'Match ' + match.matchNumber}
 														</NavLink>
 													</div>
+													{/* Loops throw the teams that playes in each match in each round */}
 													{match.teams
 														.filter(
 															(team) =>
@@ -293,8 +297,8 @@ export class ShowTournamentPage extends Component {
 							</div>
 						</div>
 					))}
-					{/* {this.tournamentObject.generalSettings.type != 'bracket' ? (</table>) : (</em>)} */}
 				</div>
+				{/* confetti when a winner is declared */}
 				<div className="winner" id="winner"></div>
 				<div className="confetti" id="confetti">
 					<div className="confetti-piece"></div>
@@ -316,7 +320,7 @@ export class ShowTournamentPage extends Component {
 			</div>
 		);
 	}
-
+	//draw the line between matches
 	tegn() {
 		let startX = 410;
 		let startY = 200;
@@ -342,7 +346,7 @@ export class ShowTournamentPage extends Component {
 			}
 		}
 	}
-
+	//calculates how much space we need over each first match in every round for the brackets to look nice
 	brackets(e) {
 		let out = 0;
 		hoyde = [0];
@@ -351,13 +355,13 @@ export class ShowTournamentPage extends Component {
 			hoyde.push(out);
 		}
 	}
-
+	//checks if team is a shodowteam
 	containsShadow(event, match) {
 		if (match.teams.map((e) => e.constructor.name).includes('ShadowTeam')) {
 			event.preventDefault();
 		}
 	}
-
+	//this method is runned each time a new tournament is created and displayed and saves the tournament to the database
 	save() {
 		function addsTournament(inn) {
 			return new Promise((resolve) => {
@@ -425,6 +429,7 @@ export class ShowTournamentPage extends Component {
 		})();
 	}
 
+	//this method is used for updating the tournament to the database and us called on from the "Save" button
 	updateScore() {
 		for (let i = 0; i < this.tournamentObject.numberOfRounds; i++) {
 			for (let j = 0; j < this.tournamentObject.rounds[i].matches.length; j++) {
