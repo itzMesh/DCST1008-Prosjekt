@@ -51,11 +51,15 @@ export class NewTournament extends Component {
 							Select your option
 						</option> */}
 							<option value="1v1,0">1v1</option>
-							<option value="2v2G,0">2v2 - Generated teams</option>
-							<option value="2v2C,1">2v2 - Custom Teams</option>
-							<option value="1v1De,0">1v1 - Double Elixir</option>
-							<option value="2v2DeG,0">2v2 - Double Elixir - Generated teams</option>
-							<option value="2v2DeC,1">2v2 - Double Elixir - Custom Teams</option>
+							<option value="2v2 Generated teams,0">2v2 - Generated teams</option>
+							<option value="2v2 Custom teams,1">2v2 - Custom Teams</option>
+							<option value="1v1 Double elixir,0">1v1 - Double Elixir</option>
+							<option value="2v2 Double elixir Generated teams,0">
+								2v2 - Double Elixir - Generated teams
+							</option>
+							<option value="2v2 Double elixir Custom teams,1">
+								2v2 - Double Elixir - Custom Teams
+							</option>
 						</select>
 					</div>
 					<br />

@@ -27,7 +27,7 @@ export class AddTwoPlayerTeams extends Component {
 	teamID = 0;
 
 	render() {
-		if (settings.gamemode[3] == 'D') {
+		if (settings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
 		if (this.tournamentIDs.length == 0) return null;
@@ -123,7 +123,7 @@ export class AddTwoPlayerTeams extends Component {
 						'/' +
 						(this.tournamentIDs[0] + 1)
 					}
-					onClick={() => this.createObjects()}
+					onClick={(event) => this.createObjects(event)}
 					type="button"
 				>
 					Create Tournament

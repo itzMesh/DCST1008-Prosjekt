@@ -37,6 +37,7 @@ export class TournamentPage extends Component {
 
 	mounted() {
 		let tournamentID = [this.props.match.params.TournamentID];
+		document.body.style.backgroundImage = 'url(images/blur.png)';
 
 		function firstDatabase() {
 			return new Promise((resolve) => {

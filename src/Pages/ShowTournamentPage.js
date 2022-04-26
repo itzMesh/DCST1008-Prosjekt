@@ -20,7 +20,7 @@ export class ShowTournamentPage extends Component {
 	allredyLoaded = false;
 	showedConfetti = false;
 	render() {
-		if (this.tournamentObject.generalSettings.gamemode[3] == 'D') {
+		if (this.tournamentObject.generalSettings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
 		if (!this.tournamentObject || this.roundsInTournament.length == 0) return null;
