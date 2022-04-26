@@ -1,8 +1,8 @@
 @startuml createTournament
 
 actor User as U
-participant Aplication as A
-Database database as D
+participant Application as A
+Database Database as D
 
 activate U
 activate A
