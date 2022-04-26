@@ -9,6 +9,7 @@ class Torunament {
 	teams = [];
 	rounds = [];
 	hasBronze = false;
+	tie = false;
 
 	constructor(name, tournamentID, teams, generalSettings) {
 		this.name = name;
@@ -98,6 +99,24 @@ class Torunament {
 				)
 				.includes(false)
 		) {
+			if (
+				this.teams
+					.sort(
+						(a, b) =>
+							b.score.reduce((sum, e) => sum + e, 0) -
+							a.score.reduce((sum, e) => sum + e, 0)
+					)[0]
+					.score.reduce((start, e) => start + e, 0) ==
+				this.teams
+					.sort(
+						(a, b) =>
+							b.score.reduce((sum, e) => sum + e, 0) -
+							a.score.reduce((sum, e) => sum + e, 0)
+					)[1]
+					.score.reduce((start, e) => start + e, 0)
+			) {
+				this.tie = true;
+			}
 			this.winner = this.teams.sort(
 				(a, b) =>
 					b.score.reduce((sum, e) => sum + e, 0) - a.score.reduce((sum, e) => sum + e, 0)
