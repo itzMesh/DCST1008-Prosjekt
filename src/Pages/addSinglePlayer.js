@@ -27,10 +27,10 @@ export class AddSinglePlayer extends Component {
 	teamID = 0;
 
 	render() {
+		if (this.tournamentIDs.length == 0) return null;
 		if (settings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
-		if (this.tournamentIDs.length == 0) return null;
 
 		return (
 			<div>
