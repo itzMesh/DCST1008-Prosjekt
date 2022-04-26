@@ -214,8 +214,8 @@ export class AddTwoPlayerTeams extends Component {
 		} else {
 			this.warning =
 				settings.gamemode.length == 0
-					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
-					: 'NOT ENOUGH PLAYERS';
+					? 'OBS! You reloaded the page and have to go back a step and create a new tournament'
+					: 'Nnot enough players';
 			document.getElementById('warning').style.visibility = 'visible';
 			setTimeout(() => {
 				document.getElementById('warning').style.visibility = 'hidden';

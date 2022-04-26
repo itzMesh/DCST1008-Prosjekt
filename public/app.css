@@ -1,3 +1,4 @@
+/* Importing font */
 @font-face {
 	src: url(fonts/Clash.ttf);
 	font-family: clash;
@@ -6,9 +7,11 @@
 body {
 	background-image: url(images/blur.png);
 	background-size: cover;
+	font-family: clash;
 	text-shadow: -1px 0 rgb(41, 41, 41), 0 1px rgb(41, 41, 41), 1px 0 rgb(41, 41, 41),
 		0 -1px rgb(41, 41, 41);
 }
+
 #root {
 	background: url(images/minipekka.png);
 	background-size: contain;
@@ -22,6 +25,7 @@ em {
 	font-style: normal;
 }
 
+/* the style of the main buttons */
 .navigate {
 	font-family: clash;
 	line-height: 28px;
@@ -98,6 +102,7 @@ em {
 	text-transform: capitalize;
 }
 
+/* the small delete buttons */
 .x {
 	font-family: clash;
 	font-size: 10px;
@@ -141,6 +146,7 @@ em {
 	cursor: pointer;
 }
 
+/* various text styles */
 .main {
 	font-family: clash;
 	font-size: 20px;
@@ -227,6 +233,7 @@ em {
 	font-size: 29px;
 }
 
+/* the diffuse background for the divs */
 .border {
 	background: rgba(199, 199, 199, 0.155);
 	padding-left: 10px;
@@ -236,12 +243,14 @@ em {
 	border-radius: 10px;
 }
 
+/* input fields style */
 .input {
 	font-family: clash;
 	font-size: 20px;
 	color: #424242;
 }
 
+/* classes for the divs with scroll bars */
 .scrollPlayer {
 	overflow: auto;
 	height: 400px;
@@ -306,6 +315,7 @@ em {
 	min-height: 32px;
 }
 
+/* the pop of prompts */
 .confirm {
 	width: 800px;
 	height: 170px;
@@ -399,6 +409,7 @@ em {
 	vertical-align: middle;
 }
 
+/* the dynamic title*/
 .center {
 	font-family: clash;
 	position: absolute;
@@ -482,6 +493,7 @@ a:hover span:nth-child(2):after {
 	transform: rotateX(90deg) translateY(-50%);
 }
 
+/* round robin table styling */
 .table {
 	text-align: left;
 	overflow: hidden;
@@ -543,6 +555,7 @@ a:hover span:nth-child(2):after {
 	float: left;
 }
 
+/* the confetti that appears when a winner is chosen */
 .confetti {
 	display: flex;
 	justify-content: center;
