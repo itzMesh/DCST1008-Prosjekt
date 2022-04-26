@@ -27,10 +27,10 @@ export class AddSinglePlayer extends Component {
 	teamID = 0;
 
 	render() {
+		if (this.tournamentIDs.length == 0) return null;
 		if (settings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
 		}
-		if (this.tournamentIDs.length == 0) return null;
 
 		return (
 			<div>
@@ -188,7 +188,7 @@ export class AddSinglePlayer extends Component {
 		else if (
 			this.teams.length > 3 &&
 			(settings.gamemode == '2v2 Generated teams' ||
-				settings.gamemode == 'Double Elixir Generated teams') &&
+				settings.gamemode == '2v2 Double Elixir - Generated teams') &&
 			this.teams.length % 2 == 0
 		) {
 			this.teams.sort((a, b) => a[1][1] - b[1][1]);
