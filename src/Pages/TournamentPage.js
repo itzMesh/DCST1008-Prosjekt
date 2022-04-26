@@ -37,6 +37,7 @@ export class TournamentPage extends Component {
 	//in mounted we get all the information from our database for a tournament choosen on the overview page and placeses it in a big object.
 	mounted() {
 		let tournamentID = [this.props.match.params.TournamentID];
+		document.body.style.backgroundImage = 'url(images/blur.png)';
 
 		function firstDatabase() {
 			return new Promise((resolve) => {

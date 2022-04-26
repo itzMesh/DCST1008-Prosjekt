@@ -123,7 +123,7 @@ export class AddTwoPlayerTeams extends Component {
 						'/' +
 						(this.tournamentIDs[0] + 1)
 					}
-					onClick={() => this.createObjects()}
+					onClick={(event) => this.createObjects(event)}
 					type="button"
 				>
 					Create Tournament
