@@ -188,7 +188,7 @@ export class AddSinglePlayer extends Component {
 		else if (
 			this.teams.length > 3 &&
 			(settings.gamemode == '2v2 Generated teams' ||
-				settings.gamemode == 'Double Elixir Generated teams') &&
+				settings.gamemode == '2v2 Double Elixir - Generated teams') &&
 			this.teams.length % 2 == 0
 		) {
 			this.teams.sort((a, b) => a[1][1] - b[1][1]);
