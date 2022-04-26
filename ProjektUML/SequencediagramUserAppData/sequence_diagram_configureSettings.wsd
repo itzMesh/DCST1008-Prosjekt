@@ -1,7 +1,7 @@
 @startuml ConfigureSettings
 
 actor User as U
-participant Aplication as A
+participant Application as A
 participant Database as D
 
 activate U

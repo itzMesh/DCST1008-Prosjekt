@@ -1,7 +1,7 @@
 @startuml editMatch
 
 actor User as U
-participant Aplication as A
+participant Application as A
 
 activate U
 activate A

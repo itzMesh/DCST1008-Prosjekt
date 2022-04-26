@@ -1,13 +1,13 @@
 @startuml SequenceOpen 
 
 actor User as U
-participant Aplication as A
+participant Application as A
 database Database as D
 
 activate U
 activate A
 
-U->A: Open aplication
+U->A: Open application
 A-->U:Display overview page
 activate D
 A->D: Sends Querry to Tournament
