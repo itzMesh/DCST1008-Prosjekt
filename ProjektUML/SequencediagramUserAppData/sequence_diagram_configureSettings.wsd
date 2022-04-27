@@ -11,7 +11,7 @@ U->A: Clicks the "Setup Tournament" button
 A-->U: Opens and displays the page
 U->A: Clicks the "New Tournament" button
 A-->U: Opens the settings page
-U->A: Enter the settings
+U->A: Enters the settings
 A-->U: Updates the GUI to match the changes
 U->A: Clicks the "Setup Tournament" button
 activate D
