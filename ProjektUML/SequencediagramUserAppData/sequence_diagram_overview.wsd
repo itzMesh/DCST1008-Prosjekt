@@ -15,9 +15,4 @@ D-->A: Sends data to the application
 deactivate D
 A-->U: Displays the previous tournaments
 
-
-
-
-
-
 @endumel
