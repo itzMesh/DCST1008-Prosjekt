@@ -10,11 +10,11 @@ U->A: Clicks on the "x" button next to a team/player
 A-->U: Opens the confirmation box
 alt Confirms
     U->A: Clicks the "Yes" button
-    A-->U: Closes confirmation box
+    A-->U: Closes the confirmation box
     A-->U: Deletes team/player from page
 else Denies
     U->A: Clicks "No"
-    A-->U: Closes confirmation box
+    A-->U: Closes the confirmation box
 
 end
 

@@ -8,7 +8,7 @@ activate U
 activate A
 
 U->A: Opens application
-A-->U:Displays overview page
+A-->U: Displays the overview page
 activate D
 A->D: Sends query to the "Tournament" table
 D-->A: Receives data from database

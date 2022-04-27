@@ -7,7 +7,7 @@ Database Database as D
 activate U
 activate A
 
-U->A: Clicks on a tournament name
+U->A: Clicks on a the tournament name
 A-->U: Takes you to the loading page
 activate D
 A->D: Requests all information about the tournament

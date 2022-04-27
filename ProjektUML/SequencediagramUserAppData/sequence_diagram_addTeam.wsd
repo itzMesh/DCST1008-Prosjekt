@@ -8,7 +8,7 @@ activate A
 
 U->A: Add team information
 A-->U: Displays team information
-U->A: Clicks the "Add team"/"Add player" button
+U->A: Clicks the "Add team/Add player" button
 A-->U: Displays the team
 A-->U: Clears the input fields
 

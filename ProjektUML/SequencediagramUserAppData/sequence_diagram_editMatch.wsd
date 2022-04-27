@@ -9,7 +9,7 @@ activate A
 
 U->A: Clicks on a match number
 A-->U: Opens the edit match page
-U->A: Enter the score
+U->A: Enters the score
 A-->U: Uppdates the GUI to match the changes
 U->A: Clicks the "Update score" button 
 A-->U: Sends back to the tournament page 
