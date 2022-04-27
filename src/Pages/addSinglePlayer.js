@@ -11,6 +11,8 @@ let deleteId;
 let deleteTeam;
 
 export let tournamentplayer = [null, new Date()];
+
+//this class makes the page where you sign players up
 export class AddSinglePlayer extends Component {
 	warning = '';
 	tournamentplayer = tournamentplayer;
@@ -135,7 +137,7 @@ export class AddSinglePlayer extends Component {
 			</div>
 		);
 	}
-
+	//get prompted when trying to delete a player
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
@@ -165,7 +167,7 @@ export class AddSinglePlayer extends Component {
 		this.name1 = '';
 		this.trophies1 = '';
 	}
-
+	//creates the tournament and send it for display
 	createObjects(event) {
 		console.log(settings.gamemode.substring(0, 3));
 		//checks if a tournament is wallid, enough players and what gamemode is chosen earlier
@@ -229,7 +231,7 @@ export class AddSinglePlayer extends Component {
 			event.preventDefault();
 		}
 	}
-
+	//database calls for making ids
 	mounted() {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 
