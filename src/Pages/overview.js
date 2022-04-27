@@ -57,7 +57,7 @@ export class Overview extends Component {
 						</div>
 					</div>
 					<br />
-					<NavLink className="navigate" to="/new" onClick={() => newTour.play()}>
+					<NavLink className="navigate" to="/new">
 						New tournament
 					</NavLink>
 				</div>
