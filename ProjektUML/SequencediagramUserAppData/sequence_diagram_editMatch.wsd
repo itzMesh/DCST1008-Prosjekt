@@ -7,11 +7,11 @@ activate U
 activate A
 
 
-U->A: Clicks the open matchnumber
+U->A: Clicks on a match number
 A-->U: Opens the edit match page
 U->A: Enter the score
 A-->U: Uppdates the GUI to match the changes
-U->A: Presses the uppdate score button 
+U->A: Presses the update score button 
 A-->U: Sends back to tournament page 
 
 @enduml
