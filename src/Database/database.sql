@@ -1,4 +1,3 @@
--- Lager tabel for lagring av tournament informasjon
 CREATE TABLE `Tournament` (
     `id` int(11) NOT NULL,
     `TournamentID` int(11) NOT NULL,
@@ -16,7 +15,6 @@ CREATE TABLE `Tournament` (
 
 
 
---Lager tabel for lagring av matches i en turnering
 CREATE TABLE `GameMatch` (
     `MatchID` int(11) NOT NULL,
     `TournamentID` int(11) NOT NULL,
@@ -24,7 +22,6 @@ CREATE TABLE `GameMatch` (
     `RoundNumber` int(11) NOT NULL,
     `Team1` int(11) DEFAULT NULL,
     `Team2` int(11) DEFAULT NULL,
-    `Completed` tinyint(1) NOT NULL,
     `Team1Score` int(11) NOT NULL,
     `Team2Score` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -37,7 +34,6 @@ CREATE TABLE `GameMatch` (
 
 
 
---Lager table for team som er med i turneringer
 CREATE TABLE `Team` (
     `id` int(11) NOT NULL,
     `TeamID` int(11) DEFAULT NULL,
@@ -54,7 +50,6 @@ CREATE TABLE `Team` (
 
 
 
---lager table for spillere, hver spiller har et team og tilhører en turnering
 CREATE TABLE `TeamMember` (
     `PlayerID` int(11) NOT NULL,
     `PlayerName` varchar(20) NOT NULL,

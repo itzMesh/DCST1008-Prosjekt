@@ -12,15 +12,6 @@ body {
 		0 -1px rgb(41, 41, 41);
 }
 
-#root {
-	background: url(images/minipekka.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position-x: right;
-	background-position-y: top;
-	background-size: 200px, 200px;
-}
-
 em {
 	font-style: normal;
 }
