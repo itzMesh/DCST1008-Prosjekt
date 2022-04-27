@@ -388,8 +388,9 @@ export class ShowTournamentPage extends Component {
 		}
 
 		function addsTeam(inn) {
+			console.log(inn[0].teams);
 			return new Promise((resolve) => {
-				for (const team of inn[0].teams) {
+				for (const team of inn[0].teams.filter((e) => e.constructor.name == 'Team')) {
 					updateDatabase.addTeam(team, () => {
 						console.log('added team');
 					});
@@ -441,9 +442,10 @@ export class ShowTournamentPage extends Component {
 				});
 			}
 		}
-		document.getElementById('saveConfirm').style.visibility = 'visible';
+		let saved = document.getElementById('saveConfirm');
+		saved.style.visibility = 'visible';
 		setTimeout(() => {
-			document.getElementById('saveConfirm').style.visibility = 'hidden';
+			saved.style.visibility = 'hidden';
 		}, 2000);
 	}
 	//pull the right tournament object depending on wich class createt it
