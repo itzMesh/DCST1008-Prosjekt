@@ -10,7 +10,7 @@ activate A
 U->A: Open application
 A-->U:Display overview page
 activate D
-A->D: Sends query to tournament table
+A->D: Sends query to Tournament table
 D-->A: Receives data from database
 deactivate D
 A-->U: Displays the previous tournaments
