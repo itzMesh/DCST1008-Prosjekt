@@ -7,16 +7,16 @@ participant Database as D
 activate U
 activate A
 
-U->A: Clicks "Setup Tournament"
+U->A: Clicks the "Setup Tournament" button
 A-->U: Opens and displays the page
-U->A: Presses the New Tournament button
+U->A: Clicks the "New Tournament" button
 A-->U: Opens the settings page
-U->A: Enter the settings
-A-->U: Uppdates the GUI to match the changes
-U->A: Clicks "Setup Tournament"
+U->A: Enters the settings
+A-->U: Updates the GUI to match the changes
+U->A: Clicks the "Setup Tournament" button
 activate D
-A->D: Request next tournamentID and next team ID
-D-->A:Retrives requested data
+A->D: Request next tournamentID and next teamID
+D-->A: Retrieves requested data
 deactivate D
 A-->U: Opens and displays the page to add teams
 

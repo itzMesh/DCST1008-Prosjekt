@@ -8,18 +8,18 @@ activate U
 activate A
 
 U->A: Clicks on the x next to a tournament name
-A-->U: opens the confirmation box
+A-->U: Opens the confirmation box
 alt confirms
-    U->A: Presses yes
-    A-->U: Closes confirmation box
+    U->A: Clicks the "Yes" button
+    A-->U: Closes the confirmation box
     activate D
     A->D: Deletes tournament from database
-    D-->A: Confirms Deletion
+    D-->A: Confirms deletion
     deactivate D
-    A-->U: Deletes Tournament from overview page
+    A-->U: Deletes tournament from overview page
 else Denies
-    U->A: Presses no
-    A-->U: Closes Confirmation box
+    U->A: Clicks the "No" button
+    A-->U: Closes the confirmation box
 
 end
 

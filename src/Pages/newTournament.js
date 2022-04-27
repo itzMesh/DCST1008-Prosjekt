@@ -67,7 +67,7 @@ export class NewTournament extends Component {
 				</form>
 				<NavLink
 					onClick={this.setSettings}
-					className="login"
+					className="navigate"
 					to={'/players/' + this.gamemode.split(',')[1]}
 				>
 					Setup tournament

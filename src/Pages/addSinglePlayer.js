@@ -82,12 +82,12 @@ export class AddSinglePlayer extends Component {
 				</form>
 				<br />
 				<div>
-					<em className="login" onClick={this.buttonClicked}>
+					<em className="navigate" onClick={this.buttonClicked}>
 						Add Player
 					</em>
 
 					<NavLink
-						className="login"
+						className="navigate"
 						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +
@@ -222,10 +222,9 @@ export class AddSinglePlayer extends Component {
 		} else {
 			this.warning =
 				settings.gamemode.length == 0
-					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
-					: 'NOT ENOUGH PLAYERS';
-			let warning = document.getElementById('warning');
-			warning.style.visibility = 'visible';
+					? 'OBS! You reloaded the page and have to go back a step and create a new tournament'
+					: 'Not enough players';
+			document.getElementById('warning').style.visibility = 'visible';
 			setTimeout(() => {
 				warning.style.visibility = 'hidden';
 			}, 1500);

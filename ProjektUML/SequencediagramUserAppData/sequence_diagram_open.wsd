@@ -7,11 +7,11 @@ database Database as D
 activate U
 activate A
 
-U->A: Open application
-A-->U:Display overview page
+U->A: Opens application
+A-->U: Displays the overview page
 activate D
-A->D: Sends Querry to Tournament
-D-->A: Recives data from database
+A->D: Sends query to the "Tournament" table
+D-->A: Receives data from database
 deactivate D
 A-->U: Displays the previous tournaments
 
