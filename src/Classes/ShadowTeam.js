@@ -1,3 +1,4 @@
+//this class makes shadowteams and is critical for our seeding. This is because the best players will play against this teams in a bracket tournament and automaticly win
 class ShadowTeam {
 	tournamentID;
 	seed;

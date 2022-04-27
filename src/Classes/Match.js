@@ -1,3 +1,4 @@
+//makes a class for each match in a tournament and stores critical information about it
 class Match {
 	round;
 	ind;

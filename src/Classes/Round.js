@@ -1,6 +1,6 @@
 import ShadowTeam from './shadowTeam';
 import Match from './match';
-
+//makes a class and every round in a tournament is a part of this class, here you can find usefull information such as every match and which teams are in the round
 class Round {
 	tournament;
 	firstMatchNumber;
@@ -83,7 +83,7 @@ class Round {
 		}
 		return sortedarr;
 	}
-
+	//shuffle teams
 	shuffleTeams() {
 		let out = [];
 		for (let i = 0; i < Math.floor(this.teams.length / 2); i++) {
