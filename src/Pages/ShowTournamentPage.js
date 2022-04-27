@@ -5,11 +5,12 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 import { updateDatabase } from '../Database/services';
-let showtime = new Audio('./sound/wiz_deploy_vo_01.ogg');
 import Round from '../Classes/round';
 
 let hoyde = [];
 let tournamentID = 0;
+//this class function is thow show the tournament setup. The tournament setups are dynamic and is not hard coded but each layout will be unique for each tournament
+//we use math to calculate how the layout will be and each match heigh for a clean looking tournament setup with brackets.
 export class ShowTournamentPage extends Component {
 	updateDatabase = updateDatabase;
 	tournamentIDs = [];
@@ -19,6 +20,7 @@ export class ShowTournamentPage extends Component {
 	roundsInTournament = [];
 	allredyLoaded = false;
 	showedConfetti = false;
+	//render the whole tournament page either with brackets or round robin
 	render() {
 		if (this.tournamentObject.generalSettings.gamemode[4] == 'D') {
 			document.body.style.backgroundImage = 'url(images/purple.png)';
@@ -83,7 +85,7 @@ export class ShowTournamentPage extends Component {
 
 				<div>
 					<br />
-					<em className="login" onClick={this.updateScore} type="button">
+					<em className="navigate" onClick={this.updateScore} type="button">
 						Save {this.brackets(this.tournamentObject.numberOfRounds)}
 					</em>
 				</div>
@@ -446,7 +448,7 @@ export class ShowTournamentPage extends Component {
 			saved.style.visibility = 'hidden';
 		}, 2000);
 	}
-
+	//pull the right tournament object depending on wich class createt it
 	getTournament() {
 		let tournamentp =
 			tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;
@@ -454,7 +456,7 @@ export class ShowTournamentPage extends Component {
 			tournamentp[1] > tournamentPageObj[1] ? tournamentp[0] : tournamentPageObj[0];
 		return tournamentObject;
 	}
-
+	//runs a numerous of if statements when page is loaded critically for the functionality
 	mounted() {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 		console.log(this.tournamentObject.rounds.length);

@@ -11,7 +11,7 @@ U->A: Clicks on a tournament name
 A-->U: Takes you to the loading page
 activate D
 A->D: Requests all information about the tournament
-D-->A: Sends requested data to application
+D-->A: Sends requested data to the application
 deactivate D
 A-->U: Takes you to the page for the tournament
 

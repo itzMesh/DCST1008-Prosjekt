@@ -7,11 +7,11 @@ database Database as D
 activate U
 activate A
 
-U->A: Presses the "overview" button
-A-->U:Display overview page
+U->A: Clicks the "Overview" button
+A-->U: Display the overview page
 activate D
-A->D: Sends querry to Tournament database table
-D-->A: Sends data to application
+A->D: Sends query to the "Tournament" database table
+D-->A: Sends data to the application
 deactivate D
 A-->U: Displays the previous tournaments
 

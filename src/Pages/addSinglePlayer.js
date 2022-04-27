@@ -11,6 +11,8 @@ let deleteId;
 let deleteTeam;
 
 export let tournamentplayer = [null, new Date()];
+
+//this class makes the page where you sign players up
 export class AddSinglePlayer extends Component {
 	warning = '';
 	tournamentplayer = tournamentplayer;
@@ -80,12 +82,12 @@ export class AddSinglePlayer extends Component {
 				</form>
 				<br />
 				<div>
-					<em className="login" onClick={this.buttonClicked}>
+					<em className="navigate" onClick={this.buttonClicked}>
 						Add Player
 					</em>
 
 					<NavLink
-						className="login"
+						className="navigate"
 						onClick={(event) => this.createObjects(event)}
 						to={
 							'/tournamentpage/' +
@@ -135,7 +137,7 @@ export class AddSinglePlayer extends Component {
 			</div>
 		);
 	}
-
+	//get prompted when trying to delete a player
 	confirm(i, teams) {
 		deleteId = i;
 		deleteTeam = teams;
@@ -165,7 +167,7 @@ export class AddSinglePlayer extends Component {
 		this.name1 = '';
 		this.trophies1 = '';
 	}
-
+	//creates the tournament and send it for display
 	createObjects(event) {
 		console.log(settings.gamemode.substring(0, 3));
 		//checks if a tournament is wallid, enough players and what gamemode is chosen earlier
@@ -220,17 +222,16 @@ export class AddSinglePlayer extends Component {
 		} else {
 			this.warning =
 				settings.gamemode.length == 0
-					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
-					: 'NOT ENOUGH PLAYERS';
-			let warning = document.getElementById('warning');
-			warning.style.visibility = 'visible';
+					? 'OBS! You reloaded the page and have to go back a step and create a new tournament'
+					: 'Not enough players';
+			document.getElementById('warning').style.visibility = 'visible';
 			setTimeout(() => {
 				warning.style.visibility = 'hidden';
 			}, 1500);
 			event.preventDefault();
 		}
 	}
-
+	//database calls for making ids
 	mounted() {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 

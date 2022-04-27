@@ -6,15 +6,15 @@ participant Application as A
 activate U
 activate A
 
-U->A: Clicks on the "x" next to a team/player
+U->A: Clicks on the "x" button next to a team/player
 A-->U: Opens the confirmation box
 alt Confirms
-    U->A: Presses "yes"
-    A-->U: Closes confirmation box
-    A-->U: Delete team/player from page
+    U->A: Clicks the "Yes" button
+    A-->U: Closes the confirmation box
+    A-->U: Deletes team/player from page
 else Denies
-    U->A: Presses "no"
-    A-->U: Closes confirmation box
+    U->A: Clicks "No"
+    A-->U: Closes the confirmation box
 
 end
 

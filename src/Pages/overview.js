@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { pool } from '../Database/mysql-pool';
 import { updateDatabase } from '../Database/services';
 let x;
-let intro = new Audio('./sound/scroll_loading_01.ogg');
-let newTour = new Audio('./sound/supercell_jingle.ogg');
-
+//this class renders and makes it posible to view old tournaments and create new one.
 export class Overview extends Component {
 	tournaments = [];
 	updateDatabase = updateDatabase;
@@ -59,14 +57,14 @@ export class Overview extends Component {
 						</div>
 					</div>
 					<br />
-					<NavLink className="login" to="/new" onClick={() => newTour.play()}>
+					<NavLink className="navigate" to="/new" onClick={() => newTour.play()}>
 						New tournament
 					</NavLink>
 				</div>
 			</div>
 		);
 	}
-
+	//when your try to delete a tournament a waring pops up
 	confirm(id) {
 		document.getElementById('confirm').style.visibility = 'visible';
 
@@ -74,11 +72,11 @@ export class Overview extends Component {
 		document.getElementById('tournamentName').innerText =
 			'Are you sure you want to delete "' + id.TournamentName + '"';
 	}
-
+	//if on the prompt you press no nothing happends
 	nodelete() {
 		document.getElementById('confirm').style.visibility = 'hidden';
 	}
-
+	// if yes pressed the tournament gets deleted
 	delete() {
 		document.getElementById('confirm').style.visibility = 'hidden';
 		updateDatabase.deleteTournament(x.TournamentID, () => console.log());
@@ -94,7 +92,5 @@ export class Overview extends Component {
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 
 		updateDatabase.selectAllTournaments((results) => (this.tournaments = results));
-
-		intro.play();
 	}
 }

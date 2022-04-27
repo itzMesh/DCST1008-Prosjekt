@@ -10,6 +10,8 @@ import { updateDatabase } from '../Database/services';
 export let tournamentplayers = [null, new Date()];
 let deleteId;
 let deleteTeam;
+//this class makes the page where you sign players up
+
 export class AddTwoPlayerTeams extends Component {
 	tournamentplayers = tournamentplayers;
 	settings = settings;
@@ -46,7 +48,8 @@ export class AddTwoPlayerTeams extends Component {
 								No
 							</em>
 						</div>
-					</div>
+					</div>{' '}
+					{/* Delete promt me made that will accur when deleting a team */}
 				</div>
 				<form ref={(instance) => (this.form = instance)}>
 					<br />
@@ -112,12 +115,12 @@ export class AddTwoPlayerTeams extends Component {
 					<br />
 				</form>
 				<br />
-				<em className="login" type="button" onClick={this.buttonClicked}>
+				<em className="navigate" type="button" onClick={this.buttonClicked}>
 					Add team
 				</em>
 
 				<NavLink
-					className="login"
+					className="navigate"
 					to={
 						'/tournamentpage/' +
 						(this.tournamentIDs[0] + 1) +
@@ -133,8 +136,9 @@ export class AddTwoPlayerTeams extends Component {
 				<br />
 				<br />
 				<div className="name">{settings.name}</div>
+				{/* Creates a list of all the teams signed up for the tournament */}
 
-				<div className="scrollPlayer">
+				<div className="scrollTwoPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
 							<button
@@ -145,6 +149,8 @@ export class AddTwoPlayerTeams extends Component {
 							>
 								x
 							</button>
+							{/*Gives each team a delete button with a unique ID*/}
+
 							<em key={0}>Team: {team[0]}</em>
 							<div key={1}>
 								Name: {team[1][0]}, {team[1][1]}{' '}
@@ -173,6 +179,7 @@ export class AddTwoPlayerTeams extends Component {
 			</div>
 		);
 	}
+	//get prompted when trying to delete a player
 
 	confirm(i, teams) {
 		deleteId = i;
@@ -184,15 +191,18 @@ export class AddTwoPlayerTeams extends Component {
 			'Are you sure you want to delete "' + deleteTeam[deleteId.target.id][0] + '"';
 	}
 
+	//if '"no" is pressed when the delete alert is prompted the method under is runned and hides the deleteprompt
 	nodelete() {
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 
+	//if "yes" is pressed when the delete alert is prompted the method under is runned and the player is deleted, it also hides the deleteprompt
 	delete() {
 		deleteTeam.splice(deleteId.target.id, 1);
 		document.getElementById('confirmT').style.visibility = 'hidden';
 	}
 
+	//creates the tournament and send it for display
 	createObjects(event) {
 		if (this.teams.length > 1) {
 			this.teamObj = [];
@@ -215,8 +225,8 @@ export class AddTwoPlayerTeams extends Component {
 		} else {
 			this.warning =
 				settings.gamemode.length == 0
-					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
-					: 'NOT ENOUGH PLAYERS';
+					? 'OBS! You reloaded the page and have to go back a step and create a new tournament'
+					: 'Nnot enough players';
 			document.getElementById('warning').style.visibility = 'visible';
 			setTimeout(() => {
 				document.getElementById('warning').style.visibility = 'hidden';
@@ -225,6 +235,7 @@ export class AddTwoPlayerTeams extends Component {
 		}
 	}
 
+	//checks if form is filled out correctly, if it is it pushes the player into an array
 	buttonClicked() {
 		if (!this.form.reportValidity()) return;
 

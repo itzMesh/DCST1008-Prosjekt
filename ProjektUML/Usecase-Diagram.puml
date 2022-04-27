@@ -3,7 +3,7 @@ left to right direction
 :user:
 rectangle Application{
     usecase "Sign Up" as SU
-    usecase "Login" as LG
+    usecase "navigate" as LG
     usecase "Manage Tournaments" as MT
     usecase "Create New Tournament" as CTM
     usecase "Add player" as AP

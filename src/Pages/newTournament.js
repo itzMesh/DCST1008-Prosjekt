@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import GeneralSettings from '../Classes/GeneralSettings';
 
 export let settings = new GeneralSettings('', '', '');
-
+//this class creates the page and store the imformatinon about new tournaments
 export class NewTournament extends Component {
 	settings = settings;
 	tourname = '';
@@ -67,7 +67,7 @@ export class NewTournament extends Component {
 				</form>
 				<NavLink
 					onClick={this.setSettings}
-					className="login"
+					className="navigate"
 					to={'/players/' + this.gamemode.split(',')[1]}
 				>
 					Setup tournament
@@ -75,7 +75,8 @@ export class NewTournament extends Component {
 			</div>
 		);
 	}
-
+	//checks if the input fileds are vallid and if they are set the information in settings,
+	//settings then get transferd to addSingelPlayer or addTwoPlayersTeams where more information is added
 	setSettings(event) {
 		if (!this.form.reportValidity()) {
 			event.preventDefault();
