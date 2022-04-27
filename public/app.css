@@ -253,7 +253,7 @@ em {
 /* classes for the divs with scroll bars */
 .scrollPlayer {
 	overflow: auto;
-	height: 400px;
+	height: 350px;
 	/* max-height: 400px;
 	min-height: 50px;
 	height: auto;
@@ -281,6 +281,39 @@ em {
 }
 
 .scrollPlayer::-webkit-scrollbar-thumb:hover {
+	background: #fdf913;
+	border-radius: 10px;
+	border: 6px solid rgba(0, 0, 0, 0);
+	min-width: 32px;
+	min-height: 32px;
+}
+
+.scrollTwoPlayer {
+	overflow: auto;
+	height: 320px;
+	width: 380px;
+	background: rgba(199, 199, 199, 0.155);
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+}
+
+.scrollTwoPlayer::-webkit-scrollbar {
+	width: 20px;
+}
+
+.scrollTwoPlayer::-webkit-scrollbar-thumb {
+	background: #ffd700;
+	border-radius: 10px;
+	border: 4px solid rgba(0, 0, 0, 0);
+	background-clip: content-box;
+	min-width: 32px;
+	min-height: 32px;
+}
+
+.scrollTwoPlayer::-webkit-scrollbar-thumb:hover {
 	background: #fdf913;
 	border-radius: 10px;
 	border: 6px solid rgba(0, 0, 0, 0);
@@ -409,7 +442,7 @@ em {
 	vertical-align: middle;
 }
 
-/* the dynamic title*/
+/* the dynamic title, inspiration from https://codepen.io/MoorLex/pen/NBwNZa*/
 .center {
 	font-family: clash;
 	position: absolute;
@@ -493,7 +526,7 @@ a:hover span:nth-child(2):after {
 	transform: rotateX(90deg) translateY(-50%);
 }
 
-/* round robin table styling */
+/* round robin table styling, inspired by https://codepen.io/pablorgarcia/pen/ARdVgx */
 .table {
 	text-align: left;
 	overflow: hidden;
@@ -555,7 +588,7 @@ a:hover span:nth-child(2):after {
 	float: left;
 }
 
-/* the confetti that appears when a winner is chosen */
+/* the confetti that appears when a winner is chosen, inspired by https://codepen.io/zer0kool/pen/KjZWRW */
 .confetti {
 	display: flex;
 	justify-content: center;

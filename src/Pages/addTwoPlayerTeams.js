@@ -134,7 +134,7 @@ export class AddTwoPlayerTeams extends Component {
 				<br />
 				<div className="name">{settings.name}</div>
 
-				<div className="scrollPlayer">
+				<div className="scrollTwoPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
 							<button
