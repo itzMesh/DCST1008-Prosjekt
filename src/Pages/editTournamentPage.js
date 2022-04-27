@@ -52,7 +52,7 @@ export class EditTournamentPage extends Component {
 				</form>
 				<br></br>
 				<NavLink
-					className="login"
+					className="navigate"
 					onClick={(event) => this.save(event)}
 					to={
 						'/tournamentPage/' +

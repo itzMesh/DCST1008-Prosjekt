@@ -112,12 +112,12 @@ export class AddTwoPlayerTeams extends Component {
 					<br />
 				</form>
 				<br />
-				<em className="login" type="button" onClick={this.buttonClicked}>
+				<em className="navigate" type="button" onClick={this.buttonClicked}>
 					Add team
 				</em>
 
 				<NavLink
-					className="login"
+					className="navigate"
 					to={
 						'/tournamentpage/' +
 						(this.tournamentIDs[0] + 1) +
@@ -134,7 +134,7 @@ export class AddTwoPlayerTeams extends Component {
 				<br />
 				<div className="name">{settings.name}</div>
 
-				<div className="scrollPlayer">
+				<div className="scrollTwoPlayer">
 					{this.teams.map((team, i) => (
 						<div className="small" key={i} style={{ float: 'left' }}>
 							<button
@@ -215,8 +215,8 @@ export class AddTwoPlayerTeams extends Component {
 		} else {
 			this.warning =
 				settings.gamemode.length == 0
-					? 'OBS You reloaded the page and have to go back a step and create a new tournament'
-					: 'NOT ENOUGH PLAYERS';
+					? 'OBS! You reloaded the page and have to go back a step and create a new tournament'
+					: 'Nnot enough players';
 			document.getElementById('warning').style.visibility = 'visible';
 			setTimeout(() => {
 				document.getElementById('warning').style.visibility = 'hidden';
