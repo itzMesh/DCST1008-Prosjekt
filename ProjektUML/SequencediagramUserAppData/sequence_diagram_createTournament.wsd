@@ -7,7 +7,7 @@ activate U
 activate A
 
 U->A: Clicks the "Create Tournament" button
-A->A: Creates a Tournament
+A->A: Creates a tournament
 A-->U: Takes you to the page for the tournament
 
 

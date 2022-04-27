@@ -458,7 +458,8 @@ export class ShowTournamentPage extends Component {
 		console.log(this.tournamentObject.rounds.length);
 		if (
 			this.tournamentObject.rounds[this.tournamentObject.numberOfRounds - 1].matches.length ==
-			2
+				2 &&
+			this.tournamentObject.generalSettings.type == 'bracket'
 		) {
 			this.roundsInTournament = this.tournamentObject.rounds.concat([
 				new Round(
@@ -473,7 +474,7 @@ export class ShowTournamentPage extends Component {
 					]
 				),
 			]);
-			console.log('TEst');
+			console.log('TEster dette er rart');
 		} else {
 			this.roundsInTournament = this.tournamentObject.rounds;
 			console.log(this.roundsInTournament);
@@ -552,25 +553,37 @@ export class ShowTournamentPage extends Component {
 				document.getElementById('confetti') != null &&
 				!this.showedConfetti
 			) {
+				let confetti = document.getElementById('confetti');
+				let winnerPromt = document.getElementById('winner');
 				document.getElementById('confetti').style.visibility = 'visible';
 				document.getElementById('winner').style.visibility = 'visible';
 				document.getElementById('winner').innerHTML =
 					'The winner of the tournament is: ' + this.tournamentObject.winner.name;
 				this.updateScore();
 				this.showedConfetti = true;
+				setTimeout(() => {
+					winnerPromt.style.visibility = 'hidden';
+					confetti.style.visibility = 'hidden';
+				}, 5000);
 			} else if (
 				this.tournamentObject.winner != null &&
 				this.tournamentObject.generalSettings.type != 'bracket' &&
 				document.getElementById('confetti') != null &&
 				!this.showedConfetti
 			) {
-				document.getElementById('confetti').style.visibility = 'visible';
-				document.getElementById('winner').style.visibility = 'visible';
-				document.getElementById('winner').innerHTML = this.tournamentObject.tie
+				let confetti = document.getElementById('confetti');
+				let winnerPromt = document.getElementById('winner');
+				confetti.style.visibility = 'visible';
+				winnerPromt.style.visibility = 'visible';
+				winnerPromt.innerHTML = this.tournamentObject.tie
 					? 'The tournament was a tie'
 					: 'The winner of the tournament is: ' + this.tournamentObject.winner.name;
 				this.updateScore();
 				this.showedConfetti = true;
+				setTimeout(() => {
+					winnerPromt.style.visibility = 'hidden';
+					confetti.style.visibility = 'hidden';
+				}, 5000);
 			}
 		}, 20);
 
