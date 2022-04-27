@@ -5,6 +5,7 @@ import { tournamentplayer } from './addSinglePlayer';
 import { tournamentplayers } from './addTwoPlayerTeams';
 import { tournamentPageObj } from './tournamentPage';
 
+//this class is where you update the score for each match
 export class EditTournamentPage extends Component {
 	tournamentObject = this.getTournament();
 	matchInds = [this.props.match.params.Match][0].split(',');
@@ -66,7 +67,7 @@ export class EditTournamentPage extends Component {
 			</div>
 		);
 	}
-
+	//saves the information that is in the input fields throw a method from match.js
 	save(event) {
 		if (!this.form.reportValidity(event)) {
 			event.preventDefault();
@@ -74,7 +75,7 @@ export class EditTournamentPage extends Component {
 		}
 		this.match.updateScore(this.score1, this.score2);
 	}
-
+	//pull the right tournament object depending on wich class createt it
 	getTournament() {
 		let tournamentp =
 			tournamentplayer[1] > tournamentplayers[1] ? tournamentplayer : tournamentplayers;

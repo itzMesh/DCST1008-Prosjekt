@@ -39,11 +39,14 @@ export class TournamentPage extends Component {
 		let tournamentID = [this.props.match.params.TournamentID];
 		document.body.style.backgroundImage = 'url(images/blur.png)';
 
+		//database call
 		function firstDatabase() {
 			return new Promise((resolve) => {
 				updateDatabase.selectTeamMember(tournamentID, (results) => resolve([results]));
 			});
 		}
+
+		//database call
 		function secondDatabase(inn) {
 			return new Promise((resolve) => {
 				updateDatabase.selectGameMatch(tournamentID, (results) => {
@@ -53,6 +56,8 @@ export class TournamentPage extends Component {
 				});
 			});
 		}
+
+		//database call
 		function thirdDatabase(inn) {
 			return new Promise((resolve) => {
 				updateDatabase.selectTeam(tournamentID, (results) => {
@@ -62,6 +67,8 @@ export class TournamentPage extends Component {
 				});
 			});
 		}
+
+		//database call
 		function fourthDatabase(inn) {
 			return new Promise((resolve) => {
 				updateDatabase.selectTournament(tournamentID, (results) => {
@@ -72,6 +79,7 @@ export class TournamentPage extends Component {
 			});
 		}
 
+		//put alle the information pulled from the database into different objebts.
 		function makeClasses(table, teamObj, teamMemberObj, tournamentObj, matchObj) {
 			return new Promise((resolve) => {
 				let promTeamMember = table[0];
