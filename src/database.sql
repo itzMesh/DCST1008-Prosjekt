@@ -3,8 +3,8 @@ CREATE TABLE `Tournament` (
     `id` int(11) NOT NULL,
     `TournamentID` int(11) NOT NULL,
     `TournamentName` varchar(20) NOT NULL,
-    `TournamentType` varchar(20) NOT NULL,
-    `TournamentGamemode` varchar(20) NOT NULL
+    `TournamentType` varchar(35) NOT NULL,
+    `TournamentGamemode` varchar(35) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
     ALTER TABLE `Tournament`

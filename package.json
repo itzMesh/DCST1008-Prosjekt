@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"main": "main.js",
 	"scripts": {
-		"start": "electron ."
+		"start": "electron .",
+		"test": "jest"
 	},
 	"browserslist": [
 		"electron 17.1"
@@ -22,6 +23,7 @@
 	},
 	"devDependencies": {
 		"chokidar": "^3.5.3",
+		"jest": "^28.0.1",
 		"prettier": "^2.5.1"
 	}
 }
