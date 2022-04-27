@@ -1,3 +1,4 @@
+//makes teammembers
 class TeamMember {
 	constructor(name, trophies, teamID, tournamentID) {
 		this.name = name;
