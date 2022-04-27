@@ -109,7 +109,8 @@ class Round {
 
 		if (
 			this.roundNumber == this.numberOfRounds - 1 &&
-			this.tournament.teams.filter((e) => e.constructor.name == 'Team').length > 3
+			this.tournament.teams.filter((e) => e.constructor.name == 'Team').length > 3 &&
+			this.tournament.generalSettings.type == 'bracket'
 		) {
 			this.tournament.hasBronze = true;
 			this.matches.push(

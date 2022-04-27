@@ -154,7 +154,8 @@ export class ShowTournamentPage extends Component {
 										.filter(
 											(match) =>
 												round.roundNumber != round.numberOfRounds - 1 ||
-												match.ind == 0
+												match.ind == 0 ||
+												round.tournament.generalSettings.type != 'bracket'
 										)
 										.map((match, i) => (
 											<div
@@ -472,12 +473,15 @@ export class ShowTournamentPage extends Component {
 					]
 				),
 			]);
+			console.log('TEst');
 		} else {
 			this.roundsInTournament = this.tournamentObject.rounds;
+			console.log(this.roundsInTournament);
 		}
 		if (
 			this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches.length ==
-			2
+				2 &&
+			this.tournamentObject.generalSettings.type == 'bracket'
 		) {
 			this.roundsInTournament[this.roundsInTournament.length - 1].matches[0].results =
 				this.tournamentObject.rounds[
@@ -540,6 +544,7 @@ export class ShowTournamentPage extends Component {
 		setInterval(() => {
 			if (
 				this.tournamentObject.winner != null &&
+				this.tournamentObject.generalSettings.type == 'bracket' &&
 				(this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches
 					.length == 1 ||
 					this.tournamentObject.rounds[this.tournamentObject.rounds.length - 1].matches[1]
@@ -551,6 +556,19 @@ export class ShowTournamentPage extends Component {
 				document.getElementById('winner').style.visibility = 'visible';
 				document.getElementById('winner').innerHTML =
 					'The winner of the tournament is: ' + this.tournamentObject.winner.name;
+				this.updateScore();
+				this.showedConfetti = true;
+			} else if (
+				this.tournamentObject.winner != null &&
+				this.tournamentObject.generalSettings.type != 'bracket' &&
+				document.getElementById('confetti') != null &&
+				!this.showedConfetti
+			) {
+				document.getElementById('confetti').style.visibility = 'visible';
+				document.getElementById('winner').style.visibility = 'visible';
+				document.getElementById('winner').innerHTML = this.tournamentObject.tie
+					? 'The tournament was a tie'
+					: 'The winner of the tournament is: ' + this.tournamentObject.winner.name;
 				this.updateScore();
 				this.showedConfetti = true;
 			}
