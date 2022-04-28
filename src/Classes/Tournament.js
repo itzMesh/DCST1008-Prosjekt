@@ -1,5 +1,5 @@
 import Round from './round';
-
+//this class is the whole tournament with all the other classes in this folder. Including every information about he tournament
 class Torunament {
 	name;
 	tournamentID;
@@ -51,7 +51,7 @@ class Torunament {
 		}
 		return numberOfRounds;
 	}
-
+	//if a team meets a shawdowteam the get a walkover
 	playWalkover() {
 		for (const i of this.rounds[0].matches) {
 			if (i.teams[0].constructor.name == 'ShadowTeam') {
@@ -61,6 +61,8 @@ class Torunament {
 			}
 		}
 	}
+
+	//
 	createRoundRobin() {
 		this.numberOfRounds = this.setRoundRobinRounds(this.teams);
 		this.playWalkover();

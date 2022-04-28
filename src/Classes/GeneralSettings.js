@@ -1,3 +1,4 @@
+//makes a class for genereal settings to be stored and used later
 class GeneralSettings {
 	constructor(type, name, gamemode) {
 		this.type = type;
